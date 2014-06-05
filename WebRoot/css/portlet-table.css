@@ -1,0 +1,97 @@
+.portlet-title .tools i,
+.portlet-title .tools span i,
+.portlet-title .tools .btn-group
+{
+	display: inline-block;
+	height: 16px;
+	width: 12px;
+	margin-left:5px;
+}
+
+.portlet-title .tools i:hover,
+.portlet-title .tools span i:hover,
+.portlet-title .tools .btn-group .btn:hover {
+	-webkit-transition: all 0.1s ease-in-out;
+	-moz-transition: all 0.1s ease-in-out;
+	-o-transition: all 0.1s ease-in-out;
+	-ms-transition: all 0.1s ease-in-out;
+	transition: all 0.1s ease-in-out;
+	opacity:.6;  
+	filter:'alpha(opacity=60)';
+	cursor: pointer;
+}
+
+.portlet-title .tools i.disable,
+.portlet-title .tools span i.disable {
+	color: black;
+}
+
+.portlet-title .tools i.disable:hover,
+.portlet-title .tools span i.disable:hover {
+	-webkit-transition: none;
+	-moz-transition: none;
+	-o-transition: none;
+	-ms-transition: none;
+	transition: none;
+	color: black;
+	opacity: none;  
+	filter: none;
+	cursor: default;
+}
+
+.portlet-title .tools .btn-group .btn {
+	top: -3px;
+	left: -5px;
+	padding: 0px;
+	background-color: inherit;
+	color: white;
+}
+
+.portlet-title .tools > .btn-group .btn:hover, 
+.portlet-title .tools > .btn-group .btn:focus, 
+.portlet-title .tools > .btn-group .btn:active, 
+.portlet-title .tools > .btn-group .btn.active, 
+.portlet-title .tools > .btn-group .btn.disabled,
+.portlet-title .tools > .btn-group .btn[disabled] { 
+  background-color: inherit !important;
+  background-image: none !important;
+}
+
+tr.full-wrap td {
+	padding: 0px;
+	height: 36px;
+}
+
+/* tr.full-wrap td:first-child { */
+/* 	padding: 8px; */
+/* 	height: 20px; */
+/* } */
+
+div.full-wrap a {
+	height: 31px !important;
+}
+
+input[type="text"].full-wrap,
+select.full-wrap,
+div.select2-container.full-wrap
+ {
+	border: 0px;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: inherit;
+}
+
+.portlet-title.affix {
+	width: 1062px;
+	top: 45px;
+}
+
+table tr.even.row_selected td {
+	background-color: #B0BED9;
+}
+
+table tr.odd.row_selected td {
+	background-color: #9FAFD1;
+}

@@ -1,0 +1,8 @@
+table thead tr th,
+table tbody tr td {
+   	text-align: center !important;
+};
+
+table thead tr th:last-child {
+   	width: 225px;
+};

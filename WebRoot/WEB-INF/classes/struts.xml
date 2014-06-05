@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.objectFactory" value="spring" />
+	<package name="oa" extends="struts-default" namespace="/">
+		<interceptors>
+			<interceptor name="securityInterceptor" class="com.oa.extend.SecurityInterceptor">
+			</interceptor>
+			<interceptor-stack name="myDefaultStack">
+				<interceptor-ref name="securityInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myDefaultStack" />
+		<global-results>
+            <result name="unhandledException">
+                /JSP/systemFail.jsp
+            </result>
+			<result name="operator_success">
+				/direct.jsp
+			</result>
+			<result name="operator_failure">
+				/JSP/operator_failure.jsp
+			</result>
+			<result name="login">
+				/login.jsp
+			</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping exception="org.hibernate.exception.ConstraintViolationException"
+				result="unhandledException" />
+		</global-exception-mappings>
+
+		<action name="UserAction" class="com.oa.action.UserAction" >
+			<result name="login_failure" >/login.jsp</result>
+			<result name="login_success">/index.jsp</result>
+			<result name="modify">/JSP/yuangong.jsp</result>
+			<result name="accountModify">/JSP/accountModify.jsp</result>
+			<result name="userList">/JSP/userManage.jsp</result>
+			<result name="listRole">/JSP/listRole.jsp</result>
+			<result name="distributeRole">/JSP/distributeRole.jsp</result>
+			<result name="updateDistributeRole">/JSP/updateDistributeRole.jsp</result>
+			<result name="login">login.jsp</result>
+			<result name="error">/JSP/OpenError.jsp</result>
+			<result name="distributePrivilegeToUser">/JSP/distributePrivilegeToUser.jsp</result>
+		</action>	
+		<action name="OrganizationAction" class="com.oa.action.OrganizationAction">
+			<result name="listOrg">/JSP/organizationManage.jsp</result>
+			<result name="updateOrg">/JSP/addOrganization.jsp</result>
+			<result name="deleteOrg">/JSP/operator_success.jsp</result>
+
+		</action>
+		<action name="PersonAction" class="com.oa.action.PersonAction">
+			<result name="input">/JSP/operator_failure.jsp</result>
+			<result name="success">/JSP/listyuangong.jsp</result>
+			<result name="edit">/JSP/yuangong.jsp</result>
+			<result name="showListToAdd">/JSP/yuangong.jsp</result>
+		</action>
+		<action name="ModuleAction" class="com.oa.action.ModuleAction">
+			<result name="moduleList">/JSP/listModule.jsp</result>
+		</action>
+		<action name="RoleAction" class="com.oa.action.RoleAction">
+			<result name="listRole">/JSP/roleManage.jsp</result>
+			<result name="updateRole">/JSP/addRole.jsp</result>
+			<result name="input">/JSP/addRole.jsp</result>
+			<result name="showRolePrivilege">/JSP/showRolePrivilege.jsp</result>
+			<result name="error">/JSP/OpenError.jsp</result>
+			<result name="distributePrivilegeToUser">/JSP/distributePrivilegeToUser.jsp</result>	
+		</action>
+
+
+		<action name="EventAction" class="com.oa.action.EventAction">
+		</action>
+
+
+		
+		<action name="WorkFlowAction" class="com.oa.action.WorkFlowAction">
+			<result name="listWorkFlow">
+				/JSP/listWorkFlow.jsp
+			</result>
+		</action>
+		<action name="DocumentAction" class="com.oa.action.DocumentAction">
+			<result name="finishDocumentList">
+				/JSP/listFinishDocument.jsp
+			</result>
+			<result name="documentList">
+				/JSP/listDocument.jsp
+			</result>
+			<result name="toAddDocumentView">
+				/JSP/select_flow.jsp
+			</result>
+			<result name="approveHistoryList">
+				/JSP/listApproveHistory.jsp
+			</result>
+			<result name="submitToNextOne">
+				/JSP/test.jsp
+			</result>
+		</action>
+	
+		<action name="DynamicFormAction" class="com.oa.action.DynamicFormAction">
+			<result name="workFlowList">
+				/JSP/listDynamicForm.jsp
+			</result>
+			<result name="listFormField">
+				/JSP/listDynamicField.jsp
+			</result>
+		</action>
+		<action name="DynamicFieldAction" class="com.oa.action.DynamicFieldAction">
+			<result name="addfieldView">/JSP/addDynamicField.jsp</result>
+			<result name="modifyDynamicField">
+				/JSP/addDynamicField.jsp
+			</result>
+		</action>
+		<action name="FieldItemAction" class="com.oa.action.FieldItemAction">
+			<result name="listItems">
+				/JSP/listFieldItem.jsp
+			</result>
+		</action>
+		<action name="testDocumentAction" class="com.oa.action.testDocumentAction">
+		</action>
+		<action name="ProductAction" class="com.oa.action.ProductAction">
+			<result name="productList">/JSP/listProduct.jsp</result>
+			<result name="editView">/JSP/addProduct.jsp</result>
+		</action>
+		<action name="SalesAgreementAction" class="com.oa.action.SalesAgreementAction">
+			<result name="SalesAgreementList">/JSP/listSalesAgreement.jsp</result>
+			<result name="editView">/JSP/addSalesAgreement.jsp</result>
+		</action>
+		<action name="ContractProductAction" class="com.oa.action.ContractProductAction">
+			<result name="ContractProductRecordList">/JSP/listContractProductRecord.jsp</result>
+			<result name="editView">/JSP/addContractProductRecord.jsp</result>
+			<result name="addView">/JSP/addContractProductRecord.jsp</result>
+		</action>
+		<action name="PurchaseOrderRegisiterAction" class="com.oa.action.PurchaseOrderRegisiterAction">
+			<result name="PurchaseOrderRegisiterList">/JSP/listPurchaseOrderRegisiter.jsp</result>
+			<result name="editView">/JSP/addPurchaseOrderRegisiter.jsp</result>
+		</action>
+		<action name="OrderProductRecordAction" class="com.oa.action.OrderProductRecordAction">
+			<result name="OrderProductRecordList">/JSP/listOrderProductRecord.jsp</result>
+			<result name="editView">/JSP/addOrderProductRecord.jsp</result>
+		</action>
+		<action name="PaymentPlanAction" class="com.oa.action.PaymentPlanAction">
+			<result name="PaymentPlanList">/JSP/listPaymentPlan.jsp</result>
+			<result name="editView">/JSP/addPaymentPaln.jsp</result>
+		</action>
+		<action name="PayPlanAction" class="com.oa.action.PayPlanAction">
+			<result name="PayPlanList">/JSP/listPayPlan.jsp</result>
+			<result name="editView">/JSP/addPayPaln.jsp</result>
+		</action>
+		<action name="SupplierManagerAction" class="com.oa.action.SupplierManagerAction">
+			<result name="SupplierManagerList">/JSP/listSupplierManager.jsp</result>
+			<result name="editView">/JSP/addSupplierManager.jsp</result>
+		</action>
+		<action name="SupplierContractAction" class="com.oa.action.SupplierContactAction">
+			<result name="SupplierContactList">/JSP/listSupplierContract.jsp</result>
+			<result name="editView">/JSP/addSupplierContract.jsp</result>
+		</action>
+		<action name="RuleAction" class="com.oa.action.RuleAction">
+			<result name="rulesList">
+				/modules/Rule.jsp
+			</result>
+			<result name="ruleView">
+				/modules/addRule.jsp
+			</result>
+		</action>
+		<action name="PersonDailyAction" class="com.oa.action.PersonDailyAction">
+			<result name="personDailyList">
+				/modules/UserManual.jsp
+			</result>
+			<result name="addUserManualView">
+				/modules/addUserManual.jsp
+			</result>
+		</action>
+		
+		
+		
+		
+		
+		
+		
+		<action name="AttendanceManagementAction" class="com.oa.action.AttendanceManagementAction">
+			<result name="attendanceSet">/JSP/attendanceSet.jsp</result>
+			<result name="OnAndOffRegister">/JSP/onAndOffRegister.jsp</result>
+		</action>
+		<action name="AgreementAction" class="com.oa.action.AgreementAction">
+			<result name="selectAgree">/JSP/agreementManage.jsp</result>
+			<result name="addAgreement">/JSP/addAgreement.jsp</result>
+		</action>
+		<action name="DisciplinaryRecordsAction" class="com.oa.action.DisciplinaryRecordsAction">
+			<result name="selectDis">/JSP/disciplinaryRecordsManage.jsp</result>
+			<result name="addDisciplinaryRecords">/JSP/addDisciplinaryRecords.jsp</result>
+		</action>
+		<action name="PerformanceParametersAction" class="com.oa.action.PerformanceParametersAction">
+			<result name="selectPerformanceParameters">/JSP/performanceParametersManage.jsp</result>
+			<result name="addPerformanceParameters">/JSP/addPerformanceParameters.jsp</result>
+		</action>
+		<action name="PerformanceExamineAction" class="com.oa.action.PerformanceExamineAction">
+			<result name="selectPerformanceExamine">/JSP/performanceExamineManage.jsp</result>
+			<result name="addPerformanceExamine">/JSP/addPerformanceExamine.jsp</result>
+			<result name="showSpecialPerformanceExamine">/JSP/showSpecialPerformanceExamine.jsp</result>
+		</action>
+	</package>
+</struts>
