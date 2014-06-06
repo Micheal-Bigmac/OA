@@ -68,7 +68,7 @@
 				<span class="newfont07">选择：
 					<a href="#"  id="selectAll">全选</a>-<a href="#" id="unselect">反选</a>
 				</span> 
-				<input class="btn" name="Submit" type="button"  value="删除所选信息" onclick="deleteChose();" /> 
+				<input class="btn" name="Submit" type="button"  value="删除所选信息" id="deleteChose" data-action="SupplierContractAction!deleteSupplierContact|${url }" /> 
 				<a class="btn ajaxify"  href="JSP/addSupplierContract.jsp" >添加供应商联系人信息</a> 
 			</div>
 			<div class="row-fluid">

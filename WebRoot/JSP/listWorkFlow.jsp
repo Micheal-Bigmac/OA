@@ -57,12 +57,12 @@
 	</form>
 </div>
 <div class="row-fluid">
-	<form>
+	<form id="fom">
 		<table>
 			<div class="row-fluid">
 				<span class="newfont07">选择：<a href="#"  id="selectAll">全选</a>-<a href="#"  id="unselect">反选</a>
 				</span> 
-				<a class="ajaxify btn" herf="WorkFlowAction!deleteWorkFlow">删除所选流程信息</a>
+				<a class="ajaxify btn" herf="WorkFlowAction!deleteWorkFlow" id="deleteChose" data-action="ModuleAction!deletemodule|${url }">删除所选流程信息</a>
 				<a class="ajaxify btn" href="JSP/submitDocument.jsp" class="btn ajaxify">添加流程信息</a> 
 			</div>
 			<div class="row-fluid">

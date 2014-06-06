@@ -44,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </form>
 </div>
 <div class="row-fluid">
-	<form name="fom" id="form" method="post" action="">
+	<form name="fom" id="fom" method="post" action="">
 		<table class="table table-bordered">
 			<div class="row-fluid">
 				<span >选择：
