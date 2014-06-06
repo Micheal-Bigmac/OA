@@ -123,6 +123,7 @@ public class DocumentAction extends ActionSupport {
 						(index == 0 ? 1 : index));
 		request.setAttribute("currentIndex", (index == 0 ? 1 : index));
 		request.setAttribute("myDocumentList", documents);
+		System.out.println(username+"  ========= zy");
 		List temp = documentService.SearchAllApprovingDocuments(username);
 		int totals = (temp == null ? 0 : temp.size());
 		request.setAttribute("totalSize", totals);

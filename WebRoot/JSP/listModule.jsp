@@ -51,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a href="#" id="selectAll">全选</a>-<a href="#" id="unselect">反选</a>
 				</span>
 				<s:if test="#request.pid">
-					<input name="Submit" type="button" 	value="删除所选模块信息" onclick="deleteChose();" />
+					<input class="btn" name="Submit" type="button" 	value="删除所选模块信息" onclick="deleteChose();" />
 				</s:if>
 				
 				<!-- <input name="Submit" class="btn ajaxify" type="button" 	value="添加模块信息" onclick="link();" /> -->

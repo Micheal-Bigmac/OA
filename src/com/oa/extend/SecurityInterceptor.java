@@ -1,6 +1,8 @@
 package com.oa.extend;
 
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -22,14 +24,22 @@ public class SecurityInterceptor implements Interceptor {
 		HttpSession session = ServletActionContext.getRequest().getSession();
 		HttpServletRequest request=ServletActionContext.getRequest();
 		String clazz=invocation.getAction().getClass().getName();
-		System.out.println(clazz+invocation.getAction());
-		if(UserAction.class.getName().equals(clazz)){
-			return invocation.invoke();
-		}
+//		System.out.println(clazz+invocation.getAction());
+		
 		if (session.getAttribute("admin") == null ){
+			if(UserAction.class.getName().equals(clazz)){
+				return invocation.invoke();
+			}
 			return Action.LOGIN;
 		}else {
-			
+			if(UserAction.class.getName().equals(clazz)){
+				Map parameters = invocation.getInvocationContext().getParameters();
+				if(parameters.get("user.account")!=null){
+					System.out.println("-====");
+					System.out.println("user.account");
+					session.removeAttribute("admin");
+				}
+			}
 			return invocation.invoke();
 		}
 	}

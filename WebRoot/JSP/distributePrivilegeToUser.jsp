@@ -20,7 +20,7 @@ var personId = "${personId}";
 function ReloadPage(url) {
 	pageContent = $('.page-content .page-content-body');
 	
- 	App.blockUI(pageContent, false);
+//  	App.blockUI(pageContent, false);
 	$.ajax({
 		url: url,
 		success: function(res) {
@@ -50,13 +50,9 @@ function Box(checkbox, url) {
 				<td height="30">
 					<table width="93%" border="0" cellspacing="0" cellpadding="0">
 						<tr>
-							<td height="62" background="<%=basePath%>images/nav04.gif">
+							<td height="62" >
 								<table width="98%" border="0" align="center" cellpadding="0"
 									cellspacing="0">
-									<tr>
-										<td width="21"><img src="<%=basePath%>images/ico07.gif"
-											width="20" height="18" /></td>
-									</tr>
 								</table></td>
 						</tr>
 					</table></td>
@@ -70,10 +66,6 @@ function Box(checkbox, url) {
 									<tr>
 										<td height="20">请给用户【<s:property
 												value="#request.username" />】赋权
-										<td><input type="button" name="Submit2" value="返回"
-											class="right-button08" onclick="window.history.go(-1);" />
-											<input type="text" id="personid" name="personid" value="${personId}" />
-										</td>
 									</tr>
 									<tr>
 										<td height="40" class="font42">

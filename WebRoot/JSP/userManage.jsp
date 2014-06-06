@@ -81,12 +81,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td>${person.organization.name}</td>
 								<td><s:property value="#person.getFirstUser().account" /></td>
 								<td><s:property value="#person.getFirstUser().expireTime" /></td>
-								<td><s:if test="#person.getFirstUser().account"></s:if> <s:else>
+								<td>
+								<s:if test="#person.getFirstUser().account != ''">
+									<a href="UserAction!deleteAccount?user.personid.id=${person.id }">删除账号</a>&nbsp;
+									<a class="ajaxify" href="UserAction!distributeRole?user.personid.id=${person.id}">分配角色</a>&nbsp;
+									<a class="ajaxify" href="UserAction!distributeUser?user.personid.id=${person.id}">用户授权</a>&nbsp;
+								</s:if> 
+								<s:else>
 										<a href="JSP/addAccount.jsp?personid=${person.id}">分配账号</a>&nbsp;
-								</s:else> <a href="UserAction!deleteAccount?user.personid.id=${person.id }">删除账号</a>&nbsp; <s:if
-										test="#person.getFirstUser().account">
-										<a href="UserAction!distributeRole?user.personid.id=${person.id}">分配角色</a>&nbsp;
-								</s:if> <a href="">用户授权</a>&nbsp;</td>
+								</s:else>
 							</tr>
 						</s:iterator>
 					</tbody>

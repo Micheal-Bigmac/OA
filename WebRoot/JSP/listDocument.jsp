@@ -132,6 +132,7 @@
 											<a class="ajaxify" href="DocumentAction!submitView?document.id=${document.id }">提交</a>&nbsp;&nbsp;
 											<a class="ajaxify" href="DocumentAction!deleteDocument?delid=${document.id }">删除</a>
 											</s:if> 
+											<a class="ajaxify" href="DocumentAction!deleteDocument?delid=${document.id }">删除</a>
 									</s:if>
 									<s:elseif test="#request.type=='approvingDocument'">
 										<a class="ajaxify" href="JSP/shenpi.jsp?id=${document.id }">审批</a>&nbsp;&nbsp;

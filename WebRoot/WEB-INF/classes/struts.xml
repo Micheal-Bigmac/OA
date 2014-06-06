@@ -30,6 +30,8 @@
 		<global-exception-mappings>
 			<exception-mapping exception="org.hibernate.exception.ConstraintViolationException"
 				result="unhandledException" />
+			<exception-mapping exception="java.sql.BatchUpdateException"
+				result="unhandledException" />
 		</global-exception-mappings>
 
 		<action name="UserAction" class="com.oa.action.UserAction" >
