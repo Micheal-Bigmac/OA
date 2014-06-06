@@ -261,7 +261,7 @@
 				</li>
 				<!-- DASHBORD -->
 				 <li class="start active ">
-					<a class="ajaxify start" href="modules/dashboard.jsp"> 
+					<a class="ajaxmenu" href="modules/dashboard.jsp"> 
 						<i class="icon-home"></i>
 						<span class="title">仪表盘</span>
 						<span class="selected"></span>

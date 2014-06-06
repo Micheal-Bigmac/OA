@@ -603,6 +603,7 @@ var App = function () {
         // get layout-options' default value
         if ($('body').hasClass('page-boxed') == false) {
             $('.layout-option', panel).val("fluid");
+            console.log($('.layout-option', panel).val());
         }
         $('.sidebar-option', panel).val("default");
         $('.header-option', panel).val("fixed");
@@ -640,7 +641,7 @@ var App = function () {
             var footerOption = $('.footer-option', panel).val(); 
 
             if (sidebarOption == "fixed" && headerOption == "default") {
-                alert('Default Header with Fixed Sidebar option is not supported. Proceed with Default Header with Default Sidebar.');
+//                alert('Default Header with Fixed Sidebar option is not supported. Proceed with Default Header with Default Sidebar.');
                 $('.sidebar-option', panel).val("default");
                 sidebarOption = 'default';
             }
@@ -648,6 +649,7 @@ var App = function () {
             resetLayout(); // reset layout to default state
 
             if (layoutOption === "boxed") {
+            	console.log("==== boxed ====")
                 $("body").addClass("page-boxed");
 
                 // set header
@@ -753,7 +755,7 @@ var App = function () {
     };
     
     var handlePageLoader = function() {
-    	loader = new SVGLoader( document.getElementById( 'loader' ), { speedIn : 100 } );
+    	loader = new SVGLoader( document.getElementById( 'loader' ), { speedIn :200 } );
  
     };
 

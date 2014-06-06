@@ -210,8 +210,8 @@ public class UserAction extends ActionSupport {
 		returns="JSP/gerenxinxi.jsp";
 		System.out.println(user.toString());
 		Users thisUser = (Users)userService.getThisUser(Users.class, user.getId());
-		thisUser.setAccount(user.getAccount());
-		thisUser.setPassword(user.getPassword());
+//		thisUser.setAccount(user.getAccount());
+//		thisUser.setPassword(user.getPassword());
 		/*	userService.update(thisUser);*/
 		System.out.println("person id i s "+thisUser.getPersonid());
 //		Users newUser = (Users)userService.getThisUser(Users.class, thisUser.getId());
@@ -225,6 +225,9 @@ public class UserAction extends ActionSupport {
 			String photoName = loginUser.getAccount()+this.getUploadFileFileName().substring(this.getUploadFileFileName().lastIndexOf("."));
 			System.out.println("photo name is "+photoName);
 			File toFile = new File(uploadPath, photoName);	//设置目标图片
+			if(!toFile.getParentFile().exists()){
+				toFile.getParentFile().mkdirs();
+			}
 			OutputStream os = new FileOutputStream(toFile);
 			if(!toFile.getParentFile().exists()){
 				toFile.getParentFile().mkdirs();
