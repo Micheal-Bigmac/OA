@@ -9,26 +9,7 @@
 
 <SCRIPT language=JavaScript>
 	
-	function selectAll() {
-		var obj = document.fom.elements;
-		for ( var i = 0; i < obj.length; i++) {
-			if (obj[i].name == "delid") {
-				obj[i].checked = true;
-			}
-		}
-	}
 
-	function unselectAll() {
-		var obj = document.fom.elements;
-		for ( var i = 0; i < obj.length; i++) {
-			if (obj[i].name == "delid") {
-				if (obj[i].checked == true)
-					obj[i].checked = false;
-				else
-					obj[i].checked = true;
-			}
-		}
-	}
 
 	function link() {
 		document.getElementById("fom").action = "JSP/yuangong.jsp";
@@ -85,7 +66,7 @@
 		<table class="table table-striped">
 			<div class="row-fluid">
 				<span class="newfont07">选择：
-					<a href="#"  onclick="selectAll();">全选</a>-<a href="#" class="right-font08" onclick="unselectAll();">反选</a>
+					<a href="#"  id="selectAll">全选</a>-<a href="#" id="unselect">反选</a>
 				</span> 
 				<input class="btn" name="Submit" type="button"  value="删除所选信息" onclick="deleteChose();" /> 
 				<a class="btn ajaxify"  href="JSP/addSupplierContract.jsp" >添加供应商联系人信息</a> 
@@ -177,14 +158,4 @@ $("#select").click(function(e) {
 		}
 	});
 });
-$(document).keydown(function(event){
-	alert('sdfsdfsd');
-// 	  if(event.keyCode ==13){
-// 	    alert("aaa_____");
-	  
-// 	  }
-	  e.preventDefault();
-	  e.stopPropagation();
-	    return false;
-	});
 </script>

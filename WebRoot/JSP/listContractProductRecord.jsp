@@ -9,27 +9,6 @@
 
 <SCRIPT language=JavaScript>
 
-	function selectAll() {
-		var obj = document.fom.elements;
-		for ( var i = 0; i < obj.length; i++) {
-			if (obj[i].name == "delid") {
-				obj[i].checked = true;
-			}
-		}
-	}
-
-	function unselectAll() {
-		var obj = document.fom.elements;
-		for ( var i = 0; i < obj.length; i++) {
-			if (obj[i].name == "delid") {
-				if (obj[i].checked == true)
-					obj[i].checked = false;
-				else
-					obj[i].checked = true;
-			}
-		}
-	}
-
 	function link() {
 		document.getElementById("fom").action = "JSP/yuangong.jsp";
 		document.getElementById("fom").submit();
@@ -87,7 +66,7 @@
 	<form>
 		<table>
 			<div class="row-fluid">
-				<span class="newfont07">选择：<a href="#" class="right-font08" onclick="selectAll();">全选</a>-<a href="#" class="right-font08" onclick="unselectAll();">反选</a>
+				<span class="newfont07">选择：<a href="#"  id="selectAll">全选</a>-<a href="#"  id="unselect">反选</a>
 				</span> 
 				<a href="ContractProductAction!deleteContractProductRecord" class="btn ajaxify" >删除所选合同产品</a>
 				<a href="JSP/addContractProductRecord.jsp" class="btn ajaxify" >添加合同产品</a>

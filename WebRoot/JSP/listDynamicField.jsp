@@ -8,33 +8,6 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
 
 <SCRIPT language=JavaScript>
-	function sousuo() {
-		window
-				.open(
-						"gaojisousuo.jsp",
-						"",
-						"depended=0,alwaysRaised=1,width=800,height=510,location=0,menubar=0,resizable=0,scrollbars=0,status=0,toolbar=0");
-	}
-	function selectAll() {
-		var obj = document.fom.elements;
-		for ( var i = 0; i < obj.length; i++) {
-			if (obj[i].name == "delid") {
-				obj[i].checked = true;
-			}
-		}
-	}
-
-	function unselectAll() {
-		var obj = document.fom.elements;
-		for ( var i = 0; i < obj.length; i++) {
-			if (obj[i].name == "delid") {
-				if (obj[i].checked == true)
-					obj[i].checked = false;
-				else
-					obj[i].checked = true;
-			}
-		}
-	}
 
 	function link() {
 		document.getElementById("fom").action = "DynamicFieldAction!AddFieldView?id=${id}";
@@ -81,7 +54,7 @@
 	<form>
 		<table>
 			<div class="row-fluid">
-				<span class="newfont07">选择：<a href="#" class="right-font08" onclick="selectAll();">全选</a>-<a href="#" class="right-font08" onclick="unselectAll();">反选</a>
+				<span class="newfont07">选择：<a href="#"  id="selectAll">全选</a>-<a href="#"  id="unselect">反选</a>
 			</span>
 			<a class="ajaxify btn" href="DynamicFieldAction!deleteDynamicField">删除所选表单信息</a>
 			<a class="ajaxify btn" href="DynamicFieldAction!AddFieldView?id=${id}">添加表单域</a>

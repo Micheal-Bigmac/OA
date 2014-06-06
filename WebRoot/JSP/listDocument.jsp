@@ -8,28 +8,6 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
 
 <SCRIPT language=JavaScript>
-	
-	function selectAll() {
-		var obj = document.fom.elements;
-		for ( var i = 0; i < obj.length; i++) {
-			if (obj[i].name == "delid") {
-				obj[i].checked = true;
-			}
-		}
-	}
-
-	function unselectAll() {
-		var obj = document.fom.elements;
-		for ( var i = 0; i < obj.length; i++) {
-			if (obj[i].name == "delid") {
-				if (obj[i].checked == true)
-					obj[i].checked = false;
-				else
-					obj[i].checked = true;
-			}
-		}
-	}
-
 	function link() {
 		document.getElementById("fom").action = "DocumentAction!toAddDocumentView";
 		document.getElementById("fom").submit();
@@ -74,7 +52,7 @@
 		<table>
 			<div class="row-fluid">
 					<div class="span6">
-					<span class="newfont07">选择：<a href="#" class="right-font08" onclick="selectAll();">全选</a>-<a href="#" class="right-font08" onclick="unselectAll();">反选</a>
+					<span class="newfont07">选择：<a href="#"  id="selectAll">全选</a>-<a href="#" id="unselect">反选</a>
 				 	<a class="ajaxify btn" href="DocumentAction!deleteDocument">删除所选公文信息</a>
 					<a class="ajaxify btn" href="DocumentAction!toAddDocumentView">添加公文信息</a> 
 					</div>

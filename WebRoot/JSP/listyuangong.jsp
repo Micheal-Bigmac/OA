@@ -52,7 +52,10 @@ out.println(basePath);
 	<form name="fom" id="fom" method="post" action="">
 		<table class="table table-striped">
 			<div class="row-fluid">
-			 	<span >选择：<a href="#" id="selectAll">全选</a>-<a href="#" id="unselect">反选</a></span>
+			 	<span >选择：
+				 	<a href="#" id="selectAll">全选</a>-
+				 	<a href="#" id="unselect">反选</a>
+			 	</span>
 					<input name="Submit" class="btn" type="button" value="删除所选人员信息" onclick="deleteChose();"/>
 					<!-- <input name="Submit" class="btn" type="button" class="btn" value="添加人员信息" data-toggle="modal" data-target="#myModal" /> -->
 					 <a href="JSP/yuangong.jsp" class="btn" data-toggle="modal" data-target="#myModal">添加人员信息</a> 
@@ -188,23 +191,6 @@ $("#submit").click(function(e) {
 });
 </script>
 <SCRIPT language=JavaScript>
-$("#selectAll").click( function (e) {
-	e.preventDefault();
-	console.log("select-all click");
-	$("input[type='checkbox']").each(function () {
-		if (! $(this)[0].checked)
-			$(this).click();
-	});
-});
-
-$("#unselect").click( function (e) {
-	e.preventDefault();
-	
-	$("input[type='checkbox']").each(function () {
-		$(this).click();
-	});
- });
-
 function deleteChose(){
 	   document.getElementById("fom").action="PersonAction!deletePerson";
 	   document.getElementById("fom").submit();

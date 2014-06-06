@@ -110,7 +110,7 @@ public class PrivilegeInterceptor implements Interceptor {
 					}
 				}
 			} 
-		} 
+		}
 		return invocation.invoke();
 	}
 

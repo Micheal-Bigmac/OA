@@ -329,18 +329,22 @@ public class ModuleDaoImp implements ModuleDao {
 									List<Acl> acls2 = convertToListAcl(superDao.find(
 											"select distinct(a) from Acl a where a.principalId in ("+ strRole+") and a.moduleId = "+child.getId()));
 									System.out.println("acl size issssssssssssss  "+acls2.size());
-									int putInLinkedHashMapValue = acls2.get(0).getAclState();
-									for(int k=0; k<acls2.size(); k++) {
-										System.out.println("acl module name  is "+acls.get(k).getModuleId().getName());
-										System.out.println("acl role name is "+acls.get(k).getPrincipalId().getName());
-										System.out.println("acl aclState  is "+acls.get(k).getAclState());
-										/////////////////////////
-										if(acls.get(k).getAclState()>putInLinkedHashMapValue) {
-											putInLinkedHashMapValue = acls.get(k).getAclState(); 
-											System.out.println("list is "+putInLinkedHashMapValue);
-											list = getAclState(putInLinkedHashMapValue);
-										} else {
-											list = getAclState(putInLinkedHashMapValue);
+									System.out.println("str Is "+"select distinct(a) from Acl a where a.principalId in ("+ strRole+") and a.moduleId = "+child.getId());
+									
+									if(acls2.size()>0) {
+										int putInLinkedHashMapValue = acls2.get(0).getAclState();
+										for(int k=0; k<acls2.size(); k++) {
+											System.out.println("acl module name  is "+acls.get(k).getModuleId().getName());
+											System.out.println("acl role name is "+acls.get(k).getPrincipalId().getName());
+											System.out.println("acl aclState  is "+acls.get(k).getAclState());
+											/////////////////////////
+											if(acls.get(k).getAclState()>putInLinkedHashMapValue) {
+												putInLinkedHashMapValue = acls.get(k).getAclState(); 
+												System.out.println("list is "+putInLinkedHashMapValue);
+												list = getAclState(putInLinkedHashMapValue);
+											} else {
+												list = getAclState(putInLinkedHashMapValue);
+											}
 										}
 									}
 									childModuleLinkedHashMap.put(childModules.get(j),list);
@@ -370,7 +374,6 @@ public class ModuleDaoImp implements ModuleDao {
 			getCategory(user);
 		}
 	}
-
 	private List<UserPrivilege> convertToUserPrivilege(List<Object> objects) {
 		List<UserPrivilege> up = new ArrayList<UserPrivilege>();
 		for(int i=0; i<objects.size(); i++) {

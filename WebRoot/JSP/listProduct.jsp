@@ -9,27 +9,6 @@
 
 <SCRIPT language=JavaScript>
 
-	function selectAll() {
-		var obj = document.fom.elements;
-		for ( var i = 0; i < obj.length; i++) {
-			if (obj[i].name == "delid") {
-				obj[i].checked = true;
-			}
-		}
-	}
-
-	function unselectAll() {
-		var obj = document.fom.elements;
-		for ( var i = 0; i < obj.length; i++) {
-			if (obj[i].name == "delid") {
-				if (obj[i].checked == true)
-					obj[i].checked = false;
-				else
-					obj[i].checked = true;
-			}
-		}
-	}
-
 	function link() {
 		document.getElementById("fom").action = "JSP/yuangong.jsp";
 		document.getElementById("fom").submit();
@@ -91,8 +70,8 @@
 		<table>
 			<div class="row-fluid">
 				<span >选择：<a
-						href="#"  onclick="selectAll();">全选</a>-<a
-						href="#"  onclick="unselectAll();">反选</a>
+						href="#"  id="selectAll">全选</a>-<a
+						href="#"  id="unselect">反选</a>
 				</span> 
 				<a href="ProductAction!deleteproduct" class="btn ajaxify" >删除所选产品信息</a> 
 				<a href="JSP/addProduct.jsp" class="btn ajaxify">添加产品信息</a>

@@ -155,20 +155,4 @@ $("#select").click(function(e) {
 	});
 });
 
-$("#selectAll").click( function (e) {
-	e.preventDefault();
-	console.log("select-all click");
-	$("input[type='checkbox']").each(function () {
-		if (! $(this)[0].checked)
-			$(this).click();
-	});
-});
-
-$("#unselect").click( function (e) {
-	e.preventDefault();
-	
-	$("input[type='checkbox']").each(function () {
-		$(this).click();
-	});
- });
 </script>

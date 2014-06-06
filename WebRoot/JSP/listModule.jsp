@@ -44,14 +44,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </form>
 </div>
 <div class="row-fluid">
-	<form name="fom" id="fom" method="post" action="">
+	<form name="fom" id="form" method="post" action="">
 		<table class="table table-bordered">
 			<div class="row-fluid">
 				<span >选择：
 				<a href="#" id="selectAll">全选</a>-<a href="#" id="unselect">反选</a>
 				</span>
 				<s:if test="#request.pid">
-					<input class="btn" name="Submit" type="button" 	value="删除所选模块信息" onclick="deleteChose();" />
+					<input class="btn" name="Submit" type="button" 	value="删除所选模块信息" id="deleteChose" data-action="ModuleAction!deletemodule|${url }" />
 				</s:if>
 				
 				<!-- <input name="Submit" class="btn ajaxify" type="button" 	value="添加模块信息" onclick="link();" /> -->
@@ -158,24 +158,4 @@ $("#select").click(function(e) {
 		}
 	});
 });
-</SCRIPT>
-<SCRIPT>
-
-$("#selectAll").click( function (e) {
-	e.preventDefault();
-	console.log("select-all click");
-	$("input[type='checkbox']").each(function () {
-		if (! $(this)[0].checked)
-			$(this).click();
-	});
-});
-
-$("#unselect").click( function (e) {
-	e.preventDefault();
-	
-	$("input[type='checkbox']").each(function () {
-		$(this).click();
-	});
- });
-
 </SCRIPT>

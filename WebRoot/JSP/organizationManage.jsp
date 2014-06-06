@@ -9,27 +9,6 @@ out.println(basePath);
 
 
 <SCRIPT language=JavaScript>
-	function selectAll() {
-		var obj = document.fom.elements;
-		for ( var i = 0; i < obj.length; i++) {
-			if (obj[i].name == "delid") {
-				obj[i].checked = true;
-			}
-		}
-	}
-
-	function unselectAll() {
-		var obj = document.fom.elements;
-		for ( var i = 0; i < obj.length; i++) {
-			if (obj[i].name == "delid") {
-				if (obj[i].checked == true)
-					obj[i].checked = false;
-				else
-					obj[i].checked = true;
-			}
-		}
-	}
-
 	function link() {
 		document.getElementById("fom").action = "JSP/addOrganization.jsp";
 		document.getElementById("fom").submit();
@@ -69,7 +48,7 @@ out.println(basePath);
 		
 		<table>
 			<div class="row-fluid">
-				<span >选择：<a href="#" onclick="selectAll();">全选</a>-<a href="#" onclick="unselectAll();">反选</a> </span>
+				<span >选择：<a href="#" id="selectAll">全选</a>-<a href="#" id="unselect">反选</a> </span>
 				<input name="Submit" class="btn" type="button" value="删除所选机构信息" onclick="deleteChose();"/>
 <!-- 				 <a href="JSP/yuangong.jsp" class="btn" data-toggle="modal" data-target="#myModal">添加机构信息</a>  -->
 					<a class="btn ajaxify" href="JSP/addOrganization.jsp" >添加机构信息</a> 

@@ -9,27 +9,6 @@
 
 <SCRIPT language=JavaScript>
 	
-	function selectAll() {
-		var obj = document.fom.elements;
-		for ( var i = 0; i < obj.length; i++) {
-			if (obj[i].name == "delid") {
-				obj[i].checked = true;
-			}
-		}
-	}
-
-	function unselectAll() {
-		var obj = document.fom.elements;
-		for ( var i = 0; i < obj.length; i++) {
-			if (obj[i].name == "delid") {
-				if (obj[i].checked == true)
-					obj[i].checked = false;
-				else
-					obj[i].checked = true;
-			}
-		}
-	}
-
 	function link() {
 		document.getElementById("fom").action = "JSP/yuangong.jsp";
 		document.getElementById("fom").submit();
@@ -81,7 +60,7 @@
 	<form>
 		<table>
 			<div class="row-fluid">
-				<span class="newfont07">选择：<a href="#" class="right-font08" onclick="selectAll();">全选</a>-<a href="#" class="right-font08" onclick="unselectAll();">反选</a>
+				<span class="newfont07">选择：<a href="#"  id="selectAll">全选</a>-<a href="#"  id="unselect">反选</a>
 				</span> 
 				<a class="ajaxify btn" herf="WorkFlowAction!deleteWorkFlow">删除所选流程信息</a>
 				<a class="ajaxify btn" href="JSP/submitDocument.jsp" class="btn ajaxify">添加流程信息</a> 
