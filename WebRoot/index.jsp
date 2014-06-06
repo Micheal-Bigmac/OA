@@ -34,7 +34,7 @@
 
 <!-- PAGE LEVEL STYLES -->
 <link href="css/jquery.gritter.css" rel="stylesheet" type="text/css" />
-<link href="css/spinner.css" rel="stylesheet" type="text/css" />
+<link href="css/component.css" rel="stylesheet" type="text/css" />
 
 <!-- CORE JAVASCRIPT -->
 <script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
@@ -375,6 +375,13 @@
 		</div>
 	</div>
 
+	<!-- PAGELOAD-OVERLAY -->
+	<div id="loader" class="pageload-overlay" data-opening="M20,15 50,30 50,30 30,30 Z;M0,0 80,0 50,30 20,45 Z;M0,0 80,0 60,45 0,60 Z;M0,0 80,0 80,60 0,60 Z" data-closing="M0,0 80,0 60,45 0,60 Z;M0,0 80,0 50,30 20,45 Z;M20,15 50,30 50,30 30,30 Z;M30,30 50,30 50,30 30,30 Z">
+		<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 80 60" preserveAspectRatio="none">
+			<path d="M30,30 50,30 50,30 30,30 Z"/>
+		</svg>
+	</div>
+			
 	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 		<!-- BEGIN CORE PLUGINS -->
 			<script src="js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
@@ -397,12 +404,24 @@
 		<!-- END CORE PLUGINS -->
 		<!-- BEGIN PAGE LEVEL SCRIPTS -->
 			<script src="js/index.js" type="text/javascript"></script>
+			
+			<script src="js/classie.js" type="text/javascript"></script>
+			<script src="js/snap.svg-min.js" type="text/javascript"></script>
+			<script src="js/svgLoader.js" type="text/javascript"></script>
+			
 			<script>
 				jQuery(document).ready(function() {
 					// init layout and core plugins
 					App.init();
 					// load the content for the dashboard page.
 // 					$('.page-sidebar .ajaxify.start').click(); 
+					
+// 					var pageWrap = document.getElementById( 'pagewrap' ),
+// 					pages = [].slice.call( pageWrap.querySelectorAll( 'div.container' ) ),
+// 					currentPage = 0,
+// 					triggerLoading = [].slice.call( pageWrap.querySelectorAll( 'a.pageload-link' ) ),
+					
+					
 				});
 		</script>
 		<!-- END PAGE LEVEL SCRIPTS -->
