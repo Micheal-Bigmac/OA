@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
+import com.oa.model.Module;
+
 public interface SuperDaoInte {
 
 	public abstract Serializable add(Object model);
@@ -43,6 +45,16 @@ public interface SuperDaoInte {
 	public List<Object> getPageChoice(List condition, String hql, String sign,
 			int index);
 	
+	
 	public abstract List<Object[]> finds(String sql);
 	public List<Object> getDistinctAllObject(Class clazz, String sql);
+
+	public abstract List<Object> getPage(int i, Class clazz, String findCondition, String textfield);
+
+	public abstract List getPage(int i, String clazz, String findCondition,
+			String textfield, String hql);
+
+	public abstract List getAllObjects(String className, String hql);
+
+	public abstract List getPage(int i, String name, String hql);
 }

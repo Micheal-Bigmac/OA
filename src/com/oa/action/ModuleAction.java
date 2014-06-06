@@ -19,22 +19,41 @@ public class ModuleAction extends ActionSupport {
 	private int index;
 	private Integer pid;
 	private String returns;
-	public String moduleList(){
+	
+
+	/*public String findModuleByCondition() {
+		System.out.println("findcondition is "+findCondition);
+		System.out.println("text si "+textfield);
+	
 		String hql ="and s.pid ="+(module==null ? "null": module.getId());
-		System.out.println(hql);
-		List<Module> modules=moduleService.getPageModules((index==0 ? 1 : index), Module.class, hql);
-		for(Module m: modules){
-			System.out.println(m.toString());
-		}
-		HttpServletRequest  request=ServletActionContext.getRequest();
+		List<Module> modules = moduleService.findByCondition((index==0 ? 1 : index), Module.class, findCondition, textfield);
+		HttpServletRequest request=ServletActionContext.getRequest();
 		request.setAttribute("moduleList", modules);
-		request.setAttribute("currentIndex", (index==0 ?  1 : index ));
+		request.setAttribute("currentIndex", (index==0 ?  1 : index));
 		int total=moduleService.getAllModules(Module.class, hql).size();
 		request.setAttribute("pid",(module==null ? "": module.getId()));
 		request.setAttribute("totalSize",total);
+		request.setAttribute("url", "ModuleAction!findModuleByCondition");
+		return "moduleList";
+	}*/
+	public String moduleList(){
+		String hql ="and s.pid ="+(module==null ? "null": module.getId());
+		System.out.println(hql);
+		List<Module> modules =moduleService.getPageModules((index==0 ? 1 : index), Module.class, hql);
+		for(Module m: modules){
+			System.out.println(m.toString());
+		}
+		HttpServletRequest request = ServletActionContext.getRequest();
+		request.setAttribute("moduleList", modules);
+		request.setAttribute("currentIndex", (index==0 ?  1 : index));
+		int total=moduleService.getAllModules(Module.class, hql).size();
+		request.setAttribute("pid",(module==null ? "": module.getId()));
+		request.setAttribute("totalSize",total);
+		request.setAttribute("url", "ModuleAction!moduleList");
 		return "moduleList";
 		
 	}
+
 	
 	public String addModule(){
 		 if(pid!=null){
@@ -93,5 +112,4 @@ public class ModuleAction extends ActionSupport {
 	public void setReturns(String returns) {
 		this.returns = returns;
 	}
-
 }

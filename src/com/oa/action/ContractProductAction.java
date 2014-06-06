@@ -36,13 +36,15 @@ public class ContractProductAction extends ActionSupport {
 		}
 		getSelect();
 		HttpServletRequest request = ServletActionContext.getRequest();
-		request.setAttribute("ContractProductRecordList", ContractProductRecords);
+		request.setAttribute("listObject", ContractProductRecords);
 		request.setAttribute("currentIndex", (index == 0 ? 1 : index));
 		int total = contractProductRecordService.getAllContractProductRecords(ContractProductRecord.class, hql).size();
 		// request.setAttribute("pid",(ContractProductRecord==null ? "": ContractProductRecord.getId()));
 		request.setAttribute("totalSize", total);
+		request.setAttribute("url", "ContractProductAction!ContractProductRecordList");
 		return "ContractProductRecordList";
 	}
+
 
 	public String addContractProduct() {
 	

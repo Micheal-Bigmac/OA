@@ -179,6 +179,24 @@
 											</form>
 										</div>
 									</div>
+									<div id="tab_3-3" class="tab-pane">
+										<div style="height: auto;" id="accordion3-3" class="accordion collapse">
+											<form id="ChangePasswd" action="UserAction!modifyPassword" method="post">
+												<input type="hidden" name="user.id" value="${admin.id }"/>
+												<label class="control-label">当前密码</label>
+													<input name="currentPw" type="password" class="m-wrap span8" />
+												 	<label class="control-label">新密码</label> 
+												 	<input type="password" name="newPd"	class="m-wrap span8" />
+													<label class="control-label">再输入新的密码</label>
+													<input type="password" name="rePd" class="m-wrap span8" />
+												<div class="submit-btn">
+													<button input type="button" id="changePd" class="btn green">修改口令</button>
+													 <button input type="button" class="btn">取消</button>
+												</div>
+											</form>
+										</div>
+									</div>
+									
 								</div>
 							</div>
 							<!--end span9-->

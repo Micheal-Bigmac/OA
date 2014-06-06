@@ -7,6 +7,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 out.println(basePath);
 %>
 
+<!-- <link href="css/Mystyle.css" rel="stylesheet" type="text/css" > -->
+
 <!-- PAGE TITLE & BREADCRUMB-->
 <div class="row-fluid">
 	<h3 class="page-title">机构管理</h3>
@@ -18,27 +20,39 @@ out.println(basePath);
 </div>
 
 <div class='row-fluid'> 
-<select name="select2">
-	<option>
-		按录入时间
-	</option>
-	<option>
-		按注销时间
-	</option>
-</select>
-
-<input name="textfield" type="text" readonly="readonly" />
-<span>至</span>
-<input name="textfield" type="text" readonly="readonly" />
-<input class="btn" name="Submit" type="button" value="查 询" style='margin-bottom: 10px;'/>
-<input name="Submit" class="btn" type="button" value="高级搜索" style='margin-bottom: 10px;'/>
+<form name="formSelect" id="form_Select" method="post" action="FindAction!findByCondition">
+<table>
+	<tr>
+		<td>
+			<select id="findCondition" name="findCondition">
+				<option value="id">
+					按员工编号
+				</option>
+				<option value="name">
+					按员工姓名
+				</option>
+			</select>
+		</td>
+		<td>
+			<input id="className" name="className" type="hidden" value="Person"/>
+			<input id="textfield" name="textfield" type="text"  />
+		</td>
+		<td>
+			<input id="select" class="btn" name="Submit" type="submit" value="查 询"  style='margin-bottom: 10px;'/>
+		</td>
+		<td>
+			<input name="Submit" class="btn" type="button" value="高级搜索" style='margin-bottom: 10px;'/>
+		</td>
+	</tr>
+</table>
+</form>
 </div>
 
 <div class='row-fluid'>
 	<form name="fom" id="fom" method="post" action="">
 		<table class="table table-striped">
 			<div class="row-fluid">
-			 	<span >选择：<a href="#" id="selectAll">全选</a>-<a href="#" id="unselectAll" >反选</a> </span>
+			 	<span >选择：<a href="#" id="selectAll">全选</a>-<a href="#" id="unselect">反选</a></span>
 					<input name="Submit" class="btn" type="button" value="删除所选人员信息" onclick="deleteChose();"/>
 					<!-- <input name="Submit" class="btn" type="button" class="btn" value="添加人员信息" data-toggle="modal" data-target="#myModal" /> -->
 					 <a href="JSP/yuangong.jsp" class="btn" data-toggle="modal" data-target="#myModal">添加人员信息</a> 
@@ -51,9 +65,9 @@ out.println(basePath);
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th >选择</th>
-							<th >员工编号</th>
-							<th >真实姓名</th>
+							<th>选择</th>
+							<th>员工编号</th>
+							<th>真实姓名</th>
 							<th>职位</th>
 							<th>员工类型</th>
 				
@@ -66,7 +80,7 @@ out.println(basePath);
 						</tr>
 					</thead>
 					<tbody>
-					<s:iterator var="person" value="#request.personList">
+					<s:iterator var="person" value="#request.listObject">
 						<tr>
 							<td ><input type="checkbox" name="delid" value="${person.id }" />
 							</td>
@@ -92,6 +106,7 @@ out.println(basePath);
 		
 	<div class="row-fluid">
 		<s:set var="pageCount" value="(#request.totalSize-1)/10+1" />
+		<s:set var="url" value="#request.url" />
 		<div class="span4" style="margin: 20px 0px 20px 0px;">
 			共
 			<span >${requestScope.pageCount}</span>
@@ -101,21 +116,21 @@ out.println(basePath);
 		
 			<div class="pagination pull-right">
 			  <ul>
-			    <li class="active"><a class="ajaxify" href="PersonAction!personList?index=1">首页</a></li>
+			    <li class="active"><a class="ajaxify" href="${url }?index=1">首页</a></li>
 			   <s:if test='(#request.currentIndex) > 1'> 
-			  		<li class="active"><a class="ajaxify" href="PersonAction!personList?index=${requestScope.currentIndex-1}">上页</a></li>
+			  		<li class="active"><a class="ajaxify" href="${url }?index=${requestScope.currentIndex-1}">上页</a></li>
 			  	</s:if>
 			  	<s:else>
 			  		<li class="disabled"><a href="javascript::">上页</a></li>
 			  	</s:else>
 			    
 			   <s:if test='(#request.currentIndex) < #pageCount'> 
-			  		<li class="active"><a class="ajaxify" href="PersonAction!personList?index=${requestScope.currentIndex+1}">下页</a></li>
+			  		<li class="active"><a class="ajaxify" href="${url }?index=${requestScope.currentIndex+1}">下页</a></li>
 			  	</s:if>
 			  	<s:else>
 			  		<li class="disabled"><a href="javascript::">下页</a></li>
 			  	</s:else>
-			  <li class="active"><a class="ajaxify" href="PersonAction!personList?index=${pageCount }">末页</a></li>
+			  <li class="active"><a class="ajaxify" href="${url }?index=${pageCount }">末页</a></li>
 			  </ul>
 			</div>
 	</div>
@@ -136,8 +151,22 @@ out.println(basePath);
 </div>
 
 <script src="js/myAjaxify.js" type="text/javascript"></script>
-
 <script type="text/javascript">
+$("#select").click(function(e) {
+	e.preventDefault();
+	var pageContent = $('.page-content .page-content-body');
+	
+	$.ajax({
+		url: $('#form_Select').attr('action'),
+		data: $('#form_Select').serialize(),
+		success: function(res) {
+			pageContent.html(res);
+		},
+		error: function(){
+			alert("你输入的有问题");
+		}
+	});
+});
 
 $("#submit").click(function(e) {
 	$.ajax({
@@ -157,33 +186,28 @@ $("#submit").click(function(e) {
 		}
 	});
 });
-$("#selectAll").click(
-	selectAll();
-);
-$("#unselectAll").click(
-	unselectAll();
-);
-function selectAll(){
-	var obj = document.fom.elements;
-	for (var i=0;i<obj.length;i++){
-		if (obj[i].name == "delid"){
-			obj[i].checked = true;
-		}
-	}
-}
+</script>
+<SCRIPT language=JavaScript>
+$("#selectAll").click( function (e) {
+	e.preventDefault();
+	console.log("select-all click");
+	$("input[type='checkbox']").each(function () {
+		if (! $(this)[0].checked)
+			$(this).click();
+	});
+});
 
-function unselectAll(){
-	var obj = document.fom.elements;
-	for (var i=0;i<obj.length;i++){
-		if (obj[i].name == "delid"){
-			if (obj[i].checked==true) obj[i].checked = false;
-			else obj[i].checked = true;
-		}
-	}
-}
+$("#unselect").click( function (e) {
+	e.preventDefault();
+	
+	$("input[type='checkbox']").each(function () {
+		$(this).click();
+	});
+ });
 
 function deleteChose(){
 	   document.getElementById("fom").action="PersonAction!deletePerson";
 	   document.getElementById("fom").submit();
 }
-</script>
+
+</SCRIPT>

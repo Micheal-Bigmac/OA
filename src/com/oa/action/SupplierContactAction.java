@@ -32,14 +32,16 @@ public class SupplierContactAction extends ActionSupport {
 			System.out.println(m.toString());
 		}
 		HttpServletRequest request = ServletActionContext.getRequest();
-		request.setAttribute("SupplierContactList", SupplierContacts);
+		request.setAttribute("listObject", SupplierContacts);
 		request.setAttribute("currentIndex", (index == 0 ? 1 : index));
 		int total = SupplierContactService.getAllSupplierContacts(SupplierContact.class, hql).size();
 		// request.setAttribute("pid",(SupplierContact==null ? "": SupplierContact.getId()));
 		request.setAttribute("totalSize", total);
+		request.setAttribute("url", "SupplierContractAction!SupplierContactList");
 		getSelect();
 		return "SupplierContactList";
 	}
+
 	private void getSelect(){
 		List<SupplierManager> supplierManagers=supplierManagerService.getAllSupplierManagers(SupplierManager.class, "");
 		HttpSession session=ServletActionContext.getRequest().getSession();

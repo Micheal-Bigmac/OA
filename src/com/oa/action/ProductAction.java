@@ -28,13 +28,15 @@ public class ProductAction extends ActionSupport {
 			System.out.println(m.toString());
 		}
 		HttpServletRequest request = ServletActionContext.getRequest();
-		request.setAttribute("productList", Products);
+		request.setAttribute("listObject", Products);
 		request.setAttribute("currentIndex", (index == 0 ? 1 : index));
 		int total = productService.getAllProducts(Product.class, hql).size();
 		// request.setAttribute("pid",(Product==null ? "": product.getId()));
 		request.setAttribute("totalSize", total);
+		request.setAttribute("url", "ProductAction!productList");
 		return "productList";
 	}
+
 
 	public String addproduct() {
 		/*

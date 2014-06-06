@@ -45,22 +45,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 
-<div class='row-fluid'> 
-	<select name="select2">
-		<option>
-			按录入时间
-		</option>
-		<option>
-			按注销时间
-		</option>
-	</select>
-
-	<input name="textfield" type="text" readonly="readonly" />
-	<span>至</span>
-	<input name="textfield" type="text" readonly="readonly" />
-	<input class="btn" name="Submit" type="button" value="查 询" style='margin-bottom: 10px;'/>
-	<input name="Submit" class="btn" type="button" value="高级搜索" style='margin-bottom: 10px;'/>
-</div>
 <div class="row-fluid">
 	<form>
 		<table>

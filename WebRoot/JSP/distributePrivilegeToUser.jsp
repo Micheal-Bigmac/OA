@@ -15,38 +15,32 @@
 <title>My JSP 'MyJdffsp.jsp' starting page</title>
 <link href="css/css.css" rel="stylesheet" type="text/css" />
 <SCRIPT>
-	var xmlHttpRequest = null; //声明一个空对象以接收XMLHttpRequest对象
-	
-	function Box(field, url) {
-		var checkBoxName = field.value;
-		
-		if (window.ActiveXObject) {// IE浏览器
-			xmlHttpRequest = new ActiveXObject("Microsoft.XMLHTTP");
-		} else if (window.XMLHttpRequest) {//除IE外的其他浏览器实现
-			xmlHttpRequest = new XMLHttpRequest();
-		}
 
-		if (null != xmlHttpRequest) {
-			//当利用get方法访问服务器端时带参数的话，直接在"AjaxServlet"后面加参数,下面send方法为参数null就可以，用post方法这必须在把参数加在send参数内，如下
-			xmlHttpRequest.open("post", url, true);
-			//关联好ajax的回调函数
-			xmlHttpRequest.onreadystatechange = ajaxCallback;
-			//真正向服务器端发送数据
-			//使用post方式提交，必须要加上如下一行,get方法就不必加此句
-			xmlHttpRequest.setRequestHeader("Content-Type",
-					"application/x-www-form-urlencoded");
-			xmlHttpRequest.send(null);
-		}
-	}
+var personId = "${personId}";
+function ReloadPage(url) {
+	pageContent = $('.page-content .page-content-body');
 	
-	function ajaxCallback() { //ajax一次请求会改变四次状态，所以我们在第四次(即一次请求结束)进行处理就OK,
-		if (xmlHttpRequest.readyState == 4) { //请求成功
-			if (xmlHttpRequest.status == 200) {
-				var responseText = xmlHttpRequest.responseText;
-				window.location.reload();
-			}
+ 	App.blockUI(pageContent, false);
+	$.ajax({
+		url: url,
+		success: function(res) {
+			App.unblockUI(pageContent);
+        	pageContent.html(res);
 		}
-	}
+	});
+}
+
+function Box(checkbox, url) {
+	console.log("Box: ", url);
+	
+	$.ajax({
+		url: url,
+		type: "post", 
+		success: function() {
+			ReloadPage("UserAction!distributeUser?user.personid.id="+personId);
+		}
+	});
+}
 </SCRIPT>
 </head>
 <body>
@@ -78,6 +72,7 @@
 												value="#request.username" />】赋权
 										<td><input type="button" name="Submit2" value="返回"
 											class="right-button08" onclick="window.history.go(-1);" />
+											<input type="text" id="personid" name="personid" value="${personId}" />
 										</td>
 									</tr>
 									<tr>

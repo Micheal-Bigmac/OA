@@ -58,20 +58,32 @@
 
 
 <div class='row-fluid'>
-	<select name="select2">
-		<option>
-			按录入时间
-		</option>
-		<option>
-			按注销时间
-		</option>
-	</select>
-
-	<input name="textfield" type="text" readonly="readonly" />
-	<span>至</span>
-	<input name="textfield" type="text" readonly="readonly" />
-	<input class="btn" name="Submit" type="button" value="查 询" style='margin-bottom: 10px;'/>
-	<input name="Submit" class="btn" type="button" value="高级搜索" style='margin-bottom: 10px;'/>
+	<form name="formSelect" id="form_Select" method="post" action="FindAction!findByCondition">
+	<table>
+		<tr>
+			<td>
+				<select id="findCondition" name="findCondition">
+					<option value="type">
+						按产品类型
+					</option>
+					<option value="productName">
+						按产品名称
+					</option>
+				</select>
+			</td>
+			<td>
+				<input id="className" name="className" type="hidden" value="Product"/>
+				<input id="textfield" name="textfield" type="text"  />
+			</td>
+			<td>
+				<input class="btn" id="select" type="button" value="搜索">
+			</td>
+			<td>
+				<input name="Submit" class="btn" type="button" value="高级搜索" style='margin-bottom: 10px;'/>
+			</td>
+		</tr>
+	</table>
+	</form>
 </div>
 
 <div class="row-fluid">
@@ -81,7 +93,7 @@
 				<span >选择：<a
 						href="#"  onclick="selectAll();">全选</a>-<a
 						href="#"  onclick="unselectAll();">反选</a>
-				</span>
+				</span> 
 				<a href="ProductAction!deleteproduct" class="btn ajaxify" >删除所选产品信息</a> 
 				<a href="JSP/addProduct.jsp" class="btn ajaxify">添加产品信息</a>
 			</div>
@@ -106,7 +118,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<s:iterator var="product" value="#request.productList">
+						<s:iterator var="product" value="#request.listObject">
 							<tr>
 								<td ><input type="checkbox" name="delid" value="${product.id }" /></td>
 								<td ><a class="ajaxify" href="ProductAction!edit?product.id=${product.id }">${product.id}</a></td>
@@ -126,6 +138,7 @@
 			</div>
 			<div class="row-fluid">
 				<s:set var="pageCount" value="(#request.totalSize-1)/10+1" />
+				<s:set var="url" value="#request.url" />
 				<div class="span4" style="margin: 20px 0px 20px 0px;">
 					共
 					<span >${requestScope.pageCount}</span>
@@ -134,21 +147,21 @@
 				</div>
 				<div class="pagination pull-right">
 					  <ul>
-						<li class="active"><a class="ajaxify" href="ProductAction!productList?index=1">首页</a></li>
+						<li class="active"><a class="ajaxify" href="${url }?index=1">首页</a></li>
 						<s:if test='(#request.currentIndex) > 1'> 
-							<li class="active"><a class="ajaxify" href="ProductAction!productList?index=${requestScope.currentIndex-1}">上页</a></li>
+							<li class="active"><a class="ajaxify" href="${url }?index=${requestScope.currentIndex-1}">上页</a></li>
 						</s:if>
 						<s:else>
 						<li class="disabled"><a href="javascript:;">上页</a></li>
 						</s:else>
 						
 						<s:if test='(#request.currentIndex) < #pageCount'> 
-							<li class="active"><a class="ajaxify" href="ProductAction!productList?index=${requestScope.currentIndex+1}">下页</a></li>
+							<li class="active"><a class="ajaxify" href="${url }?index=${requestScope.currentIndex+1}">下页</a></li>
 						</s:if>
 						<s:else>
 							<li class="disabled"><a href="javascript:;">下页</a></li>
 						</s:else>
-					 	<li class="active"><a class="ajaxify" href="ProductAction!productList?index=${pageCount }">末页</a></li>
+					 	<li class="active"><a class="ajaxify" href="${url }?index=${pageCount }">末页</a></li>
 					  </ul>
 				</div>
 			</div>
@@ -156,3 +169,20 @@
 	</form>
 </div>
 <script src="js/myAjaxify.js" type="text/javascript"></script>
+<script>
+$("#select").click(function(e) {
+	e.preventDefault();
+	var pageContent = $('.page-content .page-content-body');
+	
+	$.ajax({
+		url: $('#form_Select').attr('action'),
+		data: $('#form_Select').serialize(),
+		success: function(res) {
+			pageContent.html(res);
+		},
+		error: function(){
+			alert("你输入的有问题");
+		}
+	});
+});
+</script>

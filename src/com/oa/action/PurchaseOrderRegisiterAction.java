@@ -30,11 +30,12 @@ public class PurchaseOrderRegisiterAction extends ActionSupport {
 			System.out.println(m.toString());
 		}
 		HttpServletRequest request = ServletActionContext.getRequest();
-		request.setAttribute("purchaseOrderRegisiterList", purchaseOrderRegisiter);
+		request.setAttribute("listObject", purchaseOrderRegisiter);
 		request.setAttribute("currentIndex", (index == 0 ? 1 : index));
 		int total = PurchaseOrderRegisiterService.getAllPurchaseOrderRegisiters(PurchaseOrderRegisiter.class, hql).size();
 		// request.setAttribute("pid",(PurchaseOrderRegisiter==null ? "": PurchaseOrderRegisiter.getId()));
 		request.setAttribute("totalSize", total);
+		request.setAttribute("url", "PurchaseOrderRegisiterAction!PurchaseOrderRegisiterList");
 		return "PurchaseOrderRegisiterList";
 	}
 

@@ -131,19 +131,22 @@ public class UserAction extends ActionSupport {
 	
 	public String login(){
 		personService.getSeletsValue();
+		Users admin = (Users) ServletActionContext.getRequest().getSession().getAttribute("admin");
+		Users login=null;
 		
-//		System.out.println(user.toString());
-		Users login = userService.login("from Users u where u.account = ? and u.password= ?", new Object[]{user.getAccount(),user.getPassword()});
-		if(login != null) {
+		if(admin == null){
+			login = userService.login("from Users u where u.account = ? and u.password= ?", new Object[]{user.getAccount(),user.getPassword()});
+			if(login == null){ 
+				return "login_failure"; 
+			}
 			Users thisUser = (Users)userService.getThisUser(Users.class, login.getId());
-			System.out.println("ooooooooooooooooooooooooooooo-------------");
 			ServletActionContext.getRequest().getSession().setAttribute("photoPath", login.getPersonid().getPhotoPath());
 			ServletActionContext.getRequest().getSession().setAttribute("admin", login);
 			ServletActionContext.getRequest().getSession().setAttribute("modules", moduleService.getCategory(login));
 			ServletActionContext.getRequest().setAttribute("personName",thisUser.getPersonid().getName());
-			return "login_success";
 		}
-		return "login_failure";
+		
+		return "login_success";
 	}
 	
 	public String chat() {
@@ -261,7 +264,8 @@ public class UserAction extends ActionSupport {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("currentIndex", (index==0 ?  1 : index ));
 		request.setAttribute("totalSize",total);
-		request.setAttribute("listPersons", listPersons);
+		request.setAttribute("url", "UserAction!userList");
+		request.setAttribute("listObject", listPersons);
 		
 		return "userList";
 	}
@@ -397,6 +401,7 @@ public class UserAction extends ActionSupport {
 		user = userService.getsUser(personid);
 		ServletActionContext.getRequest().setAttribute("userPrivileges", moduleService.getUserPrivilege(user));
 		ServletActionContext.getRequest().setAttribute("username", personid.getName());
+		ServletActionContext.getRequest().setAttribute("personId", user.getPersonid().getId());
 		ServletActionContext.getRequest().setAttribute("userId", user.getId());
 		return "distributePrivilegeToUser";
 	}

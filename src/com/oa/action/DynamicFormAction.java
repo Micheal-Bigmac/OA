@@ -23,18 +23,20 @@ public class DynamicFormAction extends ActionSupport{
 	private int index;
 	private int workflowid;
 	String returns;
-	public String list(){
+public String list(){
 		
 		String hql = "";
 		List<WorkFlow> workFlows = workFlowService.getPageWorkFlows(
 				(index == 0 ? 1 : index), hql);
 		HttpServletRequest request = ServletActionContext.getRequest();
-		request.setAttribute("workFlowLists", workFlows);
+		request.setAttribute("listObject", workFlows);
 		request.setAttribute("currentIndex", (index == 0 ? 1 : index));
 		int total = workFlowService.getAllWorkFlows(hql).size();
 		request.setAttribute("totalSize", total);
+		request.setAttribute("url", "DynamicFormAction!list");
 		return "workFlowList";
 	}
+
 	
 	public String listFormField(){
 		System.out.println(workflowid+"sfsadasdasdasd");

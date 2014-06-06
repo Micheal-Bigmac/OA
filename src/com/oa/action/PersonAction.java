@@ -113,19 +113,20 @@ System.out.println(person.getId());
 
 	
 	public String personList(){
-System.out.println("index +  ===="+index);
-		personService.getSeletsValue();
-		String hql = "";
-		List<Person> persons = personService.getPagePersons((index==0 ? 1 : index), Person.class, hql);
-		int total = personService.getAllPersons(Person.class, hql).size();
-		
-		HttpServletRequest request = ServletActionContext.getRequest();
-		request.setAttribute("personList", persons);
-		request.setAttribute("currentIndex", (index==0 ?  1 : index ));
-		request.setAttribute("totalSize",total);
-		
-		return SUCCESS;
-	}
+		System.out.println("index +  ===="+index);
+				personService.getSeletsValue();
+				String hql = "";
+				List<Person> persons = personService.getPagePersons((index==0 ? 1 : index), Person.class, hql);
+				int total = personService.getAllPersons(Person.class, hql).size();
+				
+				HttpServletRequest request = ServletActionContext.getRequest();
+				request.setAttribute("listObject", persons);
+				request.setAttribute("currentIndex", (index==0 ?  1 : index ));
+				request.setAttribute("totalSize",total);
+				request.setAttribute("url", "PersonAction!personList");
+				return SUCCESS;
+			}
+
 
 	public String deletePerson(){
 		returns = "PersonAction!personList";

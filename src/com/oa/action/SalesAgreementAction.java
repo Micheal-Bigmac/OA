@@ -30,13 +30,15 @@ public class SalesAgreementAction extends ActionSupport {
 			System.out.println(m.toString());
 		}
 		HttpServletRequest request = ServletActionContext.getRequest();
-		request.setAttribute("SalesAgreementList", SalesAgreements);
+		request.setAttribute("listObject", SalesAgreements);
 		request.setAttribute("currentIndex", (index == 0 ? 1 : index));
 		int total = salesAgreementService.getAllsalesAgreements(SalesAgreement.class, hql).size();
 		// request.setAttribute("pid",(SalesAgreement==null ? "": SalesAgreement.getId()));
 		request.setAttribute("totalSize", total);
+		request.setAttribute("url", "SalesAgreementAction!SalesAgreementList");
 		return "SalesAgreementList";
 	}
+
 
 	public String addSalesAgreement() {
 		/*

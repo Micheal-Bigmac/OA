@@ -28,13 +28,15 @@ public class SupplierManagerAction extends ActionSupport {
 			System.out.println(m.toString());
 		}
 		HttpServletRequest request = ServletActionContext.getRequest();
-		request.setAttribute("SupplierManagerList", SupplierManagers);
+		request.setAttribute("listObject", SupplierManagers);
 		request.setAttribute("currentIndex", (index == 0 ? 1 : index));
 		int total = SupplierManagerService.getAllSupplierManagers(SupplierManager.class, hql).size();
 		// request.setAttribute("pid",(SupplierManager==null ? "": SupplierManager.getId()));
 		request.setAttribute("totalSize", total);
+		request.setAttribute("url", "SupplierManagerAction!SupplierManagerList");
 		return "SupplierManagerList";
 	}
+
 
 	public String addSupplierManager() {
 		/*

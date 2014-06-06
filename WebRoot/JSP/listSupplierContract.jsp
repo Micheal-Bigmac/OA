@@ -52,19 +52,32 @@
 </div>
 
 <div class='row-fluid'> 
-<select name="select2">
-	<option>
-		按录入时间
-	</option>
-	<option>
-		按注销时间
-	</option>
-</select>
-
-<input name="textfield" type="text" readonly="readonly" />
-<span>至</span>
-<input name="textfield" type="text" readonly="readonly" />
-<input class="btn" name="Submit" type="button" value="查 询" style='margin-bottom: 10px;'/>
+<form name="formSelect" id="form_Select" method="post" action="FindAction!findByCondition">
+	<table>
+		<tr>
+			<td>
+				<select id="findCondition" name="findCondition">
+					<option value="contactName">
+						按联系人姓名
+					</option>
+					<option value="phone">
+						按联系人手机号
+					</option>
+				</select>
+			</td>
+			<td>
+				<input id="className" name="className" type="hidden" value="SupplierContact"/>
+				<input id="textfield" name="textfield" type="text"  />
+			</td>
+			<td>
+				<input id="select" class="btn" name="Submit"  value="查 询" >
+			</td>
+			<td>
+				<input name="Submit" class="btn" type="button" value="高级搜索" style='margin-bottom: 10px;'/>
+			</td>
+		</tr>
+	</table>
+</form>
 <input name="Submit" class="btn" type="button" value="高级搜索" style='margin-bottom: 10px;'/>
 </div>
 <div class="row-fluid">
@@ -97,7 +110,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<s:iterator var="supplierContract" value="#request.SupplierContactList">
+						<s:iterator var="supplierContract" value="#request.listObject">
 							<tr>
 								<td><input type="checkbox" name="delid" value="${supplierContract.id }" /></td>
 								<td ><a class="ajaxify" href="SupplierContractAction!edit?supplierContract.id=${supplierContract.id }">${supplierContract.id}</a></td>
@@ -116,6 +129,7 @@
 			</div>
 			<div class="row-fluid">
 				<s:set var="pageCount" value="(#request.totalSize-1)/10+1" />
+				<s:set var="url" value="#request.url" />
 				<div class="span4" style="margin: 20px 0px 20px 0px;">
 					共
 					<span >${requestScope.pageCount}</span>
@@ -124,21 +138,21 @@
 				</div>
 				<div class="pagination pull-right">
 					  <ul>
-						<li class="active"><a class="ajaxify" href="SupplierContractAction!SupplierContactList?index=1">首页</a></li>
+						<li class="active"><a class="ajaxify" href="${url }?index=1">首页</a></li>
 						<s:if test='(#request.currentIndex) > 1'> 
-							<li class="active"><a class="ajaxify" href="SupplierContractAction!SupplierContactList?index=${requestScope.currentIndex-1}">上页</a></li>
+							<li class="active"><a class="ajaxify" href="${url}?index=${requestScope.currentIndex-1}">上页</a></li>
 						</s:if>
 						<s:else>
 						<li class="disabled"><a href="javascript:;">上页</a></li>
 						</s:else>
 						
 						<s:if test='(#request.currentIndex) < #pageCount'> 
-							<li class="active"><a class="ajaxify" href="SupplierContractAction!SupplierContactList?index=${requestScope.currentIndex+1}">下页</a></li>
+							<li class="active"><a class="ajaxify" href="${url}?index=${requestScope.currentIndex+1}">下页</a></li>
 						</s:if>
 						<s:else>
 							<li class="disabled"><a href="javascript:;">下页</a></li>
 						</s:else>
-					 	<li class="active"><a class="ajaxify" href="SupplierContractAction!SupplierContactList?index=${pageCount }">末页</a></li>
+					 	<li class="active"><a class="ajaxify" href="${url}?index=${pageCount }">末页</a></li>
 					  </ul>
 				</div>
 			</div>
@@ -146,3 +160,31 @@
 	</form>
 </div>
 <script src="js/myAjaxify.js" type="text/javascript"></script>
+<script>
+$("#select").click(function(e) {
+	e.preventDefault();
+	
+	var pageContent = $('.page-content .page-content-body');
+	
+	$.ajax({
+		url: $('#form_Select').attr('action'),
+		data: $('#form_Select').serialize(),
+		success: function(res) {
+			pageContent.html(res);
+		},
+		error: function(){
+			alert("你输入的有问题");
+		}
+	});
+});
+$(document).keydown(function(event){
+	alert('sdfsdfsd');
+// 	  if(event.keyCode ==13){
+// 	    alert("aaa_____");
+	  
+// 	  }
+	  e.preventDefault();
+	  e.stopPropagation();
+	    return false;
+	});
+</script>

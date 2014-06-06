@@ -32,12 +32,14 @@ public class WorkFlowAction extends ActionSupport {
 		List<WorkFlow> workFlows = workFlowService.getPageWorkFlows(
 				(index == 0 ? 1 : index), hql);
 		HttpServletRequest request = ServletActionContext.getRequest();
-		request.setAttribute("workFlowLists", workFlows);
+		request.setAttribute("listObject", workFlows);
 		request.setAttribute("currentIndex", (index == 0 ? 1 : index));
 		int total = workFlowService.getAllWorkFlows(hql).size();
 		request.setAttribute("totalSize", total);
+		request.setAttribute("url", "WorkFlowAction!listWorkFlow");
 		return "listWorkFlow";
 	}
+
 	public String deleteWorkFlow(){
 		HttpServletRequest request=ServletActionContext.getRequest();
 		String ids[]=request.getParameterValues("delid");

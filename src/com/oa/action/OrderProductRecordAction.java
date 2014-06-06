@@ -35,7 +35,7 @@ public class OrderProductRecordAction extends ActionSupport {
 			System.out.println(m.toString());
 		}
 		HttpServletRequest request = ServletActionContext.getRequest();
-		request.setAttribute("orderProductRecordList", OrderProductRecords);
+		request.setAttribute("listObject", OrderProductRecords);
 		request.setAttribute("currentIndex", (index == 0 ? 1 : index));
 		
 		List<Product> products=productService.getAllProducts(Product.class, "");
@@ -48,8 +48,10 @@ public class OrderProductRecordAction extends ActionSupport {
 		System.out.println("=============================="+total);
 		// request.setAttribute("pid",(OrderProductRecord==null ? "": OrderProductRecord.getId()));
 		request.setAttribute("totalSize", total);
+		request.setAttribute("url", "OrderProductRecordAction!OrderProductRecordList");
 		return "OrderProductRecordList";
 	}
+
 	
 
 	public String addOrderProductRecord() {

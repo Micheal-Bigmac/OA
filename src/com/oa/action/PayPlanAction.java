@@ -32,14 +32,16 @@ public class PayPlanAction extends ActionSupport {
 			System.out.println(m.toString());
 		}
 		HttpServletRequest request = ServletActionContext.getRequest();
-		request.setAttribute("PayPlanList", PayPlans);
+		request.setAttribute("listObject", PayPlans);
 		request.setAttribute("currentIndex", (index == 0 ? 1 : index));
 		int total = PayPlanService.getAllPayPlans(PayPlan.class, hql).size();
 		// request.setAttribute("pid",(PayPlan==null ? "": PayPlan.getId()));
 		request.setAttribute("totalSize", total);
+		request.setAttribute("url", "PayPlanAction!PayPlanList");
 		getSelect();
 		return "PayPlanList";
 	}
+
 	private void getSelect(){
 		List<PurchaseOrderRegisiter> PurchaseOrderRegisiter=purchaseOrderRegisiterService.getAllPurchaseOrderRegisiters(PurchaseOrderRegisiter.class, "");
 		HttpSession session=ServletActionContext.getRequest().getSession();

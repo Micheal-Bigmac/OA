@@ -200,5 +200,21 @@
 			<result name="addPerformanceExamine">/JSP/addPerformanceExamine.jsp</result>
 			<result name="showSpecialPerformanceExamine">/JSP/showSpecialPerformanceExamine.jsp</result>
 		</action>
+		<action name="FindAction" class="com.oa.action.FindAction">
+			<result name="userList">/JSP/userManage.jsp</result>
+			<result name="personList">/JSP/listyuangong.jsp</result>
+			<result name="supplierManagerList">/JSP/listSupplierManager.jsp</result>
+			<result name="supplierContactList">/JSP/listSupplierContract.jsp</result>
+			<result name="workFlowList">/JSP/listWorkFlow.jsp</result>
+			<result name="dynamicFormList">/JSP/listDynamicForm.jsp</result>
+			<result name="documentList">/JSP/listDocument.jsp</result>
+			<result name="productList">/JSP/listProduct.jsp</result>
+			<result name="salesAgreementList">/JSP/listSalesAgreement.jsp</result>
+			<result name="contractProductRecordList">/JSP/listContractProductRecord.jsp</result>
+			<result name="paymentPlanList">/JSP/listPaymentPlan.jsp</result>
+			<result name="purchaseOrderRegisiterList">/JSP/listPurchaseOrderRegisiter.jsp</result>
+			<result name="orderProductRecordList">/JSP/listOrderProductRecord.jsp</result>
+			<result name="payPlanList">/JSP/listPayPlan.jsp</result>
+		</action>
 	</package>
 </struts>
