@@ -107,4 +107,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</table>
 	</form>
 </div>
-<script src="js/myAjaxify.js" type="text/javascript"></script
+<script src="js/myAjaxify.js" type="text/javascript"></script>

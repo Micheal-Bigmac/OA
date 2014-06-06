@@ -41,7 +41,7 @@ $("#deleteChose").click(function(){
 		return ;
 	}
 	$.ajax({
-		url:action[0],
+		url:action[0]+"?"+$('#form').serialize(),
 		success: function(){
 			reload();
 		},
@@ -52,8 +52,11 @@ $("#deleteChose").click(function(){
 	
 	function reload(){
 		var pageContent = $('.page-content .page-content-body');
-		$.ajax(action[1],null,function(res){
-			pageContent.html(res);
+		$.ajax({
+			url:action[1],
+			success: function(res){
+				pageContent.html(res);
+			},
 		});
 	}
 });

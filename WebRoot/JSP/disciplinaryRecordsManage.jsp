@@ -6,7 +6,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<base href="<%=basePath%>"
+<base href="<%=basePath%>">
 
 <div class="row-fluid">
 	<h3 class="page-title">奖罚记录</h3>
