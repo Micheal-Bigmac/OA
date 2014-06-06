@@ -14,34 +14,7 @@
 <base href="<%=basePath%>">
 <title>My JSP 'MyJdffsp.jsp' starting page</title>
 <link href="css/css.css" rel="stylesheet" type="text/css" />
-<SCRIPT>
 
-var personId = "${personId}";
-function ReloadPage(url) {
-	pageContent = $('.page-content .page-content-body');
-	
-//  	App.blockUI(pageContent, false);
-	$.ajax({
-		url: url,
-		success: function(res) {
-			App.unblockUI(pageContent);
-        	pageContent.html(res);
-		}
-	});
-}
-
-function Box(checkbox, url) {
-	console.log("Box: ", url);
-	
-	$.ajax({
-		url: url,
-		type: "post", 
-		success: function() {
-			ReloadPage("UserAction!distributeUser?user.personid.id="+personId);
-		}
-	});
-}
-</SCRIPT>
 </head>
 <body>
 	<form name="fom" id="fom" method="post" action="">
@@ -120,3 +93,31 @@ function Box(checkbox, url) {
 	</form>
 </body>
 </html>
+<SCRIPT>
+
+var personId = "${personId}";
+function ReloadPage(url) {
+	pageContent = $('.page-content .page-content-body');
+	
+//  	App.blockUI(pageContent, false);
+	$.ajax({
+		url: url,
+		success: function(res) {
+			App.unblockUI(pageContent);
+        	pageContent.html(res);
+		}
+	});
+}
+
+function Box(checkbox, url) {
+	console.log("Box: ", url);
+	
+	$.ajax({
+		url: url,
+		type: "post", 
+		success: function() {
+			ReloadPage("UserAction!distributeUser?user.personid.id="+personId);
+		}
+	});
+}
+</SCRIPT>

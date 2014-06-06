@@ -113,7 +113,6 @@
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 	<script src="js/fullcalendar.min.js" type="text/javascript"></script>
 	<script src="js/bootstrap-datetimepicker.js" type="text/javascript"></script>
-	<script src="js/bootstrap-datetimepicker.zh-CN.js" type="text/javascript"></script>
 	<script src="js/bootstrap-datepicker.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->

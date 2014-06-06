@@ -45,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 <div class="row-fluid">
 	<form name="fom" id="fom" method="post" action="">
-		<table class="table table-striped">
+		<table class="table table-bordered">
 			<div class="row-fluid">
 				<span >选择：
 				<a href="#" id="selectAll">全选</a>-<a href="#" id="unselect">反选</a>
@@ -61,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="row-fluid" style="text-align: center;font-size:20px;background-color:#EEEEEE">
 							模块详细列表  
 				</div>
-				<table class="table table-striped">
+				<table class="table table-striped table-bordered table-condensed">
 					<thead>
 						<tr>
 							<th >选择 </th>

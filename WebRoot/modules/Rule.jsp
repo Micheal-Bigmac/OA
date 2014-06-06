@@ -199,9 +199,11 @@ ${column_num }
 
 <script src="js/portlet-draggable.js"></script> 
 <script type="text/javascript" src="js/myAjaxify.js"></script>
-
 <script>
-
+		jQuery(document).ready(function() {       
+		   App.init();
+		   PortletDraggable.init();
+		});
 $("#submit").click(function() {
 	console.log('safasf');
 	console.log($('#model-form').attr('action'));

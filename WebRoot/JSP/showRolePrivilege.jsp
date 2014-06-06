@@ -11,36 +11,6 @@
 <title>My JSP 'MyJdffsp.jsp' starting page</title>
 <link href="css/css.css" rel="stylesheet" type="text/css" />
 
-<SCRIPT>
-
-var aclid = ${aclId};
-var roleid = ${roleId};
-function ReloadPage(url) {
-	pageContent = $('.page-content .page-content-body');
-	
-//  	App.blockUI(pageContent, false);
-	$.ajax({
-		url: url,
-		success: function(res) {
-			App.unblockUI(pageContent);
-        	pageContent.html(res);
-		}
-	});
-}
-
-function Box(checkbox, url) {
-	console.log("Box: ", url);
-	
-	$.ajax({
-		url: url + "&aclId=" + aclid,
-		type: "post", 
-		success: function() {
-			ReloadPage("RoleAction!privilegeRole?role.id="+roleid);
-		}
-	});
-}
-
-</SCRIPT>
 </head>
 <body>
 	<form name="fom" id="fom" method="post" action="">
@@ -121,3 +91,34 @@ function Box(checkbox, url) {
 		</table>
 	</form>
 
+
+<SCRIPT>
+
+var aclid = ${aclId};
+var roleid = ${roleId};
+function ReloadPage(url) {
+	pageContent = $('.page-content .page-content-body');
+	
+//  	App.blockUI(pageContent, false);
+	$.ajax({
+		url: url,
+		success: function(res) {
+			App.unblockUI(pageContent);
+        	pageContent.html(res);
+		}
+	});
+}
+
+function Box(checkbox, url) {
+	console.log("Box: ", url);
+	
+	$.ajax({
+		url: url + "&aclId=" + aclid,
+		type: "post", 
+		success: function() {
+			ReloadPage("RoleAction!privilegeRole?role.id="+roleid);
+		}
+	});
+}
+
+</SCRIPT>
