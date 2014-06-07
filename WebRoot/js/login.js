@@ -4,26 +4,30 @@ var Login = function () {
         //main function to initiate the module
         init: function () {
         	
-    		// get info from cookie
+    		// Get login info from cookie
 			if ($.cookie('account'))
 				$("#account").val($.cookie('account'));
 			if ($.cookie('password'))
 				$("#password").val($.cookie('password'));
 			if ($.cookie('remember')) {
 				 $("#remember").click();
-//				 $('.login-form').submit();
+				 // Auto login if nothing after '?' in url
+				 if (! location.search)
+					 $('.login-form').submit();
 			}
+			
+			// Save login info into cookie
     		function saveInCookie() {
     			// always save account name
-    			$.cookie('account', $("#account").val(),{ expires: 7 });
+    			$.cookie('account', $("#account").val());
 
     			var checked = $("#remember").parent().hasClass("checked");
     			if (checked) {
-    				$.cookie('password', $("#password").val(),{ expires: 7 });
-    				$.cookie('remember', checked);
+    				$.cookie('password', $("#password").val(), { expires: 365 });
+    				$.cookie('remember', checked, { expires: 365 });
     			} else {
-    				$.cookie('password', "");
-    				$.cookie('remember', "");
+    				$.cookie('password', "", { expires: 365 });
+    				$.cookie('remember', "", { expires: 365 });
     			}
     		}
     		
