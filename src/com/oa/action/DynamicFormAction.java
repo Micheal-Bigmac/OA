@@ -69,7 +69,7 @@ public String list(){
 			dynamicFormService.deleteDynamicForm(form);
 		}
 		returns="DynamicFormAction!list";
-		return "operator_success";
+		return null;
 	}
 	public WorkFlowService getWorkFlowService() {
 		return workFlowService;

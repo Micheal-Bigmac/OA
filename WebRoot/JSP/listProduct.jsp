@@ -66,7 +66,7 @@
 </div>
 
 <div class="row-fluid">
-	<form>
+	<form id="fom">
 		<table>
 			<div class="row-fluid">
 				<span >选择：<a
