@@ -13,3 +13,5 @@ hs_err_pid*
 jdbc.properties
 WebRoot/WEB-INF/classes/*
 servlet-api.jar
+
+.classpath
