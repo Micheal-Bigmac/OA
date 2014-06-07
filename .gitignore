@@ -11,5 +11,5 @@
 hs_err_pid*
 
 jdbc.properties
-WebRoot/WEB-INF/classes/.gitignore
-WebRoot\WEB-INF\lib\servlet-api.jar
+WebRoot/WEB-INF/classes/*
+servlet-api.jar
