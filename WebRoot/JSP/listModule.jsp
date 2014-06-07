@@ -120,21 +120,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="pagination pull-right">
 					  <ul>
-						<li class="active"><a class="ajaxify" href="${url }?index=1">首页</a></li>
+						<li class="active"><a class="ajaxify" href="${url }&index=1">首页</a></li>
 						<s:if test='(#request.currentIndex) > 1'> 
-							<li class="active"><a class="ajaxify" href="${url }?index=${requestScope.currentIndex-1}">上页</a></li>
+							<li class="active"><a class="ajaxify" href="${url }&index=${requestScope.currentIndex-1}">上页</a></li>
 						</s:if>
 						<s:else>
 						<li class="disabled"><a href="javascript:;">上页</a></li>
 						</s:else>
 						
 						<s:if test='(#request.currentIndex) < #pageCount'> 
-							<li class="active"><a class="ajaxify" href="${url }?index=${requestScope.currentIndex+1}">下页</a></li>
+							<li class="active"><a class="ajaxify" href="${url }&index=${requestScope.currentIndex+1}">下页</a></li>
 						</s:if>
 						<s:else>
 							<li class="disabled"><a href="javascript:;">下页</a></li>
 						</s:else>
-					 	<li class="active"><a class="ajaxify" href="${url }?index=${pageCount }">末页</a></li>
+					 	<li class="active"><a class="ajaxify" href="${url }&index=${pageCount }">末页</a></li>
 					  </ul>
 				</div>
 			</div>

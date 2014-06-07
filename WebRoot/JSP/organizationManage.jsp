@@ -51,7 +51,7 @@ out.println(basePath);
 				<span >选择：<a href="#" id="selectAll">全选</a>-<a href="#" id="unselect">反选</a> </span>
 				<input name="Submit" class="btn" type="button" value="删除所选机构信息" id="deleteChose" data-action="OrganizationAction!delete|OrganizationAction!find"/>
 <!-- 				 <a href="JSP/yuangong.jsp" class="btn" data-toggle="modal" data-target="#myModal">添加机构信息</a>  -->
-					<a class="btn ajaxify" href="JSP/addOrganization.jsp" >添加机构信息</a> 
+					<a class="btn ajaxify" href="JSP/addOrganization.jsp?parentid=${requestScope.parentid }" >添加机构信息</a> 
 			</div>
 			<div class="row-fluid">
 				<div class="row-fluid" style="text-align: center;font-size:20px;background-color:#EEEEEE">
@@ -77,7 +77,7 @@ out.println(basePath);
 										value="${org.id }" />
 								</td>
 							<td>${org.id}</td>
-							<td><a class="ajaxify" href="OrganizationAction!listOrgChild?parentid=${org.id}">${org.name}</a></td>
+							<td><a class="ajaxify" href="OrganizationAction!find?parentid=${org.id}">${org.name}</a></td>
 							<td>${org.sn}</td>
 							<td>${org.description}</td>
 							<td>${org.pid.name}</td>
@@ -98,21 +98,21 @@ out.println(basePath);
 				</div>
 				<div class="pagination pull-right">
 					  <ul>
-						<li class="active"><a class="ajaxify" href="OrganizationAction!find?index=1">首页</a></li>
+						<li class="active"><a class="ajaxify" href="${url}&index=1">首页</a></li>
 						<s:if test='(#request.currentIndex) > 1'> 
-							<li class="active"><a class="ajaxify" href="OrganizationAction!find?index=${requestScope.currentIndex-1}">上页</a></li>
+							<li class="active"><a class="ajaxify" href="${url}&index=${requestScope.currentIndex-1}">上页</a></li>
 						</s:if>
 						<s:else>
 						<li class="disabled"><a href="javascript:;">上页</a></li>
 						</s:else>
 						
 						<s:if test='(#request.currentIndex) < #pageCount'> 
-							<li class="active"><a class="ajaxify" href="OrganizationAction!find?index=${requestScope.currentIndex+1}">下页</a></li>
+							<li class="active"><a class="ajaxify" href="${url}&index=${requestScope.currentIndex+1}">下页</a></li>
 						</s:if>
 						<s:else>
 							<li class="disabled"><a href="javascript:;">下页</a></li>
 						</s:else>
-					 	<li class="active"><a class="ajaxify" href="OrganizationAction!find?index=${pageCount }">末页</a></li>
+					 	<li class="active"><a class="ajaxify" href="${url}&index=${pageCount }">末页</a></li>
 					  </ul>
 				</div>
 			</div>
