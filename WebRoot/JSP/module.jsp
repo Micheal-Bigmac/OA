@@ -84,7 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 				</div>
 				<div class="form-actions">
-					<button type="button" id="submit" class="btn btn-primary">保存</button>
+					<button type="button" id="submit" class="btn btn-primary" data-action="ModuleAction!moduleList?module.id=${param.pid }">保存</button>
 					<button type="button" class="btn">Cancel</button>
 				</div>
 			</form>
@@ -92,21 +92,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</div>
 </div>
-<script>
-$("#submit").click(function(e) {
-	$.ajax({
-		url: $('#form').attr('action'),
-		data: $('#form').serialize(),
-		success: function() {
- 			e.preventDefault();
-			pageContent = $('.page-content .page-content-body');
-			$.ajax({
-			url: 'ModuleAction!moduleList?module.id=${param.pid }', 
-			success: function(res) {
-	        	pageContent.html(res);
-			}
-		});
-		}
-	});
-});
-</script>
+<script src="js/myAjaxify.js" type="text/javascript"/>

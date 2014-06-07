@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 <div class="row-fluid">
-	<form Id="fom">
+	<form id="fom">
 		<table class="table table-striped">
 			<div class="row-fluid">
 					<span class="newfont07">选择：<a href="#" id="selectAll">全选</a>-<a href="#" id="unselect">反选</a>

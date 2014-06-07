@@ -229,7 +229,7 @@
 							<li><a href="#" target="page"><i class="icon-tasks"></i> 任务列表</a></li>
 							<li class="divider"></li>
 							<li><a href="extra_lock.jsp"><i class="icon-lock"></i> 锁屏</a></li>
-							<li><a href="UserAction!back"><i class="icon-key"></i> 注销</a></li>
+							<li><a href="UserAction!back?-1"><i class="icon-key"></i> 注销</a></li>
 						</ul>
 					</li>
 					<!-- END USER LOGIN DROPDOWN -->

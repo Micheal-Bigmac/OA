@@ -72,6 +72,7 @@
 
 $("#submi").click(function(e) {
 	console.log($('#param').val());
+	console.log($('#form').serialize());
 	e.preventDefault();
 	
 	$.ajaxFileUpload({

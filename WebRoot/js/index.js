@@ -600,15 +600,35 @@ var App = function () {
 
         var panel = $('.color-panel');
 
+        var layoutOption = $.cookie('layoutOption');
+        var sidebarOption = $.cookie('sidebarOption');
+        var headerOption = $.cookie('headerOption');
+        var footerOption = $.cookie('footerOption');
+        var style_color = $.cookie('style_color');
+        
+        
         // get layout-options' default value
-        if ($('body').hasClass('page-boxed') == false) {
-            $('.layout-option', panel).val("fluid");
-            console.log($('.layout-option', panel).val());
-        }
-        $('.sidebar-option', panel).val("default");
-        $('.header-option', panel).val("fixed");
-        $('.footer-option', panel).val("default"); 
+        if (layoutOption)
+            $('.layout-option', panel).val(layoutOption);
+        else
+        	$('.layout-option', panel).val("fluid");
+        
+        if (sidebarOption)
+        	$('.sidebar-option', panel).val(sidebarOption);
+        else
+        	$('.sidebar-option', panel).val("default");
+        
+        if (headerOption)
+        	$('.header-option', panel).val(headerOption);
+        else
+        	$('.header-option', panel).val("default");
+        
+        if (footerOption)
+        	$('.footer-option', panel).val(footerOption);
+        else
+        	$('.footer-option', panel).val("default");
 
+        
         // handle theme layout
         var resetLayout = function () {
             $("body").
@@ -640,21 +660,28 @@ var App = function () {
             var headerOption = $('.header-option', panel).val();
             var footerOption = $('.footer-option', panel).val(); 
 
+            // Default Header with Fixed Sidebar option is not supported. 
+            // Proceed with Default Header with Default Sidebar.
             if (sidebarOption == "fixed" && headerOption == "default") {
-//                alert('Default Header with Fixed Sidebar option is not supported. Proceed with Default Header with Default Sidebar.');
                 $('.sidebar-option', panel).val("default");
                 sidebarOption = 'default';
             }
+            
+            // reset layout to default state
+            resetLayout(); 
 
-            resetLayout(); // reset layout to default state
-
+            // Save the layout in cookie
+            $.cookie('layoutOption', layoutOption, { expires: 365 });
+            $.cookie('sidebarOption', sidebarOption, { expires: 365 });
+            $.cookie('headerOption', headerOption, { expires: 365 });
+            $.cookie('footerOption', footerOption, { expires: 365 });
+            
             if (layoutOption === "boxed") {
-            	console.log("==== boxed ====")
                 $("body").addClass("page-boxed");
 
                 // set header
                 $('.header > .navbar-inner > .container-fluid').removeClass("container-fluid").addClass("container");
-                var cont = $('.header').after('<div class="container"></div>');
+                //var cont = $('.header').after('<div class="container"></div>');
 
                 // set content
                 $('.page-container').appendTo('body > .container');
@@ -664,7 +691,7 @@ var App = function () {
                     $('.footer').html('<div class="container">'+$('.footer').html()+'</div>');
                 } else {
                     $('.footer').appendTo('body > .container');
-                }            
+                }
             }
 
             if (lastSelectedLayout != layoutOption) {
@@ -704,9 +731,15 @@ var App = function () {
         // handle theme colors
         var setColor = function (color) {
             $('#style_color').attr("href", "css/themes/" + color + ".css");
-            $.cookie('style_color', color);
+            $.cookie('style_color', color, { expires: 365 });
         };
-
+        
+        if (style_color) {
+        	setColor(style_color);
+			$('.inline li', panel).removeClass("current");
+			$('.inline li[data-style="'+style_color+'"]' ).addClass("current");
+        }
+        
         $('.icon-color', panel).click(function () {
             $('.color-mode').show();
             $('.icon-color-close').show();

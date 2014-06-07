@@ -29,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<div class="portlet-body form">
 		<!-- BEGIN FORM-->
-			<form action="SupplierManagerAction!addSupplierManager" class="form-horizontal">
+			<form id="form" action="SupplierManagerAction!addSupplierManager" class="form-horizontal">
 			<h3 class="form-section">供应商信息</h3>
 				<div class="row-fluid">
 					<div class="span6 ">
@@ -90,7 +90,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<!--/span-->
 				</div>
 				<div class="form-actions">
-					<button type="submit" class="btn btn-primary">保存</button>
+					<button type="button" id="submit" class="btn btn-primary" data-action="SupplierManagerAction!SupplierManagerList">保存</button>
 					<button type="button" class="btn">Cancel</button>
 				</div>
 			</form>
@@ -98,3 +98,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</div>
 </div>
+<script src="js/myAjaxify.js" text="text/javascript"/>

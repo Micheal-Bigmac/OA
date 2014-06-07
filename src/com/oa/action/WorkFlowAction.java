@@ -48,7 +48,7 @@ public class WorkFlowAction extends ActionSupport {
 		}
 		returns = "WorkFlowAction!listWorkFlow";
 		workFlowService.deleteWorkFLow(ids);
-		return "operator_success";
+		return null;
 	}
 
 	public String addWorkFlow() {

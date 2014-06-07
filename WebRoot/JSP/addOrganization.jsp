@@ -26,7 +26,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 		</div>
 		<div class="portlet-body form">
 		<!-- BEGIN FORM-->
-			<form action="OrganizationAction!add" class="form-horizontal">
+			<form id="form" action="OrganizationAction!add" class="form-horizontal">
 			<h3 class="form-section">机构管理</h3>
 				<div class="row-fluid">
 					<div class="span6 ">
@@ -39,13 +39,8 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 									<s:else>
 										<input type="hidden" name="method" value="4" />
 									</s:else>
-									<input type="hidden" name="parentid" 
-									<s:if test="(#session.parentid) != null">
-									 value="${sessionScope.parentid }" 
-									 </s:if> 
-									<s:else> 
-										value=""
-									</s:else>/>
+									<input type="hidden" name="parentid" value="${param.parentid}"/>
+									
 									<input type="hidden" name="organization.id" value="${organization.id}" />
 									<input type="text" class="m-wrap span12" placeholder="" name="organization.name" value="${organization.name}"> <span class="help-block"></span>
 							</div>
@@ -63,7 +58,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 					<!--/span-->
 				</div>
 				<div class="form-actions">
-					<button type="submit" class="btn btn-primary">保存</button>
+					<button id="submit" type="button" class="btn btn-primary" data-action="OrganizationAction!find">保存</button>
 					<button type="button" class="btn">Cancel</button>
 				</div>
 			</form>
@@ -71,3 +66,4 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 		</div>
 	</div>
 </div>
+<script src="js/myAjaxify.js" type="text/javascript">

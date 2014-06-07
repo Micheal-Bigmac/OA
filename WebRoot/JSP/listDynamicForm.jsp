@@ -7,8 +7,6 @@
 %>
 <%@taglib uri="/struts-tags" prefix="s"%>
 
-<link href="css/css.css" rel="stylesheet" type="text/css" />
-
 <SCRIPT language=JavaScript>
 
 	
@@ -62,10 +60,12 @@
 </div>
 
 <div class="row-fluid">
-	<form>
+	<form id="fom">
 		<table>
 			<div class="row-fluid">
 					<span class="newfont07">选择：<a href="#"  id="selectAll">全选</a>-<a href="#"  id="unselect">反选</a>
+					<input class="btn" name="Submit" type="button" 	value="删除所选信息" id="deleteChose" data-action="DynamicFormAction!deleteDynamicForm|${url }" />
+					
 					</span> 
 			</div>
 			<div class="row-fluid">

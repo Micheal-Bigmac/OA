@@ -27,7 +27,8 @@ $("#unselect").click( function (e) {
 		$(this).click();
 	});
  });
-$("#deleteChose").click(function(){
+$("#deleteChose").click(function(e){
+	e.preventDefault();
 	var action = $(this).attr("data-action");
 	action=action.split("|");
 	
@@ -43,7 +44,8 @@ $("#deleteChose").click(function(){
 	$.ajax({
 		url:action[0],
 		data:$('#fom').serialize(),
-		success: function(){
+		success: function(e){
+			alert("操作成功");
 			reload();
 		},
 		error:function(){
@@ -60,5 +62,31 @@ $("#deleteChose").click(function(){
 			},
 		});
 	}
+});
+$("#submit").click(function(e) {
+	var action = $(this).attr("data-action");
+	console.log(action);
+	console.log("aaa");
+	$.ajax({
+		url: $('#form').attr('action'),
+		data: $('#form').serialize(),
+		success: function() {
+ 			e.preventDefault();
+			pageContent = $('.page-content .page-content-body');
+			$.ajax({
+			url: action, 
+			success: function(res) {
+	        	pageContent.html(res);
+			}
+		});
+		}
+	});
+});
+$('.datapicker').datepicker({
+	autoclose : true,
+	format: "yyyy-mm-dd",
+	todayHighlight: true,
+	todayBtn: true,
+	language: "zh-CN"
 });
 

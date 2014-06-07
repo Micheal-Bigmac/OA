@@ -22,19 +22,24 @@ public class ModuleAction extends ActionSupport {
 	
 
 	public String moduleList(){
+		
 		String hql ="and s.pid ="+(module==null ? "null": module.getId());
 		System.out.println(hql);
 		List<Module> modules =moduleService.getPageModules((index==0 ? 1 : index), Module.class, hql);
-		for(Module m: modules){
+		/*for(Module m: modules){
 			System.out.println(m.toString());
-		}
+		}*/
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("listObject", modules);
 		request.setAttribute("currentIndex", (index==0 ?  1 : index));
 		int total=moduleService.getAllModules(Module.class, hql).size();
 		request.setAttribute("pid",(module==null ? "": module.getId()));
 		request.setAttribute("totalSize",total);
-		request.setAttribute("url", "ModuleAction!moduleList");
+		if(module!=null && module.getId()!=null){
+			request.setAttribute("url", "ModuleAction!moduleList?module.id="+module.getId());
+		}else{
+			request.setAttribute("url", "ModuleAction!moduleList?module.id=");
+		}
 		return "moduleList";
 		
 	}

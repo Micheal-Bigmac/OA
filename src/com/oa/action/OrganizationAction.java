@@ -20,7 +20,7 @@ public class OrganizationAction extends ActionSupport {
 	private Integer parentid;
 	private String returns;
 	
-	public String listOrgChild() {
+	/*public String listOrgChild() {
 		String hql = " and pid = " + parentid;
 		List<Organization> listOrgChild = organizationService.getPageOrganizations(index, Organization.class, hql);
 		int total = organizationService.getAllOrganizations(Organization.class, hql).size();
@@ -31,8 +31,9 @@ public class OrganizationAction extends ActionSupport {
 		request.setAttribute("totalSize",total);
 		request.setAttribute("listOrg", listOrgChild);
 		request.getSession().setAttribute("parentid",parentid);
+		
 		return "listOrg";
-	}
+	}*/
 	
 	public String add() {
 		if(organization.getId() != null) {
@@ -80,26 +81,51 @@ System.out.println("organization descript is "+organization.getDescription());
 	}
 	
 	public String delete() {
-		
-		organization = organizationService.select(Organization.class, deleteOrgId);
+		System.out.println("delete organization");
+		HttpServletRequest request=ServletActionContext.getRequest();
+		String []ids=request.getParameterValues("delid");
+		System.out.println(ids.length+"sdfsadf");
+		for (int i = 0; i < ids.length; i++) {
+			System.out.println(ids[i]);
+			organization = organizationService.select(Organization.class, Integer.valueOf(ids[i]));
+			organizationService.delete(organization);
+		}
+		/*organization = organizationService.select(Organization.class, deleteOrgId);
+>>>>>>> 571789f32eaabd5828682339bf711198cc0f8054
 System.out.println("organization id is "+organization.getId());
 System.out.println("organization name is "+organization.getName());
 System.out.println("organization descript is "+organization.getDescription());
-		organizationService.delete(organization);
+		organizationService.delete(organization);*/
 		return "deleteOrg";
 	}
 	
-	public String find(){
-		String hql ="and pid is null";
-		
-		List<Organization> listOrg = organizationService.getPageOrganizations((index==0 ? 1 : index), Organization.class, hql);
-		int total = organizationService.getAllOrganizations(Organization.class, hql).size();
-		
-		HttpServletRequest request=ServletActionContext.getRequest();
-		request.setAttribute("currentIndex", (index==0 ?  1 : index ));
-		request.setAttribute("totalSize",total);
-		request.setAttribute("listOrg", listOrg);
-		return "listOrg";
+	public String find() {
+		if(parentid != null) {
+			String hql = " and pid = " + parentid;
+			List<Organization> listOrgChild = organizationService.getPageOrganizations(index, Organization.class, hql);
+			int total = organizationService.getAllOrganizations(Organization.class, hql).size();
+			
+			HttpServletRequest request = ServletActionContext.getRequest();
+			
+			request.setAttribute("currentIndex", (index==0 ?  1 : index ));
+			request.setAttribute("totalSize",total);
+			request.setAttribute("listOrg", listOrgChild);
+			request.setAttribute("parentid",parentid);
+			request.setAttribute("url", "OrganizationAction!find?parentid="+parentid);
+			return "listOrg";
+		} else {
+			String hql ="and pid is null";
+			
+			List<Organization> listOrg = organizationService.getPageOrganizations((index==0 ? 1 : index), Organization.class, hql);
+			int total = organizationService.getAllOrganizations(Organization.class, hql).size();
+			
+			HttpServletRequest request=ServletActionContext.getRequest();
+			request.setAttribute("currentIndex", (index==0 ?  1 : index ));
+			request.setAttribute("totalSize",total);
+			request.setAttribute("listOrg", listOrg);
+			request.setAttribute("url", "OrganizationAction!find?");
+			return "listOrg";
+		}
 	}
 	
 	public OrganizationService getOrganizationService() {

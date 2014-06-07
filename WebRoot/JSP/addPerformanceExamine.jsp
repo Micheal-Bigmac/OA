@@ -94,7 +94,7 @@
 					</div>
 			</table>
 			<div class="form-actions">
-				<button type="button" id="submit"  class="btn btn-primary">保存</button>
+				<button type="button" id="submit"  class="btn btn-primary" data-action="PerformanceExamineAction!find">保存</button>
 				<button type="button" class="btn">Cancel</button>
 			</div>
 		</form>
@@ -102,15 +102,4 @@
 		</div>
 	</div>
 </div>
-<script>
-	$("#submit").click(function(e) {
-		console.log("safas");
-		$.post($('#form').attr('action'),$('#form').serialize(),function(){
-			pageContent = $('.page-content .page-content-body');
-			$.post('PerformanceExamineAction!find',null,function(res){
-			
-				pageContent.html(res);
-			});
-		});
-});
-</script>
+<script src="js/myAjaxify.js" type="text/javascript"/>

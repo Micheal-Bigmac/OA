@@ -37,7 +37,7 @@ Reset and overrides
 /* general body settings */
 body { 
   color: #000; 
-  font-family: 'Open Sans';
+  font-family: "微软雅黑", 'Open Sans';
   padding: 0px !important;
   margin: 0px !important;
   font-size:13px; 
