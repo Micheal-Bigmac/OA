@@ -97,7 +97,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<td>
 								${MOUDLE.pid.id }
 							</td>
-
 							<td>
 								<a class="ajaxify" href="ModuleAction!edit?module.id=${requestScope.MOUDLE.id }">编辑</a>&nbsp;|&nbsp;
 								<a class="ajaxify" href="yuangongsalary.html">发工资</a>&nbsp;|&nbsp;
