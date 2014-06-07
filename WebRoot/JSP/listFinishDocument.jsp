@@ -7,40 +7,6 @@
 %>
 <%@taglib uri="/struts-tags" prefix="s"%>
 
-<SCRIPT language=JavaScript>
-	
-	function selectAll() {
-		var obj = document.fom.elements;
-		for ( var i = 0; i < obj.length; i++) {
-			if (obj[i].name == "delid") {
-				obj[i].checked = true;
-			}
-		}
-	}
-
-	function unselectAll() {
-		var obj = document.fom.elements;
-		for ( var i = 0; i < obj.length; i++) {
-			if (obj[i].name == "delid") {
-				if (obj[i].checked == true)
-					obj[i].checked = false;
-				else
-					obj[i].checked = true;
-			}
-		}
-	}
-
-	function link() {
-		document.getElementById("fom").action = "DocumentAction!toAddDocumentView";
-		document.getElementById("fom").submit();
-	}
-
-	function deleteChose() {
-		document.getElementById("fom").action = "DocumentAction!deleteDocument";
-		document.getElementById("fom").submit();
-	}
-</SCRIPT>
-
 <!-- PAGE TITLE & BREADCRUMB-->
 <div class="row-fluid">
 	<h3 class="page-title">流程列表</h3>
@@ -70,10 +36,11 @@
 </div>
 
 <div class="row-fluid">
-	<form>
+	<form id="fom">
 		<table>
 			<div class="row-fluid">
 					<span class="newfont07">选择：<a href="#" class="right-font08" onclick="selectAll();">全选</a>-<a href="#" class="right-font08" onclick="unselectAll();">反选</a>
+						<button class="btn" type="button" id="deleteChose" data-action="DocumentAction!deleteDocument|${url }">删除所选公文信息</button>
 					</span>
 			</div>
 			
@@ -136,21 +103,21 @@
 				</div>
 				<div class="pagination pull-right">
 					  <ul>
-						<li class="active"><a class="ajaxify" href="DocumentAction!finishDocument?index=1">首页</a></li>
+						<li class="active"><a class="ajaxify" href="${url }?index=1">首页</a></li>
 						<s:if test='(#request.currentIndex) > 1'> 
-							<li class="active"><a class="ajaxify" href="DocumentAction!finishDocument?index=${requestScope.currentIndex-1}">上页</a></li>
+							<li class="active"><a class="ajaxify" href="${url }?index=${requestScope.currentIndex-1}">上页</a></li>
 						</s:if>
 						<s:else>
 						<li class="disabled"><a href="javascript:;">上页</a></li>
 						</s:else>
 						
 						<s:if test='(#request.currentIndex) < #pageCount'> 
-							<li class="active"><a class="ajaxify" href="DocumentAction!finishDocument?index=${requestScope.currentIndex+1}">下页</a></li>
+							<li class="active"><a class="ajaxify" href="${url }?index=${requestScope.currentIndex+1}">下页</a></li>
 						</s:if>
 						<s:else>
 							<li class="disabled"><a href="javascript:;">下页</a></li>
 						</s:else>
-					 	<li class="active"><a class="ajaxify" href="DocumentAction!finishDocument?index=${pageCount }">末页</a></li>
+					 	<li class="active"><a class="ajaxify" href="${url }?index=${pageCount }">末页</a></li>
 					  </ul>
 				</div>
 			</div>

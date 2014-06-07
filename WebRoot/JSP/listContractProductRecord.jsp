@@ -7,19 +7,6 @@
 %>
 <%@taglib uri="/struts-tags" prefix="s"%>
 
-<SCRIPT language=JavaScript>
-
-	function link() {
-		document.getElementById("fom").action = "JSP/yuangong.jsp";
-		document.getElementById("fom").submit();
-	}
-
-	function deleteChose() {
-		document.getElementById("fom").action = "ContractProductAction!deleteContractProductRecord";
-		document.getElementById("fom").submit();
-	}
-</SCRIPT>
-
 <!-- PAGE TITLE & BREADCRUMB-->
 <div class="row-fluid">
 	<h3 class="page-title">产品信息查看</h3>
@@ -63,12 +50,12 @@
 	</form>
 </div>
 <div class="row-fluid">
-	<form>
+	<form id="fom">
 		<table>
 			<div class="row-fluid">
 				<span class="newfont07">选择：<a href="#"  id="selectAll">全选</a>-<a href="#"  id="unselect">反选</a>
 				</span> 
-				<a href="ContractProductAction!deleteContractProductRecord" class="btn ajaxify" >删除所选合同产品</a>
+				<button class="btn"  id="deleteChose" data-action="ContractProductAction!deleteContractProductRecord|${url }">删除所选合同产品</button>
 				<a href="JSP/addContractProductRecord.jsp" class="btn ajaxify" >添加合同产品</a>
 			</div>
 			<div class="row-fluid">

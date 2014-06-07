@@ -63,12 +63,12 @@
 	</form>
 </div>
 <div class="row-fluid">
-	<form>
+	<form id="fom">
 		<table>
 			<div class="row-fluid">
 					<span class="newfont07">选择：<a href="#"  id="selectAll">全选</a>-<a href="#"  id="unselect">反选</a>
 					</span>
-					<a href="PaymentPlanAction!deletePaymentPlan" class="btn ajaxify">删除所选产品信息</a>
+					<button class="btn"  id="deleteChose" data-action="PayPlanAction!deletePayPlan|${url }">删除所选产品信息</button>
 					<a href="JSP/addPayPaln.jsp" class="btn ajaxify">添加付款信息</a>
 			</div>
 			<div class="row-fluid">

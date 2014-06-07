@@ -86,6 +86,7 @@ public class DocumentAction extends ActionSupport {
 		request.setAttribute("myDocumentList", documents);
 		int totals = documentService.serachAllFinishDocuments(userId).size();
 		request.setAttribute("totalSize", totals);
+		request.setAttribute("url", "DocumentAction!finishDocument");
 		request.setAttribute("type", "finishDocument");
 		return "finishDocumentList";
 	}
@@ -106,6 +107,7 @@ public class DocumentAction extends ActionSupport {
 		request.setAttribute("myDocumentList", documents);
 		int totals = documentService.searchAllMyDocument(user.getId()).size();
 		request.setAttribute("totalSize", totals);
+		request.setAttribute("url", "DocumentAction!listMyDocument");
 		request.setAttribute("type", "document");
 		return "documentList";
 	}
@@ -127,6 +129,7 @@ public class DocumentAction extends ActionSupport {
 		List temp = documentService.SearchAllApprovingDocuments(username);
 		int totals = (temp == null ? 0 : temp.size());
 		request.setAttribute("totalSize", totals);
+		request.setAttribute("url", "DocumentAction!ApprovingDocumentList");
 		request.setAttribute("type", "approvingDocument");
 		return "documentList";
 	}
@@ -148,6 +151,7 @@ public class DocumentAction extends ActionSupport {
 		int totals = approveHistoryService.searchAllApproveHistory(
 				document.getId()).size();
 		request.setAttribute("totalSize", totals);
+		request.setAttribute("url", "DocumentAction!approveHistoryList");
 		request.setAttribute("type", "approveHistory");
 		request.setAttribute("documentId", document.getId());
 		return "approveHistoryList";
@@ -170,6 +174,7 @@ public class DocumentAction extends ActionSupport {
 		int totals = documentService.searchAllApprovedDocuments(user.getId())
 				.size();
 		request.setAttribute("totalSize", totals);
+		request.setAttribute("url", "DocumentAction!ApprovedDocumentList");
 		request.setAttribute("type", "approvedDocument");
 		return "documentList";
 	}
@@ -223,7 +228,7 @@ public class DocumentAction extends ActionSupport {
 		}
 		returns = "DocumentAction!listMyDocument";
 		documentService.deleteDocuments(ids);
-		return "operator_success";
+		return null;
 	}
 
 	public String submitView() {

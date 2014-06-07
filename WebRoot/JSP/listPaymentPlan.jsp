@@ -7,18 +7,6 @@
 %>
 <%@taglib uri="/struts-tags" prefix="s"%>
 
-<SCRIPT language=JavaScript>
-
-	function link() {
-		document.getElementById("fom").action = "JSP/yuangong.jsp";
-		document.getElementById("fom").submit();
-	}
-
-	function deleteChose() {
-		document.getElementById("fom").action = "PaymentPlanAction!deletePaymentPlan";
-		document.getElementById("fom").submit();
-	}
-</SCRIPT>
 
 <!-- PAGE TITLE & BREADCRUMB-->
 <div class="row-fluid">
@@ -65,12 +53,12 @@
 </div>
 
 <div class="row-fluid">
-	<form>
+	<form id="fom">
 		<table>
 			<div class="row-fluid">
 					<span >选择：<a href="#" id="selectAll">全选</a>-<a href="#" id="unselect">反选</a>
 					</span> 
-					<a href="PaymentPlanAction!deletePaymentPlan" class="btn ajaxify">删除所选信息</a>
+					<button class="btn"  id="deleteChose" data-action="PaymentPlanAction!deletePaymentPlan|${url }" >删除所选信息</button>
 					<a href="JSP/addPaymentPaln.jsp" class="btn ajaxify">添加收款信息</a>
 			</div>
 			<div class="row-fluid">

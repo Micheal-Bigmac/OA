@@ -32,7 +32,6 @@ $("#deleteChose").click(function(e){
 	var action = $(this).attr("data-action");
 	action=action.split("|");
 	
-	var id;
 	
 	console.log("deletechose")
 	console.log(action);
@@ -41,6 +40,7 @@ $("#deleteChose").click(function(e){
 		console.log("iii");
 		return ;
 	}
+	var pageContent = $('.page-content .page-content-body');
 	$.ajax({
 		url:action[0],
 		data:$('#fom').serialize(),
@@ -49,12 +49,12 @@ $("#deleteChose").click(function(e){
 			reload();
 		},
 		error:function(){
-			alert("操作失败");
+			alert("操作失败 有依赖性");
 		}
 	});
 	
 	function reload(){
-		var pageContent = $('.page-content .page-content-body');
+		
 		$.ajax({
 			url:action[1],
 			success: function(res){

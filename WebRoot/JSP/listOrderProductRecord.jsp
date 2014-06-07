@@ -64,12 +64,13 @@
 	</form>
 </div>
 <div class="row-fluid">
-	<form>
+	<form id="fom">
 		<table>
 			<div class="row-fluid">
-				<span class="newfont07">选择：<a href="#"  id="selectAll">全选</a>-<a href="#" id="unselect">反选</a>
+				<span class="newfont07">选择：
+				<a href="#"  id="selectAll">全选</a>-<a href="#" id="unselect">反选</a>
 				</span> 
-				<a href="OrderProductRecordAction!deleteOrderProductRecord" class="btn ajaxify">删除所选合同产品</a>
+				<button class="btn"  id="deleteChose" data-action="OrderProductRecordAction!deleteOrderProductRecord|${url }">删除所选合同产品</button>
 				<a href="JSP/addOrderProductRecord.jsp" class="btn ajaxify">添加合同产品</a>
 			</div>
 			<div class="row-fluid">

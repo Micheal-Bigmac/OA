@@ -7,18 +7,6 @@
 %>
 <%@taglib uri="/struts-tags" prefix="s"%>
 
-<SCRIPT language=JavaScript>
-
-	function link() {
-		document.getElementById("fom").action = "JSP/yuangong.jsp";
-		document.getElementById("fom").submit();
-	}
-
-	function deleteChose() {
-		document.getElementById("fom").action = "ProductAction!deleteproduct";
-		document.getElementById("fom").submit();
-	}
-</SCRIPT>
 
 <!-- PAGE TITLE & BREADCRUMB-->
 <div class="row-fluid">
@@ -73,7 +61,7 @@
 						href="#"  id="selectAll">全选</a>-<a
 						href="#"  id="unselect">反选</a>
 				</span> 
-				<a href="ProductAction!deleteproduct" class="btn ajaxify" >删除所选产品信息</a> 
+				<button type="button" class="btn" id="deleteChose" data-action="ProductAction!deleteproduct|${url }" >删除所选产品信息</button>
 				<a href="JSP/addProduct.jsp" class="btn ajaxify">添加产品信息</a>
 			</div>
 			<div class="row-fluid">

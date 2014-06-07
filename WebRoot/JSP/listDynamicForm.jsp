@@ -86,7 +86,11 @@
 					<tbody>
 						<s:iterator var="workflow" value="#request.listObject">
 							<tr>
-								<td ><input type="checkbox" name="delid" value="${workflow.id }" /></td>
+								<td >
+								<s:if test="#workflow.form != null">
+									<input type="checkbox" name="delid" value="${workflow.id }" />
+								</s:if>
+								</td>
 								<td ><a class="ajaxify"	href="WorkFlowAction!edit?workFlow.id=${workflow.id }">${workflow.id
 										}</a></td>
 								<td ><a class="ajaxify"	href="WorkFlowAction!edit?workFlow.id=${workflow.id}">${workflow.name}
@@ -109,7 +113,9 @@
 								<td >
 									 <a class="ajaxify"	href="DynamicFormAction!listFormField?workflowid=${workflow.id}" 
 									>定义表单</a>
-									<a class="ajaxify" href="DynamicFormAction!deleteDynamicForm?delid=${workflow.id }">删除定义表单</a>
+									<s:if test="#workflow.form != null">
+										<a class="ajaxify" href="DynamicFormAction!deleteDynamicForm?delid=${workflow.id }">删除定义表单</a>
+									</s:if>
 								</td>
 							</tr>
 						</s:iterator>

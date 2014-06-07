@@ -48,12 +48,12 @@
 </div>
 
 <div class="row-fluid">
-	<form>
+	<form id="fom">
 		<table>
 			<div class="row-fluid">
 					<div class="span6">
 					<span class="newfont07">选择：<a href="#"  id="selectAll">全选</a>-<a href="#" id="unselect">反选</a>
-				 	<a class="ajaxify btn" href="DocumentAction!deleteDocument">删除所选公文信息</a>
+				 	<button class="btn" type="button" id="deleteChose" data-action="DocumentAction!deleteDocument|${url }">删除所选公文信息</button>
 					<a class="ajaxify btn" href="DocumentAction!toAddDocumentView">添加公文信息</a> 
 					</div>
 					
@@ -137,21 +137,22 @@
 				</div>
 				<div class="pagination pull-right">
 					  <ul>
-						<li class="active"><a class="ajaxify" href="DocumentAction!listMyDocument?index=1">首页</a></li>
+						<li class="active">
+						<a class="ajaxify" href="${url }?index=1">首页</a></li>
 						<s:if test='(#request.currentIndex) > 1'> 
-							<li class="active"><a class="ajaxify" href="DocumentAction!listMyDocument?index=${requestScope.currentIndex-1}">上页</a></li>
+							<li class="active"><a class="ajaxify" href="${url }?index=${requestScope.currentIndex-1}">上页</a></li>
 						</s:if>
 						<s:else>
 						<li class="disabled"><a href="javascript:;">上页</a></li>
 						</s:else>
 						
 						<s:if test='(#request.currentIndex) < #pageCount'> 
-							<li class="active"><a class="ajaxify" href="DocumentAction!listMyDocument?index=${requestScope.currentIndex+1}">下页</a></li>
+							<li class="active"><a class="ajaxify" href="${url }?index=${requestScope.currentIndex+1}">下页</a></li>
 						</s:if>
 						<s:else>
 							<li class="disabled"><a href="javascript:;">下页</a></li>
 						</s:else>
-					 	<li class="active"><a class="ajaxify" href="DocumentAction!listMyDocument?index=${pageCount }">末页</a></li>
+					 	<li class="active"><a class="ajaxify" href="${url }?index=${pageCount }">末页</a></li>
 					  </ul>
 				</div>
 			</div>
