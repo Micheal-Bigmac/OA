@@ -1,6 +1,5 @@
 package com.oa.action;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -8,8 +7,6 @@ import org.apache.struts2.ServletActionContext;
 import com.oa.model.ContractProductRecord;
 import com.oa.model.OrderProductRecord;
 import com.oa.model.PaymentPlan;
-import com.oa.model.Person;
-import com.oa.model.Product;
 import com.oa.model.Users;
 import com.oa.service.FindService;
 import com.opensymphony.xwork2.ActionSupport;
@@ -106,8 +103,13 @@ public class FindAction extends ActionSupport {
 			request.setAttribute("url", "FindAction!findByCondition");
 			return "userList";
 		} else if(findCondition.equalsIgnoreCase("id")) {
-			System.out.println("id");
-			hql = "and s.id = " + textfield;
+			System.out.println("idididididiidididiididi");
+			System.out.println("opkkkkkkkkkkkkkkkkk");
+			if(textfield.trim().equalsIgnoreCase("") || textfield.trim().equals("")) {
+				hql = "";
+			} else {
+				hql = "and s.id = " + textfield;
+			}
 			newClassList = findService.findByCondition((index==0 ? 1 : index), className, findCondition, textfield, hql);
 			total = findService.getAllContents(className, hql).size();
 		} else if(findCondition.equalsIgnoreCase("supplierCode")) {
@@ -191,10 +193,6 @@ public class FindAction extends ActionSupport {
 				request.setAttribute("totalSize", total);
 				request.setAttribute("url", "FindAction!findByCondition");
 				return "payPlanList";
-				
-				
-				
-				
 			}
 		} else {
 			if(className2 != null) {
@@ -217,6 +215,7 @@ public class FindAction extends ActionSupport {
 				request.setAttribute("url", "FindAction!findByCondition");
 				return "dynamicFormList";
 			} else {
+				if(textfield == "") System.out.println("text fiedld is null");
 				hql = "and s." + findCondition + " like '%" + textfield + "%'";
 				newClassList = findService.findByCondition((index==0 ? 1 : index), className, findCondition, textfield, hql);
 				total = findService.getAllContents(className, hql).size();
@@ -236,18 +235,6 @@ public class FindAction extends ActionSupport {
 		
 		System.out.println("total is " + total);
 		request.setAttribute("totalSize", total);
-		System.out.println("document Tye is "+documentType);
-		if(documentType != null) {
-			if(documentType.equals("document")) {
-				request.setAttribute("type", "document");
-			}
-			if(documentType.equals("approvingDocument")) {
-				request.setAttribute("type", "approvingDocument");
-			}
-			if(documentType.equals("finishDocument")) {
-				request.setAttribute("type", "finishDocument");
-			}
-		}
 		request.setAttribute("url", "FindAction!findByCondition");
 		return className+"List";
 	}

@@ -17,7 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 
 <div class='row-fluid'> 
-<form name="formSelect" id="form_Select" method="post" action="ModuleAction!findModuleByCondition">
+<form name="formSelect" id="form_Select" method="post" action="FindAction!findByCondition">
 <table>
 	<tr>
 		<td>
@@ -31,6 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</select>
 		</td>
 		<td>
+			<input id="className" name="className" type="hidden" value="Module"/>
 			<input id="textfield" name="textfield" type="text"  />
 		</td>
 		<td>
@@ -75,7 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</thead>
 					
 					<tbody>
-						<s:iterator var="MOUDLE" value="#request.moduleList">
+						<s:iterator var="MOUDLE" value="#request.listObject">
 						<tr>
 							<td>
 								<input type="checkbox" name="delid"

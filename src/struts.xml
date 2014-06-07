@@ -217,6 +217,7 @@
 			<result name="purchaseOrderRegisiterList">/JSP/listPurchaseOrderRegisiter.jsp</result>
 			<result name="orderProductRecordList">/JSP/listOrderProductRecord.jsp</result>
 			<result name="payPlanList">/JSP/listPayPlan.jsp</result>
+			<result name="moduleList">/JSP/listModule.jsp</result>
 		</action>
 	</package>
 </struts>
