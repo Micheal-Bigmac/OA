@@ -80,6 +80,7 @@ System.out.println("organization descript is "+organization.getDescription());
 	}
 	
 	public String delete() {
+		
 		organization = organizationService.select(Organization.class, deleteOrgId);
 System.out.println("organization id is "+organization.getId());
 System.out.println("organization name is "+organization.getName());
