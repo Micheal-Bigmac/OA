@@ -35,13 +35,14 @@ $("#deleteChose").click(function(){
 	
 	console.log("deletechose")
 	console.log(action);
-	console.log($('#form').serialize());
+	console.log($('#fom').serialize());
 	if($('input[name=delid]:checked').length==0){
 		console.log("iii");
 		return ;
 	}
 	$.ajax({
-		url:action[0]+"?"+$('#form').serialize(),
+		url:action[0],
+		data:$('#fom').serialize(),
 		success: function(){
 			reload();
 		},

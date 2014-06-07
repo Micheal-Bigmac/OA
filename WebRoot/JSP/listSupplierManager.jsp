@@ -6,18 +6,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 
 <!-- <link href="css/Mystyle.css" rel="stylesheet" type="text/css" > -->
-<SCRIPT language=JavaScript>
-
-	function link() {
-		document.getElementById("fom").action = "JSP/yuangong.jsp";
-		document.getElementById("fom").submit();
-	}
-
-	function deleteChose() {
-		document.getElementById("fom").action = "SupplierManagerAction!deletesupplierManager";
-		document.getElementById("fom").submit();
-	}
-</SCRIPT>
 
 <!-- PAGE TITLE & BREADCRUMB-->
 <div class="row-fluid">
@@ -60,12 +48,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 <div class="row-fluid">
-	<form>
+	<form Id="fom">
 		<table class="table table-striped">
 			<div class="row-fluid">
 					<span class="newfont07">选择：<a href="#" id="selectAll">全选</a>-<a href="#" id="unselect">反选</a>
 				</span> 
-				<input name="Submit" class="btn" type="button"  value="删除所选信息" onclick="deleteChose();" /> 
+				<input name="Submit" class="btn" type="button"  value="删除所选信息" id="deleteChose" data-action="SupplierManagerAction!deletesupplierManager|${url }"/> 
 				<a class="btn ajaxify" href="JSP/addSupplierManager.jsp" >添加供应商信息</a> 
 			</div>
 			
