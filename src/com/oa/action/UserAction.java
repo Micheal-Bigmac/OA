@@ -393,7 +393,7 @@ public class UserAction extends ActionSupport {
 //		HttpSession session = request.getSession();
 //		session.invalidate();
 		
-		return "login";
+		return "logout";
 	}
 	
 	public String distributeUser() {		

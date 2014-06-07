@@ -44,6 +44,7 @@
 			<result name="distributeRole">/JSP/distributeRole.jsp</result>
 			<result name="updateDistributeRole">/JSP/updateDistributeRole.jsp</result>
 			<result name="login">login.jsp</result>
+			<result name="logout">login.jsp</result>
 			<result name="error">/JSP/OpenError.jsp</result>
 			<result name="distributePrivilegeToUser">/JSP/distributePrivilegeToUser.jsp</result>
 		</action>	
