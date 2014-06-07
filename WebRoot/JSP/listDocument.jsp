@@ -7,18 +7,6 @@
 %>
 <%@taglib uri="/struts-tags" prefix="s"%>
 
-<SCRIPT language=JavaScript>
-	function link() {
-		document.getElementById("fom").action = "DocumentAction!toAddDocumentView";
-		document.getElementById("fom").submit();
-	}
-
-	function deleteChose() {
-		document.getElementById("fom").action = "DocumentAction!deleteDocument";
-		document.getElementById("fom").submit();
-	}
-</SCRIPT>
-
 <!-- PAGE TITLE & BREADCRUMB-->
 <div class="row-fluid">
 	<h3 class="page-title">流程列表</h3>
@@ -52,7 +40,9 @@
 		<table>
 			<div class="row-fluid">
 					<div class="span6">
-					<span class="newfont07">选择：<a href="#"  id="selectAll">全选</a>-<a href="#" id="unselect">反选</a>
+					<span class="newfont07">
+					选择：
+					<a href="#"  id="selectAll">全选</a>-<a href="#" id="unselect">反选</a>
 				 	<button class="btn" type="button" id="deleteChose" data-action="DocumentAction!deleteDocument|${url }">删除所选公文信息</button>
 					<a class="ajaxify btn" href="DocumentAction!toAddDocumentView">添加公文信息</a> 
 					</div>
