@@ -72,8 +72,7 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mail.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mailapi.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/pop3.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/servlet-api.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/smtp.jar"/>
-	<classpathentry kind="lib" path="D:/tomactserver/apache-tomcat-6.0.37/apache-tomcat-6.0.37/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="D:/apache-tomcat-6.0.37/lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
