@@ -32,7 +32,7 @@ public class FindAction extends ActionSupport {
 			
 			if(!textfield.trim().equals("")) {
 				System.out.println("if");
-				hql = "and s.account = "+Integer.valueOf(textfield);
+				hql = "and s.account = '"+textfield+"'";
 				List newClassListUsers = findService.findByCondition((index==0 ? 1 : index), name, findCondition, textfield, hql);
 				System.out.println("list class user is "+newClassListUsers);
 				if(newClassListUsers.size() != 0) {
@@ -58,7 +58,7 @@ public class FindAction extends ActionSupport {
 			
 			System.out.println("total is " + total);
 			request.setAttribute("totalSize", total);
-			request.setAttribute("url", "FindAction!findByCondition");
+			request.setAttribute("url", "FindAction!findByCondition?className=Person&findCondition=accountid&textfield="+textfield);
 			return "userList";
 		}  else if(findCondition.equals("personName")) {
 			findCondition = "name";
