@@ -89,4 +89,19 @@ $('.datapicker').datepicker({
 	todayBtn: true,
 	language: "zh-CN"
 });
+$("#select").click(function(e) {
+	e.preventDefault();
+	var pageContent = $('.page-content .page-content-body');
+	
+	$.ajax({
+		url: $('#form_Select').attr('action'),
+		data: $('#form_Select').serialize(),
+		success: function(res) {
+			pageContent.html(res);
+		},
+		error: function(){
+			alert("你输入的有问题");
+		}
+	});
+});
 
