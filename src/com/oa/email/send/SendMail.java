@@ -40,7 +40,7 @@ public class SendMail {
 		this.password = "song5438";
 	}
 
-/*	public SendMail(String to, String theme, String content,
+public SendMail(String to, String theme, String content,
 			List<String> attachments) {
 		this.to = to;
 		this.from = "15518977794@163.com";
@@ -50,7 +50,7 @@ public class SendMail {
 		this.subject = theme;
 		this.content = content;
 		this.attachments = attachments;
-	}*/
+	}
 
 	// 将字符串转换为中文,否则标题会发生乱码现象,QQ邮箱为UTF-8.用GBK.GB2312都会乱码.
 	public String translateChinese(String strText) {
@@ -198,15 +198,14 @@ public class SendMail {
 		this.content = content;
 	}
 	
-/*		public static void main(String[] args) {
-	SendMail sendMail = new SendMail("2452064683@qq.com", "來約我吧",
-			"來約我吧", null);
+		public static void main(String[] args) {
+	SendMail sendMail = new SendMail("2452064683@qq.com", "來約我吧","asfa", null);
 	// 增加2个附件
 	// sendMail.addAttachment("");
 	// sendMail.addAttachment("c://a.sql");
 	if (sendMail.send()) {
 		System.out.println("Successful!");
 	}
-}*/
+}
 	
 }

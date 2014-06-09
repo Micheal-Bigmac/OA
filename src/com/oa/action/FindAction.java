@@ -45,8 +45,9 @@ public class FindAction extends ActionSupport {
 				}
 			} else {
 				hql = "";
-				newClassList = findService.findByCondition((index==0 ? 1 : index), name, hql);
-				total = 1;
+				newClassList = findService.findByCondition((index==0 ? 1 : index), className, findCondition, textfield, hql);
+				total = newClassList.size();
+				//total = 1;
 			}
 			System.out.println(hql);
 			String newClass = className.toLowerCase() + "s";
@@ -58,6 +59,8 @@ public class FindAction extends ActionSupport {
 			
 			System.out.println("total is " + total);
 			request.setAttribute("totalSize", total);
+			System.out.println("testfield is "+textfield);
+			System.out.println("url is "+"FindAction!findByCondition?className=Person&findCondition=accountid&textfield="+textfield);
 			request.setAttribute("url", "FindAction!findByCondition?className=Person&findCondition=accountid&textfield="+textfield);
 			return "userList";
 		}  else if(findCondition.equals("personName")) {
@@ -90,12 +93,13 @@ public class FindAction extends ActionSupport {
 			} else {
 				hql = "and s.id = " + textfield;
 			}
-			if(className.equalsIgnoreCase("Module")) {
+			if(className.equalsIgnoreCase("Module") && textfield.trim().equalsIgnoreCase("")) {
 				hql = "and s.pid is null";
 			}
 			newClassList = findService.findByCondition((index==0 ? 1 : index), className, findCondition, textfield, hql);
 			total = findService.getAllContents(className, hql).size();
 			HttpServletRequest request = ServletActionContext.getRequest();
+			System.out.println("url is "+"FindAction!findByCondition?className=Module&findCondition=id&textfield="+textfield);
 			request.setAttribute("url", "FindAction!findByCondition?className=Module&findCondition=id&textfield="+textfield);
 		} else if(findCondition.equalsIgnoreCase("supplierCode")) {
 			System.out.println("supplierCode");
@@ -216,7 +220,24 @@ public class FindAction extends ActionSupport {
 			newClassList = findService.findByCondition((index==0 ? 1 : index), className, findCondition, textfield, hql);
 			total = findService.getAllContents(className, hql).size();
 			HttpServletRequest request = ServletActionContext.getRequest();
-			request.setAttribute("url", "FindAction!findByCondition?className=Module&findCondition=name&textfield="+textfield);
+			if(className.trim().equals("Module"))
+				request.setAttribute("url", "FindAction!findByCondition?className=Module&findCondition=name&textfield="+textfield);
+			if(className.trim().equals("Person"))
+				request.setAttribute("url", "FindAction!findByCondition?className=Person&findCondition=name&textfield="+textfield);
+		} else if(findCondition.equals("phone")) { 
+			if(textfield.trim().equalsIgnoreCase("") || textfield.trim().equals("")) {
+				hql = "";
+				System.out.println("hql is "+hql);
+			} else {
+				hql = "and s." + findCondition + " like '%" + textfield + "%'";
+				System.out.println("hql is "+hql);
+			}
+			   
+			newClassList = findService.findByCondition((index==0 ? 1 : index), className, findCondition, textfield, hql);
+			total = findService.getAllContents(className, hql).size();
+			HttpServletRequest request = ServletActionContext.getRequest();
+			if(className.trim().equals("Person"))
+				request.setAttribute("url", "FindAction!findByCondition?className=Person&findCondition=phone&textfield="+textfield);
 		}
 		/*else if(className!=null) {
 			if(className.equals("OrderProductRecord")) {

@@ -7,18 +7,6 @@
 %>
 <%@taglib uri="/struts-tags" prefix="s"%>
 
-<SCRIPT language=JavaScript>
-	
-	function link() {
-		document.getElementById("fom").action = "JSP/yuangong.jsp";
-		document.getElementById("fom").submit();
-	}
-
-	function deleteChose() {
-		document.getElementById("fom").action = "WorkFlowAction!deleteWorkFlow";
-		document.getElementById("fom").submit();
-	}
-</SCRIPT>
 
 <!-- PAGE TITLE & BREADCRUMB-->
 <div class="row-fluid">

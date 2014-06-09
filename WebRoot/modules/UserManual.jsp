@@ -50,7 +50,7 @@
 	
 	<!-- END PAGE HEADER-->
 	<!-- BEGIN PAGE CONTENT-->
-	
+	<a href="modules/addUserManual.jsp" class="btn yellow mini" data-toggle="modal" data-target="#myModal"><i class="icon-pencil"></i> 添加</a>
 		
 		<div class="row-fluid">
 			<s:set var="num" value="3"/>

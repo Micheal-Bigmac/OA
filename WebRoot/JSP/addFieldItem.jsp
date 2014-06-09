@@ -35,7 +35,7 @@
 		</div>
 		<div class="portlet-body form">
 		<!-- BEGIN FORM-->
-			<form action="FieldItemAction!addFieldItem" class="form-horizontal">
+			<form  id="form" action="FieldItemAction!addFieldItem" class="form-horizontal">
 			<h3 class="form-section">添加表单项 </h3>
 				<div class="row-fluid">
 					<div class="span6 ">
@@ -59,7 +59,7 @@
 					<!--/span-->
 				</div>
 				<div class="form-actions">
-					<button type="submit" class="btn btn-primary">保存</button>
+					<button id="submit" type="button" class="btn btn-primary">保存</button>
 					<button type="button" class="btn">Cancel</button>
 				</div>
 			</form>
@@ -67,3 +67,21 @@
 		</div>
 	</div>
 </div>
+<script>
+$("#submit").click(function(e) {
+	$.ajax({
+		url: $('#form').attr('action'),
+		data: $('#form').serialize(),
+		success: function() {
+ 			e.preventDefault();
+			pageContent = $('.page-content .page-content-body');
+			$.ajax({
+			url: 'FieldItemAction!ListItems?id=${param.id }', 
+			success: function(res) {
+	        	pageContent.html(res);
+			}
+		});
+		}
+	});
+});
+</script>

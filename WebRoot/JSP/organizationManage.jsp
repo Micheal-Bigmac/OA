@@ -26,20 +26,29 @@ out.println(basePath);
 
 
 <div class='row-fluid'> 
-<select name="select2">
-	<option>
-		按录入时间
-	</option>
-	<option>
-		按注销时间
-	</option>
-</select>
-
-<input name="textfield" type="text" readonly="readonly" />
-<span>至</span>
-<input name="textfield" type="text" readonly="readonly" />
-<input class="btn" name="Submit" type="button" value="查 询" style='margin-bottom: 10px;'/>
-<input name="Submit" class="btn" type="button" value="高级搜索" style='margin-bottom: 10px;'/>
+<form name="formSelect" id="form_Select" method="post" action="FindAction!findByCondition">
+<table>
+	<tr>
+		<td>
+			<select id="findCondition" name="findCondition">
+				<option value="name">
+					按机构名称
+				</option>
+			</select>
+		</td>
+		<td>
+			<input id="className" name="className" type="hidden" value="Organization"/>
+			<input id="textfield" name="textfield" type="text"  />
+		</td>
+		<td>
+			<input id="select" class="btn" name="Submit" type="submit" value="查 询"  style='margin-bottom: 10px;'/>
+		</td>
+		<td>
+			<input name="Submit" class="btn" type="button" value="高级搜索" style='margin-bottom: 10px;'/>
+		</td>
+	</tr>
+</table>
+</form>
 </div>
 
 
@@ -121,3 +130,20 @@ out.println(basePath);
 </div>
 
 <script src="js/myAjaxify.js" type="text/javascript"></script>
+<SCRIPT>
+$("#select").click(function(e) {
+	e.preventDefault();
+	var pageContent = $('.page-content .page-content-body');
+	
+	$.ajax({
+		url: $('#form_Select').attr('action'),
+		data: $('#form_Select').serialize(),
+		success: function(res) {
+			pageContent.html(res);
+		},
+		error: function(){
+			alert("你输入的有问题");
+		}
+	});
+});
+</SCRIPT>

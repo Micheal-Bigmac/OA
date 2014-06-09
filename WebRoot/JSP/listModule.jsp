@@ -98,10 +98,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								${MOUDLE.pid.id }
 							</td>
 							<td>
-								<a class="ajaxify" href="ModuleAction!edit?module.id=${requestScope.MOUDLE.id }">编辑</a>&nbsp;|&nbsp;
-								<a class="ajaxify" href="yuangongsalary.html">发工资</a>&nbsp;|&nbsp;
-								<a class="ajaxify" href="yuangongxiangmu.html">项目</a>&nbsp;|&nbsp;
-								<a class="ajaxify" href="ModuleAction!deletemodule?delid=${requestScope.MOUDLE.id }">删除</a>
+								<a class="btn ajaxify" href="ModuleAction!edit?module.id=${requestScope.MOUDLE.id }">编辑</a>&nbsp;|&nbsp;
+								<a class="btn ajaxify" href="yuangongsalary.html">发工资</a>&nbsp;|&nbsp;
+								<a class="btn ajaxify" href="yuangongxiangmu.html">项目</a>&nbsp;&nbsp;
+<!-- 								<input class="btn"  type="button" 	value="删除" id="deleteChose" data-action="ModuleAction!deletemodule?delid=${requestScope.MOUDLE.id }|${url }" /> -->
 							</td>
 						</tr>
 						</s:iterator>
