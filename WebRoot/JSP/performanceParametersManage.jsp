@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td>${pp.personId.name}</td>
 									<td>${pp.date}</td>
 									<td><a class="ajaxify"
-										href="PerformanceParametersAction!updatePerformanceParameters?performanceParametersId=${pp.id}">修改</a>/<a class="ajaxify"
+										href="PerformanceParametersAction!updatePerformanceParameters?performanceParametersId=${pp.id}&method=4">修改</a>/<a class="ajaxify"
 										href="PerformanceParametersAction!deletePerformanceParameters?performanceParametersId=${pp.id}&method=8">删除</a>
 									</td>
 								</tr>

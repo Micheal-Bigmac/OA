@@ -79,7 +79,7 @@ ${column_num }
 							<i class="icon-angle-down"></i>
 							</a>
 							<ul class="dropdown-menu pull-right">
-								<li><a  href="RuleAction!addRuleView?id=${rule.id }" data-toggle="modal" data-target="#myModal"><i class="icon-pencil"></i> Edit</a></li>
+								<li><a  href="RuleAction!addRuleView?id=${rule.id }&method=4" data-toggle="modal" data-target="#myModal"><i class="icon-pencil"></i> Edit</a></li>
 								<li><a href="#"><i class="icon-trash"></i> Delete</a></li>
 								<li class="divider"></li>
 								<li><a href="#"><i class="i"></i> ...</a></li>
@@ -113,7 +113,7 @@ ${column_num }
 							<i class="icon-angle-down"></i>
 							</a>
 							<ul class="dropdown-menu pull-right">
-								<li><a href="RuleAction!addRuleView?id=${rule.id }" data-toggle="modal" data-target="#myModal"><i class="icon-pencil"></i> Edit</a></li>
+								<li><a href="RuleAction!addRuleView?id=${rule.id }&method=4" data-toggle="modal" data-target="#myModal"><i class="icon-pencil"></i> Edit</a></li>
 								<li><a href="#"><i class="icon-trash"></i> Delete</a></li>
 								<li class="divider"></li>
 								<li><a href="#"><i class="i"></i> ...</a></li>

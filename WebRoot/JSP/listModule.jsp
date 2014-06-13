@@ -74,7 +74,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<th >操作</th>
 						</tr>
 					</thead>
-					
 					<tbody>
 						<s:iterator var="MOUDLE" value="#request.listObject">
 						<tr>
@@ -98,7 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								${MOUDLE.pid.id }
 							</td>
 							<td>
-								<a class="btn ajaxify" href="ModuleAction!edit?module.id=${requestScope.MOUDLE.id }">编辑</a>&nbsp;|&nbsp;
+								<a class="btn ajaxify" href="ModuleAction!edit?module.id=${requestScope.MOUDLE.id }&method=4">编辑</a>&nbsp;|&nbsp;
 								<a class="btn ajaxify" href="yuangongsalary.html">发工资</a>&nbsp;|&nbsp;
 								<a class="btn ajaxify" href="yuangongxiangmu.html">项目</a>&nbsp;&nbsp;
 <!-- 								<input class="btn"  type="button" 	value="删除" id="deleteChose" data-action="ModuleAction!deletemodule?delid=${requestScope.MOUDLE.id }|${url }" /> -->

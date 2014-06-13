@@ -16,7 +16,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</ul>
 </div>
 
-
 <div class="tab-pane  active" id="tab_2">
 	<div class="portlet box green">
 		<div class="portlet-title">
@@ -29,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<div class="portlet-body form">
 		<!-- BEGIN FORM-->
-			<form id="form" action="SupplierManagerAction!addSupplierManager" class="form-horizontal">
+			<form id="form" action="SupplierManagerAction!addSupplierManager?method=1" class="form-horizontal">
 			<h3 class="form-section">供应商信息</h3>
 				<div class="row-fluid">
 					<div class="span6 ">

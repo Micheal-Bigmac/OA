@@ -53,7 +53,7 @@
 				<input id="textfield" name="textfield" type="text"  />
 			</td>
 			<td>
-				<input class="btn" id="select" type="button" value="搜索">
+				<input id="select" class="btn" name="Submit" type="submit" value="查 询"  style='margin-bottom: 10px;'/>
 			</td>
 			<td>
 				<input name="Submit" class="btn" type="button" value="高级搜索" style='margin-bottom: 10px;'/>
@@ -69,7 +69,7 @@
 			<div class="row-fluid">
 					<span class="newfont07">选择：<a href="#" id="selectAll">全选</a>-<a href="#"  id="unselect">反选</a>
 					</span> 
-					<button class="btn"  id="deleteChose" data-action="PurchaseOrderRegisiterAction!deletePurchaseOrderRegisiter|${url }">删除所选采购信息</button>  
+					<button class="btn"  id="deleteChose" data-action="PurchaseOrderRegisiterAction!deletePurchaseOrderRegisiter|${url }&method=8">删除所选采购信息</button>  
 					<a href="JSP/addPurchaseOrderRegisiter.jsp" class="btn ajaxify">添加采购信息</a> 
 			</div>
 			<div class="row-fluid">
@@ -111,7 +111,7 @@
 								<td >${PurchaseOrderRegisiter.paidPrice }</td>
 								<td >${PurchaseOrderRegisiter.loanPrice }</td>
 								<td >${PurchaseOrderRegisiter.isPaid }</td>
-								<td ><a class="ajaxify" href="PurchaseOrderRegisiterAction!edit?purchaseOrderRegisiter.id=${PurchaseOrderRegisiter.id}">编辑(修改)</a><a href="PurchaseOrderRegisiterAction!deletePurchaseOrderRegisiter?delid=${PurchaseOrderRegisiter.id }">删除</a></td>
+								<td ><a class="ajaxify" href="PurchaseOrderRegisiterAction!edit?purchaseOrderRegisiter.id=${PurchaseOrderRegisiter.id}&method=4">编辑(修改)</a><a href="PurchaseOrderRegisiterAction!deletePurchaseOrderRegisiter?delid=${PurchaseOrderRegisiter.id }&method=8">删除</a></td>
 							</tr>
 						</s:iterator>
 					</tbody>
@@ -128,21 +128,21 @@
 				</div>
 				<div class="pagination pull-right">
 					  <ul>
-						<li class="active"><a class="ajaxify" href="${url }?index=1">首页</a></li>
+						<li class="active"><a class="ajaxify" href="${url }&index=1">首页</a></li>
 						<s:if test='(#request.currentIndex) > 1'> 
-							<li class="active"><a class="ajaxify" href="${url }?index=${requestScope.currentIndex-1}">上页</a></li>
+							<li class="active"><a class="ajaxify" href="${url }&index=${requestScope.currentIndex-1}">上页</a></li>
 						</s:if>
 						<s:else>
 						<li class="disabled"><a href="javascript:;">上页</a></li>
 						</s:else>
 						
 						<s:if test='(#request.currentIndex) < #pageCount'> 
-							<li class="active"><a class="ajaxify" href="${url }?index=${requestScope.currentIndex+1}">下页</a></li>
+							<li class="active"><a class="ajaxify" href="${url }&index=${requestScope.currentIndex+1}">下页</a></li>
 						</s:if>
 						<s:else>
 							<li class="disabled"><a href="javascript:;">下页</a></li>
 						</s:else>
-					 	<li class="active"><a class="ajaxify" href="${url }?index=${pageCount }">末页</a></li>
+					 	<li class="active"><a class="ajaxify" href="${url }&index=${pageCount }">末页</a></li>
 					  </ul>
 				</div>
 			</div>

@@ -145,7 +145,7 @@ public class ModuleDaoImp implements ModuleDao {
 	
 	private List getAclState(int id) {
 		List listInt = new ArrayList();
-
+		
 		listInt.add(id & 1);
 		listInt.add(id & 2);
 		listInt.add(id & 4);
@@ -156,7 +156,7 @@ public class ModuleDaoImp implements ModuleDao {
 		System.out.println(id + "&8 " + String.valueOf(id & 8));
 		return listInt;
 	}
-
+	/*流程图片在com.oa.action目录下 */
 	public void getCategory(Users user) {
 		if (category.size() == 0) {
 			List<Acl> listAcls = convertToListAcl(superDao.find("from Acl a where a.aclState ="+"0"));
@@ -240,32 +240,67 @@ public class ModuleDaoImp implements ModuleDao {
 								List list = null;
 								for(int i=0; i<childModules.size(); i++) {
 									Module child = childModules.get(i);
-									for(int j=0; j<childModules.size(); j++) {
-										if(child.getName() == childModules.get(j).getName()) {
-											List<Acl> acls2 = convertToListAcl(superDao.find(
-													"select distinct(a) from Acl a where a.principalId in ("+ strRole+") and a.moduleId = "+child.getId()));
-											System.out.println("acl size issssssssssssss  "+acls2.size());
-											int putInLinkedHashMapValue = acls.get(0).getAclState();
-											for(int k=0; k<acls2.size(); k++) {
-												System.out.println("acl module name  is "+acls.get(k).getModuleId().getName());
-												System.out.println("acl role name is "+acls.get(k).getPrincipalId().getName());
-												System.out.println("acl aclState  is "+acls.get(k).getAclState());
-												/////////////////////////
-												if(acls.get(k).getAclState()>putInLinkedHashMapValue) {
-													putInLinkedHashMapValue = acls.get(k).getAclState(); 
-													list = getAclState(putInLinkedHashMapValue);
+									List<Acl> acls2 = convertToListAcl(superDao.find(
+											"select distinct(a) from Acl a where a.principalId in ("+ strRole+") and a.moduleId = "+child.getId()));
+									System.out.println("acl size issssssssssssss  "+acls2.size());
+									System.out.println("str Is "+"select distinct(a) from Acl a where a.principalId in ("+ strRole+") and a.moduleId = "+child.getId());
+									int temp = 0;
+									List aclValueList = new ArrayList();
+									if(acls2.size()>0) {
+										for(int k=0; k<acls2.size(); k++) {
+											System.out.println("acl module name  is "+acls2.get(k).getModuleId().getName());
+											System.out.println("acl role name is "+acls2.get(k).getPrincipalId().getName());
+											System.out.println("acl aclState  is "+acls2.get(k).getAclState());
+											/////////////////////////
+											int aclValue = acls2.get(k).getAclState();
+											if(aclValueList != null) {
+												if(!aclValueList.contains(1)) {
+													System.out.println("not include 1");
+													if((aclValue&1)==1) {
+														temp+=1;
+														aclValueList.add(1);
+													}
 												}
 											}
-											childModuleLinkedHashMap.put(childModules.get(j),list);
+											if(aclValueList != null) {
+												if(!aclValueList.contains(2)) {
+													System.out.println("not include 2");
+													if((aclValue&2)==2) {
+														temp+=2;
+														aclValueList.add(2);
+													}
+												}
+											}
+											if(aclValueList != null) {
+												if(!aclValueList.contains(4)) {
+													System.out.println("not include 4");
+													if((aclValue&4)==4) {
+														temp+=4;
+														aclValueList.add(4);
+													}
+												}
+											}
+											if(aclValueList != null) {
+												if(!aclValueList.contains(8)) {
+													System.out.println("not include 8");
+													if((aclValue&8)==8) {
+														temp+=8;
+														aclValueList.add(8);
+													}
+												}
+											}
 										}
+										System.out.println("temp is "+temp);
+										list = getAclState(temp);
 									}
+									childModuleLinkedHashMap.put(childModules.get(i),list);
 								}
 								category.put(parent,childModuleLinkedHashMap);
 							}
-							} else {
-								//Acl中没有数据，到Userprivilege中查找
-								UserNotDistributeRole(user);
-							}
+						} else {
+							//Acl中没有数据，到Userprivilege中查找
+							UserNotDistributeRole(user);
+						}
 							
 					} else {
 						// 用户没有被分配角色
@@ -324,39 +359,67 @@ public class ModuleDaoImp implements ModuleDao {
 						List list = null;
 						for(int i=0; i<childModules.size(); i++) {
 							Module child = childModules.get(i);
-							for(int j=0; j<childModules.size(); j++) {
-								if(child.getName() == childModules.get(j).getName()) {
-									List<Acl> acls2 = convertToListAcl(superDao.find(
-											"select distinct(a) from Acl a where a.principalId in ("+ strRole+") and a.moduleId = "+child.getId()));
-									System.out.println("acl size issssssssssssss  "+acls2.size());
-									System.out.println("str Is "+"select distinct(a) from Acl a where a.principalId in ("+ strRole+") and a.moduleId = "+child.getId());
-									
-									if(acls2.size()>0) {
-										int putInLinkedHashMapValue = acls2.get(0).getAclState();
-										for(int k=0; k<acls2.size(); k++) {
-											System.out.println("acl module name  is "+acls.get(k).getModuleId().getName());
-											System.out.println("acl role name is "+acls.get(k).getPrincipalId().getName());
-											System.out.println("acl aclState  is "+acls.get(k).getAclState());
-											/////////////////////////
-											if(acls.get(k).getAclState()>putInLinkedHashMapValue) {
-												putInLinkedHashMapValue = acls.get(k).getAclState(); 
-												System.out.println("list is "+putInLinkedHashMapValue);
-												list = getAclState(putInLinkedHashMapValue);
-											} else {
-												list = getAclState(putInLinkedHashMapValue);
+							List<Acl> acls2 = convertToListAcl(superDao.find(
+									"select distinct(a) from Acl a where a.principalId in ("+ strRole+") and a.moduleId = "+child.getId()));
+							System.out.println("acl size issssssssssssss  "+acls2.size());
+							System.out.println("str Is "+"select distinct(a) from Acl a where a.principalId in ("+ strRole+") and a.moduleId = "+child.getId());
+							int temp = 0;
+							List aclValueList = new ArrayList();
+							if(acls2.size()>0) {
+								for(int k=0; k<acls2.size(); k++) {
+									System.out.println("acl module name  is "+acls2.get(k).getModuleId().getName());
+									System.out.println("acl role name is "+acls2.get(k).getPrincipalId().getName());
+									System.out.println("acl aclState  is "+acls2.get(k).getAclState());
+									/////////////////////////
+									int aclValue = acls2.get(k).getAclState();
+									if(aclValueList != null) {
+										if(!aclValueList.contains(1)) {
+											System.out.println("not include 1");
+											if((aclValue&1)==1) {
+												temp+=1;
+												aclValueList.add(1);
 											}
 										}
 									}
-									childModuleLinkedHashMap.put(childModules.get(j),list);
+									if(aclValueList != null) {
+										if(!aclValueList.contains(2)) {
+											System.out.println("not include 2");
+											if((aclValue&2)==2) {
+												temp+=2;
+												aclValueList.add(2);
+											}
+										}
+									}
+									if(aclValueList != null) {
+										if(!aclValueList.contains(4)) {
+											System.out.println("not include 4");
+											if((aclValue&4)==4) {
+												temp+=4;
+												aclValueList.add(4);
+											}
+										}
+									}
+									if(aclValueList != null) {
+										if(!aclValueList.contains(8)) {
+											System.out.println("not include 8");
+											if((aclValue&8)==8) {
+												temp+=8;
+												aclValueList.add(8);
+											}
+										}
+									}
 								}
+								System.out.println("temp is "+temp);
+								list = getAclState(temp);
 							}
+							childModuleLinkedHashMap.put(childModules.get(i),list);
 						}
 						category.put(parent,childModuleLinkedHashMap);
 					}
-					} else {
-						//Acl中没有数据，到Userprivilege中查找
-						UserNotDistributeRole(user);
-					}
+				} else {
+					//Acl中没有数据，到Userprivilege中查找
+					UserNotDistributeRole(user);
+				}
 					
 			} else {
 				// 用户没有被分配角色
@@ -374,6 +437,8 @@ public class ModuleDaoImp implements ModuleDao {
 			getCategory(user);
 		}
 	}
+
+	
 	private List<UserPrivilege> convertToUserPrivilege(List<Object> objects) {
 		List<UserPrivilege> up = new ArrayList<UserPrivilege>();
 		for(int i=0; i<objects.size(); i++) {
@@ -442,7 +507,7 @@ public class ModuleDaoImp implements ModuleDao {
 						for (int j = 0; j < listChildModule.size(); j++) {
 							if(listChildModule.get(j).getId() == module.getId()) {
 								allModules.add(listChildModule.get(j));
-								String sql4 = "from UserPrivilege ur where ur. inheritance = -1 and ur.moduleId = ?";
+								String sql4 = "from UserPrivilege ur where ur.inheritance = -1 and ur.moduleId = ?";
 								UserPrivilege ur = (UserPrivilege)superDao.check(sql4, new Object[]{listChildModule.get(j)});
 								if(ur != null) {
 								List list = getAclState(ur.getUserValue());
@@ -547,3 +612,9 @@ public class ModuleDaoImp implements ModuleDao {
 	}
 }
 }
+
+
+
+
+
+

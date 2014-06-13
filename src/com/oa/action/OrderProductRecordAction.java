@@ -48,7 +48,7 @@ public class OrderProductRecordAction extends ActionSupport {
 		System.out.println("=============================="+total);
 		// request.setAttribute("pid",(OrderProductRecord==null ? "": OrderProductRecord.getId()));
 		request.setAttribute("totalSize", total);
-		request.setAttribute("url", "OrderProductRecordAction!OrderProductRecordList");
+		request.setAttribute("url", "OrderProductRecordAction!OrderProductRecordList?");
 		return "OrderProductRecordList";
 	}
 

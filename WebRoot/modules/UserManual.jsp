@@ -68,7 +68,7 @@
 							<div class="portlet-title">
 								<div class="caption"><i class="icon-reorder"></i>${daily.title}</div>
 								<div class="actions">
-									<a href="PersonDailyAction!addUserManualView?id=${daily.id }" class="btn yellow mini" data-toggle="modal" data-target="#myModal"><i class="icon-pencil"></i> Edit</a>
+									<a href="PersonDailyAction!addUserManualView?id=${daily.id }&method=4" class="btn yellow mini" data-toggle="modal" data-target="#myModal"><i class="icon-pencil"></i> Edit</a>
 									<a href="#" class="btn green mini"><i class="icon-plus"></i> delete</a>
 								</div>
 							</div>

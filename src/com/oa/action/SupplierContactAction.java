@@ -37,7 +37,7 @@ public class SupplierContactAction extends ActionSupport {
 		int total = SupplierContactService.getAllSupplierContacts(SupplierContact.class, hql).size();
 		// request.setAttribute("pid",(SupplierContact==null ? "": SupplierContact.getId()));
 		request.setAttribute("totalSize", total);
-		request.setAttribute("url", "SupplierContractAction!SupplierContactList");
+		request.setAttribute("url", "SupplierContractAction!SupplierContactList?");
 		getSelect();
 		return "SupplierContactList";
 	}

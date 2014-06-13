@@ -4,7 +4,7 @@
 
 <link href="css/bootstrap-datepicker.css" rel="stylesheet" type="text/css" />
 
-<form class="form-horizontal" id="modal_form" action="PersonAction!addUser">
+<form class="form-horizontal" id="modal_form" action="PersonAction!addUser?method=1">
 			<div class="control-group">
 				<label class="control-label" for="inputEmail"></label>
 					<div class="controls">

@@ -28,13 +28,13 @@ public class SecurityFilter implements Filter {
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession session = req.getSession(true);
 		// 从session 里面获取用户名的信息
-		String user = (String) session.getAttribute("user");
-
-
+		
 		if (session.getAttribute("admin") == null) {
+			System.out.println("filter is called");
 			 request.getRequestDispatcher("login.jsp").forward(request, response);
 			 return ;
 		}
+		System.out.println("filter is not returned");
 		arg2.doFilter(request, response);
 	}
 

@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<div class="portlet-body form">
 		<!-- BEGIN FORM-->
-			<form id="form" action="PaymentPlanAction!addPaymentPlan" class="form-horizontal">
+			<form id="form" action="PaymentPlanAction!addPaymentPlan?method=1" class="form-horizontal">
 			<h3 class="form-section">收款计划信息</h3>
 				<div class="row-fluid">
 					<div class="span6 ">

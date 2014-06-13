@@ -6,7 +6,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <h3>Leave a Comment</h3>
-<form action="PersonDailyAction!addUserManual" id="model-form">
+<form action="PersonDailyAction!addUserManual?method=1" id="model-form">
 	 <label>id</label>
 	<input type="text" name="daily.id" class="span5 m-wrap" value="${daily.id}" readOnly>
 	<label>名称<span class="color-red">*</span></label>

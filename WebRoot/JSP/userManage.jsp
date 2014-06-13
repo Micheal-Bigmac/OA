@@ -83,12 +83,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td><s:property value="#person.getFirstUser().expireTime" /></td>
 								<td>
 								<s:if test="#person.getFirstUser().account != ''">
-									<a href="UserAction!deleteAccount?user.personid.id=${person.id }">删除账号</a>&nbsp;
+									<a href="UserAction!deleteAccount?user.personid.id=${person.id }&method=8">删除账号</a>&nbsp;
 									<a class="ajaxify" href="UserAction!distributeRole?user.personid.id=${person.id}">分配角色</a>&nbsp;
 									<a class="ajaxify" href="UserAction!distributeUser?user.personid.id=${person.id}">用户授权</a>&nbsp;
 								</s:if> 
 								<s:else>
-										<a class="ajaxify" href="JSP/addAccount.jsp?personid=${person.id}">分配账号</a>&nbsp;
+										<a class="ajaxify" href="JSP/addAccount.jsp?personid=${person.id}&method=1">分配账号</a>&nbsp;
 								</s:else>
 							</tr>
 						</s:iterator>

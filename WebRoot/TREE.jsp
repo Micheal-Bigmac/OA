@@ -89,7 +89,7 @@ body {
 										width="35" height="35" />
 									</td>
 									<td width="75%" height="22" class="left-font01">
-										您好，${admin.personid.name } <span class="left-font02"></span>
+										ni好，${admin.personid.name } <span class="left-font02"></span>
 									</td>
 								</tr>
 								<tr>

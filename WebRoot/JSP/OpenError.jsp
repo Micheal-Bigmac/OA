@@ -12,6 +12,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-操作失败，用户权限不够；
+<script>
+		alert("对不起，您权限不够");
+	</script>
 </body>
 </html>

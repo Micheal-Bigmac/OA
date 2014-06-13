@@ -97,9 +97,9 @@ out.println(basePath);
 							<td >${person.birthday }</td>
 							<td >${person.phone }</td>
 							<td >${person.organization.name}</td>
-							<td ><a class="ajaxify" href="PersonAction!edit?person.id=${person.id }">编辑</a>&nbsp;|&nbsp;
+							<td ><a class="ajaxify" href="PersonAction!edit?person.id=${person.id }&method=4">编辑</a>&nbsp;|&nbsp;
 								<a class="ajaxify" href="yuangongsalary.html">发工资</a>&nbsp;|&nbsp; <a href="yuangongxiangmu.html">项目</a>&nbsp;|&nbsp;
-								<a  class="ajaxify" href="PersonAction!deletePerson?person.id=${person.id}">删除</a></td>
+								<a  class="ajaxify" href="PersonAction!deletePerson?person.id=${person.id}&method=8">删除</a></td>
 						</tr>
 					</s:iterator>
 					</tbody>

@@ -35,7 +35,7 @@ public class SalesAgreementAction extends ActionSupport {
 		int total = salesAgreementService.getAllsalesAgreements(SalesAgreement.class, hql).size();
 		// request.setAttribute("pid",(SalesAgreement==null ? "": SalesAgreement.getId()));
 		request.setAttribute("totalSize", total);
-		request.setAttribute("url", "SalesAgreementAction!SalesAgreementList");
+		request.setAttribute("url", "SalesAgreementAction!SalesAgreementList?");
 		return "SalesAgreementList";
 	}
 

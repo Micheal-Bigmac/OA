@@ -41,7 +41,7 @@ public class ContractProductAction extends ActionSupport {
 		int total = contractProductRecordService.getAllContractProductRecords(ContractProductRecord.class, hql).size();
 		// request.setAttribute("pid",(ContractProductRecord==null ? "": ContractProductRecord.getId()));
 		request.setAttribute("totalSize", total);
-		request.setAttribute("url", "ContractProductAction!ContractProductRecordList");
+		request.setAttribute("url", "ContractProductAction!ContractProductRecordList?");
 		return "ContractProductRecordList";
 	}
 

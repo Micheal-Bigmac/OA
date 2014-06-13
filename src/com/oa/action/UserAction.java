@@ -130,22 +130,25 @@ public class UserAction extends ActionSupport {
 	}
 	
 	public String login(){
+		System.out.println("this is login");
 		personService.getSeletsValue();
 		Users admin = (Users) ServletActionContext.getRequest().getSession().getAttribute("admin");
 		Users login=null;
 		
 		if(admin == null){
-			login = userService.login("from Users u where u.account = ? and u.password= ?", new Object[]{user.getAccount(),user.getPassword()});
-			if(login == null){ 
-				return "login_failure"; 
+			if(user != null) {
+				login = userService.login("from Users u where u.account = ? and u.password= ?", new Object[]{user.getAccount(),user.getPassword()});
+				if(login == null){ 
+					return "login_failure"; 
+				}
+				Users thisUser = (Users)userService.getThisUser(Users.class, login.getId());
+				ServletActionContext.getRequest().getSession().setAttribute("photoPath", login.getPersonid().getPhotoPath());
+				ServletActionContext.getRequest().getSession().setAttribute("admin", login);
+				ServletActionContext.getRequest().getSession().setAttribute("modules", moduleService.getCategory(login));
+				ServletActionContext.getRequest().setAttribute("personName",thisUser.getPersonid().getName());
+				System.out.println("we have send login");
 			}
-			Users thisUser = (Users)userService.getThisUser(Users.class, login.getId());
-			ServletActionContext.getRequest().getSession().setAttribute("photoPath", login.getPersonid().getPhotoPath());
-			ServletActionContext.getRequest().getSession().setAttribute("admin", login);
-			ServletActionContext.getRequest().getSession().setAttribute("modules", moduleService.getCategory(login));
-			ServletActionContext.getRequest().setAttribute("personName",thisUser.getPersonid().getName());
 		}
-		
 		return "login_success";
 	}
 	

@@ -19,20 +19,6 @@
 	</ul>
 </div>
 <div class='row-fluid'> 
-	<select name="select2">
-		<option>
-			按录入时间
-		</option>
-		<option>
-			按注销时间
-		</option>
-	</select>
-
-	<input name="textfield" type="text" readonly="readonly" />
-	<span>至</span>
-	<input name="textfield" type="text" readonly="readonly" />
-	<input class="btn" name="Submit" type="button" value="查 询" style='margin-bottom: 10px;'/>
-	<input name="Submit" class="btn" type="button" value="高级搜索" style='margin-bottom: 10px;'/>
 </div>
 
 <div class="row-fluid">
@@ -43,14 +29,14 @@
 					<span class="newfont07">
 					选择：
 					<a href="#"  id="selectAll">全选</a>-<a href="#" id="unselect">反选</a>
-				 	<button class="btn" type="button" id="deleteChose" data-action="DocumentAction!deleteDocument|${url }">删除所选公文信息</button>
-					<a class="ajaxify btn" href="DocumentAction!toAddDocumentView">添加公文信息</a> 
+				 	<button class="btn" type="button" id="deleteChose" data-action="DocumentAction!deleteDocument|${url }&method=8">删除所选公文信息</button>
+					<a class="ajaxify btn" href="DocumentAction!toAddDocumentView&method=1">添加公文信息</a> 
 					</div>
 					
 					<div class="span4 offset2">
-						<a class="btn ajaxify" href="DocumentAction!listMyDocument">我的公文</a>
-						<a class="btn ajaxify" href="DocumentAction!ApprovingDocumentList">待审公文</a>
-						<a class="btn ajaxify" href="DocumentAction!ApprovedDocumentList">已审核公文</a>
+						<a class="btn ajaxify" href="DocumentAction!listMyDocument&method=2">我的公文</a>
+						<a class="btn ajaxify" href="DocumentAction!ApprovingDocumentList&method=2">待审公文</a>
+						<a class="btn ajaxify" href="DocumentAction!ApprovedDocumentList&method=2">已审核公文</a>
 						</div>
 			</div>
 			
@@ -97,16 +83,16 @@
 									<s:if test="#request.type=='document'">
 											&nbsp;&nbsp;
 											<s:if test="#document.status=='新建'">
-											<a class="ajaxify" href="DocumentAction!submitView?document.id=${document.id }">提交</a>&nbsp;&nbsp;
-											<a class="ajaxify" href="DocumentAction!deleteDocument?delid=${document.id }">删除</a>
+											<a class="ajaxify" href="DocumentAction!submitView?document.id=${document.id }&method=1">提交</a>&nbsp;&nbsp;
+											<a class="ajaxify" href="DocumentAction!deleteDocument?delid=${document.id }&method=8">删除</a>
 											</s:if> 
 									</s:if>
 									<s:elseif test="#request.type=='approvingDocument'">
 										<a class="ajaxify" href="JSP/shenpi.jsp?id=${document.id }">审批</a>&nbsp;&nbsp;
-										<a class="ajaxify" href="DocumentAction!submitView?document.id=${document.id }">提交</a>
+										<a class="ajaxify" href="DocumentAction!submitView?document.id=${document.id }&method=1">提交</a>
 									</s:elseif>
 									<s:elseif test="#request.type == 'finishDocument'">
-										<a class="ajaxify" href="DocumentAction!deleteDocument?delid=${document.id }">删除</a>
+										<a class="ajaxify" href="DocumentAction!deleteDocument?delid=${document.id }&method=8">删除</a>
 									</s:elseif>
 								</td>
 							</tr>

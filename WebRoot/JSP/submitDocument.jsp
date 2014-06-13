@@ -34,7 +34,7 @@
 		</div>
 		<div class="portlet-body form">
 			<!-- BEGIN FORM-->
-			<form id="form" action="WorkFlowAction!addWorkFlow" class="form-horizontal" enctype="multipart/form-data" method="post">
+			<form id="form" action="WorkFlowAction!addWorkFlow?method=1" class="form-horizontal" enctype="multipart/form-data" method="post">
 				<h3 class="form-section">流程信息</h3>
 				<div class="row-fluid">
 					<div class="span6 ">

@@ -24,12 +24,15 @@ public class SecurityInterceptor implements Interceptor {
 		HttpSession session = ServletActionContext.getRequest().getSession();
 		HttpServletRequest request=ServletActionContext.getRequest();
 		String clazz=invocation.getAction().getClass().getName();
+		System.out.println("clazz is "+clazz);
 //		System.out.println(clazz+invocation.getAction());
 		
 		if (session.getAttribute("admin") == null ){
 			if(UserAction.class.getName().equals(clazz)){
-				return invocation.invoke();
+				System.out.println("if admin is null");
+				return invocation.invoke(); 
 			}
+			System.out.println("admin is null");
 			return Action.LOGIN;
 		}else {
 			if(UserAction.class.getName().equals(clazz)){

@@ -61,7 +61,7 @@
 						href="#"  id="selectAll">全选</a>-<a
 						href="#"  id="unselect">反选</a>
 				</span> 
-				<button type="button" class="btn" id="deleteChose" data-action="ProductAction!deleteproduct|${url }" >删除所选产品信息</button>
+				<button type="button" class="btn" id="deleteChose" data-action="ProductAction!deleteproduct|${url }&method=8" >删除所选产品信息</button>
 				<a href="JSP/addProduct.jsp" class="btn ajaxify">添加产品信息</a>
 			</div>
 			<div class="row-fluid">
@@ -97,7 +97,7 @@
 								<td >${product.totalOutbound }</td>
 								<td >${product.totalInventory }</td>
 								<td >${product.currentInventory }</td>
-								<td ><a class="ajaxify" href="ProductAction!edit?product.id=${product.id}">编辑(修改)</a><a href="ProductAction!deleteproduct?delid=${product.id }">删除</a></td>
+								<td ><a class="ajaxify" href="ProductAction!edit?product.id=${product.id}&method=4">编辑(修改)</a><a href="ProductAction!deleteproduct?delid=${product.id }&method=8">删除</a></td>
 							</tr>
 						</s:iterator>
 					</tbody>
@@ -114,21 +114,21 @@
 				</div>
 				<div class="pagination pull-right">
 					  <ul>
-						<li class="active"><a class="ajaxify" href="${url }?index=1">首页</a></li>
+						<li class="active"><a class="ajaxify" href="${url }&index=1">首页</a></li>
 						<s:if test='(#request.currentIndex) > 1'> 
-							<li class="active"><a class="ajaxify" href="${url }?index=${requestScope.currentIndex-1}">上页</a></li>
+							<li class="active"><a class="ajaxify" href="${url }&index=${requestScope.currentIndex-1}">上页</a></li>
 						</s:if>
 						<s:else>
 						<li class="disabled"><a href="javascript:;">上页</a></li>
 						</s:else>
 						
 						<s:if test='(#request.currentIndex) < #pageCount'> 
-							<li class="active"><a class="ajaxify" href="${url }?index=${requestScope.currentIndex+1}">下页</a></li>
+							<li class="active"><a class="ajaxify" href="${url }&index=${requestScope.currentIndex+1}">下页</a></li>
 						</s:if>
 						<s:else>
 							<li class="disabled"><a href="javascript:;">下页</a></li>
 						</s:else>
-					 	<li class="active"><a class="ajaxify" href="${url }?index=${pageCount }">末页</a></li>
+					 	<li class="active"><a class="ajaxify" href="${url }&index=${pageCount }">末页</a></li>
 					  </ul>
 				</div>
 			</div>
@@ -136,3 +136,20 @@
 	</form>
 </div>
 <script src="js/myAjaxify.js" type="text/javascript"></script>
+<script>
+$("#select").click(function(e) {
+	e.preventDefault();
+	var pageContent = $('.page-content .page-content-body');
+	
+	$.ajax({
+		url: $('#form_Select').attr('action'),
+		data: $('#form_Select').serialize(),
+		success: function(res) {
+			pageContent.html(res);
+		},
+		error: function(){
+			alert("你输入的有问题");
+		}
+	});
+});
+</script>

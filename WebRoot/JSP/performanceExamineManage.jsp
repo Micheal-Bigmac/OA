@@ -47,20 +47,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 
 <div class='row-fluid'> 
-<select name="select2">
-	<option>
-		按录入时间
-	</option>
-	<option>
-		按注销时间
-	</option>
-</select>
-
-<input name="textfield" type="text" readonly="readonly" />
-<span>至</span>
-<input name="textfield" type="text" readonly="readonly" />
-<input class="btn" name="Submit" type="button" value="查 询" style='margin-bottom: 10px;'/>
-<input name="Submit" class="btn" type="button" value="高级搜索" style='margin-bottom: 10px;'/>
+<form name="formSelect" id="form_Select" method="post" action="FindAction!findByCondition">
+<table>
+	<tr>
+		<td>
+			<select id="findCondition" name="findCondition">
+				<option value="name">
+					按录入人
+				</option>
+				<option value="recordUser">
+					按考核名称
+				</option>
+			</select>
+		</td>
+		<td>
+			<input id="className" name="className" type="hidden" value="ListPerformanceExamine"/>
+			<input id="textfield" name="textfield" type="text"  />
+		</td>
+		<td>
+			<input id="select" class="btn" name="Submit" type="submit" value="查 询"  style='margin-bottom: 10px;'/>
+		</td>
+		<td>
+			<input name="Submit" class="btn" type="button" value="高级搜索" style='margin-bottom: 10px;'/>
+		</td>
+	</tr>
+</table>
+</form>
 </div>
 
 <div class="row-fluid">
@@ -86,7 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</tr>
 					</thead>
 					<tbody>
-						<s:iterator value="#request.listPerformanceExamine" var="pe">
+						<s:iterator value="#request.listObject" var="pe">
 							<tr bgcolor="#FFFFFF">
 								<td>${pe.id}</td>
 								<td><a class="ajaxify"
@@ -95,7 +107,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td>${pe.recordUser}</td>
 								<td>${pe.date}</td>
 								<td><a class="ajaxify"
-									href="#">修改</a>&nbsp;<a class="ajaxify"
 									href="PerformanceExamineAction!deletePerformanceExamine?peId=${pe.id}&method=8">删除</a>
 								</td>
 							</tr>
@@ -113,21 +124,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="pagination pull-right">
 					  <ul>
-						<li class="active"><a class="ajaxify" href="PerformanceExamineAction!find?index=1">首页</a></li>
+						<li class="active"><a class="ajaxify" href="${url}&index=1">首页</a></li>
 						<s:if test='(#request.currentIndex) > 1'> 
-							<li class="active"><a class="ajaxify" href="PerformanceExamineAction!find?index=${requestScope.currentIndex-1}">上页</a></li>
+							<li class="active"><a class="ajaxify" href="${url}&index=${requestScope.currentIndex-1}">上页</a></li>
 						</s:if>
 						<s:else>
 						<li class="disabled"><a href="javas:;">上页</a></li>
 						</s:else>
 						
 						<s:if test='(#request.currentIndex) < #pageCount'> 
-							<li class="active"><a class="ajaxify" href="PerformanceExamineAction!find?index=${requestScope.currentIndex+1}">下页</a></li>
+							<li class="active"><a class="ajaxify" href="${url}&index=${requestScope.currentIndex+1}">下页</a></li>
 						</s:if>
 						<s:else>
 							<li class="disabled"><a href="javascript:;">下页</a></li>
 						</s:else>
-					 	<li class="active"><a class="ajaxify" href="PerformanceExamineAction!find?index=${pageCount }">末页</a></li>
+					 	<li class="active"><a class="ajaxify" href="${url}&index=${pageCount }">末页</a></li>
 					  </ul>
 				</div>
 			</div>
@@ -135,3 +146,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</form>
 </div>
 <script src="js/myAjaxify.js" type="text/javascript"></script>
+<script>
+$("#select").click(function(e) {
+	e.preventDefault();
+	var pageContent = $('.page-content .page-content-body');
+	
+	$.ajax({
+		url: $('#form_Select').attr('action'),
+		data: $('#form_Select').serialize(),
+		success: function(res) {
+			pageContent.html(res);
+		},
+		error: function(){
+			alert("你输入的有问题");
+		}
+	});
+});
+</script>

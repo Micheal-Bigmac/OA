@@ -1,5 +1,6 @@
 package com.oa.extend;
 
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,6 +14,8 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
+
+import sun.launcher.resources.launcher;
 
 import com.oa.dao.SuperDaoInte;
 import com.oa.dao.impl.SuperDao;
@@ -38,6 +41,9 @@ public class PrivilegeInterceptor implements Interceptor {
 		Map<Module, Map<Module, List>> maps = (Map<Module, Map<Module, List>>) session
 				.getAttribute("modules");
 		String method = request.getParameter("method");
+		if(method != null) {
+			System.out.println("method is "+method);
+		}
 		int value = 0;
 		if (maps != null) {
 			if (method != null) {
@@ -75,8 +81,10 @@ public class PrivilegeInterceptor implements Interceptor {
 								+ keyChild.getName());
 						System.out.println("map child Value is "
 								+ mapValue.get(keyChild));
+						/*
 						System.out.println("map child size  is "
 								+ mapValue.get(keyChild).size());
+						*/
 						String keyChildUrl = keyChild.getUrl();
 						System.out.println("keyChildUrl is "+keyChildUrl);
 						if(keyChildUrl.contains("!")) {
@@ -84,15 +92,22 @@ public class PrivilegeInterceptor implements Interceptor {
 							System.out.println("keyChildUrl is "+keyChildUrl);
 							if(keyChildUrl.equals(url)) {
 								System.out.println("that is ok");
-								int addValue = mapValue.get(keyChild).get(0)
+								int addValue = 0;
+								int readValue = 0;
+								int updateValue = 0;
+								int deleteValue = 0;
+								if(mapValue.get(keyChild)!=null) {
+									addValue = mapValue.get(keyChild).get(0)
 										.hashCode();
-								int readValue = mapValue.get(keyChild).get(1)
+									readValue = mapValue.get(keyChild).get(1)
 										.hashCode();
-								int updateValue = mapValue.get(keyChild).get(2)
+								    updateValue = mapValue.get(keyChild).get(2)
 										.hashCode();
-								int deleteValue = mapValue.get(keyChild).get(3)
+								    deleteValue = mapValue.get(keyChild).get(3)
 										.hashCode();
-								System.out.println("delete value is"+deleteValue);
+								    System.out.println("delete value is"+deleteValue);
+								    System.out.println("read value is "+readValue);
+								}
 								if(addValue == value) {
 									return invocation.invoke();
 								} else if(readValue == value) {
@@ -102,9 +117,9 @@ public class PrivilegeInterceptor implements Interceptor {
 								} else if(deleteValue == value) {
 									return invocation.invoke();
 								} else {
+									System.out.println("sorry you dont have this privilege");
 									return Action.ERROR;
 								}
-								
 							}
 						}
 					}

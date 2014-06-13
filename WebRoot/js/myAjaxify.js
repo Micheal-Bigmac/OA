@@ -67,12 +67,14 @@ $("#submit").click(function(e) {
 	var action = $(this).attr("data-action");
 	console.log(action);
 	console.log("aaa");
+	pageContent = $('.page-content .page-content-body');
 	$.ajax({
 		url: $('#form').attr('action'),
 		data: $('#form').serialize(),
-		success: function() {
- 			e.preventDefault();
-			pageContent = $('.page-content .page-content-body');
+		success: function(res) {
+			pageContent.html(res);
+// 			e.preventDefault();
+			
 			$.ajax({
 			url: action, 
 			success: function(res) {

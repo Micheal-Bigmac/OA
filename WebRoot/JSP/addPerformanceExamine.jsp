@@ -34,7 +34,7 @@
 		</div>
 		<div class="portlet-body form">
 			<!-- BEGIN FORM-->
-			<form id="form" action="PerformanceExamineAction!addPerformanceExamine" class="form-horizontal" method="post">
+			<form id="form" action="PerformanceExamineAction!addPerformanceExamine?method=1" class="form-horizontal" method="post">
 				<h3 class="form-section">绩效考核</h3>
 				<div class="row-fluid">
 					<div class="span6 ">

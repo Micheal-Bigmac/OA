@@ -71,10 +71,10 @@ public class AgreementAction extends ActionSupport{
 		int total = agreementService.getAllAgreements(Agreement.class, hql).size();
 		
 		HttpServletRequest request = ServletActionContext.getRequest();
-		request.setAttribute("listAgree", agreements);
+		request.setAttribute("listObject", agreements);
 		request.setAttribute("currentIndex", (index==0 ?  1 : index ));
 		request.setAttribute("totalSize",total);
-		
+		request.setAttribute("url", "AgreementAction!find?");
 		return "selectAgree";
 	}
 	public AgreementSerivce getAgreementService() {

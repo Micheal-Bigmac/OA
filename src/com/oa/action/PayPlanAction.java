@@ -37,7 +37,7 @@ public class PayPlanAction extends ActionSupport {
 		int total = PayPlanService.getAllPayPlans(PayPlan.class, hql).size();
 		// request.setAttribute("pid",(PayPlan==null ? "": PayPlan.getId()));
 		request.setAttribute("totalSize", total);
-		request.setAttribute("url", "PayPlanAction!PayPlanList");
+		request.setAttribute("url", "PayPlanAction!PayPlanList?");
 		getSelect();
 		return "PayPlanList";
 	}

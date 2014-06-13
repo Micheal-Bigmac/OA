@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<div class="portlet-body form">
 		<!-- BEGIN FORM-->
-			<form id="form" action="OrderProductRecordAction!addOrderProductRecord" class="form-horizontal" method="post">
+			<form id="form" action="OrderProductRecordAction!addOrderProductRecord?method=1" class="form-horizontal" method="post">
 			<h3 class="form-section">订单产品信息</h3>
 			<input type="hidden" name="orderProductRecord.id" value="${orderProductRecord.id}">
 				<div class="row-fluid">

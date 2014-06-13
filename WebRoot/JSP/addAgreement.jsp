@@ -30,19 +30,13 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 		</div>
 		<div class="portlet-body form">
 		<!-- BEGIN FORM-->
-			<form id="form" action="AgreementAction!addAgree" class="form-horizontal" method="post">
+			<form id="form" action="AgreementAction!addAgree?method=1" class="form-horizontal" method="post">
 			<h3 class="form-section">合同管理</h3>
 				<div class="row-fluid">
 					<div class="span6 ">
 						<div class="control-group">
 							<label class="control-label">员工状态:</label>
 							<div class="controls">
-								<s:if test="#request.agreement == null">
-									<input type="hidden" name="method" value="1" />
-								</s:if>
-								<s:else>
-									<input type="hidden" name="method" value="4" />
-								</s:else>
 								<input type="hidden" name="agreement.id" value="${agreement.id}" />
 								
 								<input type="text" class="m-wrap span12" placeholder="" name="agreement.aggState" value="${agreement.aggState}"> <span class="help-block"></span>

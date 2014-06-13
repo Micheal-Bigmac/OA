@@ -20,20 +20,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 
 <div class='row-fluid'> 
-<select name="select2">
-	<option>
-		按录入时间
-	</option>
-	<option>
-		按注销时间
-	</option>
-</select>
-
-<input name="textfield" type="text" readonly="readonly" />
-<span>至</span>
-<input name="textfield" type="text" readonly="readonly" />
-<input class="btn" name="Submit" type="button" value="查 询" style='margin-bottom: 10px;'/>
-<input name="Submit" class="btn" type="button" value="高级搜索" style='margin-bottom: 10px;'/>
+<form name="formSelect" id="form_Select" method="post" action="FindAction!findByCondition">
+<table>
+	<tr>
+		<td>
+			<select id="findCondition" name="findCondition">
+				<option value="name">
+					按用户名字
+				</option>
+				<option value="awardUnit">
+					按授予单位
+				</option>
+			</select>
+		</td>
+		<td>
+			<input id="className" name="className" type="hidden" value="DisciplinaryRecords"/>
+			<input id="textfield" name="textfield" type="text"  />
+		</td>
+		<td>
+			<input id="select" class="btn" name="Submit" type="submit" value="查 询"  style='margin-bottom: 10px;'/>
+		</td>
+		<td>
+			<input name="Submit" class="btn" type="button" value="高级搜索" style='margin-bottom: 10px;'/>
+		</td>
+	</tr>
+</table>
+</form>
 </div>
 
 <SCRIPT language=JavaScript>
@@ -86,7 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</tr>
 					</thead>
 					<tbody>
-						<s:iterator value="#request.listDis" var="dis">
+						<s:iterator value="#request.listObject" var="dis">
 							<tr bgcolor="#FFFFFF">
 								<td>${dis.id}</td>
 								<td>${dis.personId.name}</td>
@@ -95,7 +107,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td>${dis.awardUnit}</td>
 								<td>${dis.disciplinaryDate}</td>
 								<td><a class="ajaxify"
-									href="DisciplinaryRecordsAction!updateDis?disId=${dis.id}">修改</a>&nbsp;<a class="ajaxify"
+									href="DisciplinaryRecordsAction!updateDis?disId=${dis.id}&method=4">修改</a>&nbsp;<a class="ajaxify"
 									href="DisciplinaryRecordsAction!deleteDis?disId=${dis.id}&method=8">删除</a>
 								</td>
 							</tr>
@@ -105,6 +117,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="row-fluid">
 				<s:set var="pageCount" value="(#request.totalSize-1)/10+1" />
+				 <s:set var="url" value="#request.url" />
 				<div class="span4" style="margin: 20px 0px 20px 0px;">
 					共
 					<span >${requestScope.pageCount}</span>
@@ -113,21 +126,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="pagination pull-right">
 					  <ul>
-						<li class="active"><a class="ajaxify" href="DisciplinaryRecordsAction!find?index=1">首页</a></li>
+						<li class="active"><a class="ajaxify" href="${url }&index=1">首页</a></li>
 						<s:if test='(#request.currentIndex) > 1'> 
-							<li class="active"><a class="ajaxify" href="DisciplinaryRecordsAction!find?index=${requestScope.currentIndex-1}">上页</a></li>
+							<li class="active"><a class="ajaxify" href="${url}&index=${requestScope.currentIndex-1}">上页</a></li>
 						</s:if>
 						<s:else>
 						<li class="disabled"><a href="javascript:;">上页</a></li>
 						</s:else>
 						
 						<s:if test='(#request.currentIndex) < #pageCount'> 
-							<li class="active"><a class="ajaxify" href="DisciplinaryRecordsAction!find?index=${requestScope.currentIndex+1}">下页</a></li>
+							<li class="active"><a class="ajaxify" href="${url}&index=${requestScope.currentIndex+1}">下页</a></li>
 						</s:if>
 						<s:else>
 							<li class="disabled"><a href="javascript:;">下页</a></li>
 						</s:else>
-					 	<li class="active"><a class="ajaxify" href="DisciplinaryRecordsAction!find?index=${pageCount }">末页</a></li>
+					 	<li class="active"><a class="ajaxify" href="${url}&index=${pageCount }">末页</a></li>
 					  </ul>
 				</div>
 			</div>
@@ -135,3 +148,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</form>
 </div>
 <script src="js/myAjaxify.js" type="text/javascript"></script>
+<script>
+$("#select").click(function(e) {
+	e.preventDefault();
+	var pageContent = $('.page-content .page-content-body');
+	
+	$.ajax({
+		url: $('#form_Select').attr('action'),
+		data: $('#form_Select').serialize(),
+		success: function(res) {
+			pageContent.html(res);
+		},
+		error: function(){
+			alert("你输入的有问题");
+		}
+	});
+});
+</script>

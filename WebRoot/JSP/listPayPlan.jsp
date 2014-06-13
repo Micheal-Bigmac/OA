@@ -68,7 +68,7 @@
 			<div class="row-fluid">
 					<span class="newfont07">选择：<a href="#"  id="selectAll">全选</a>-<a href="#"  id="unselect">反选</a>
 					</span>
-					<button class="btn"  id="deleteChose" data-action="PayPlanAction!deletePayPlan|${url }">删除所选产品信息</button>
+					<button class="btn"  id="deleteChose" data-action="PayPlanAction!deletePayPlan|${url }?method=8">删除所选产品信息</button>
 					<a href="JSP/addPayPaln.jsp" class="btn ajaxify">添加付款信息</a>
 			</div>
 			<div class="row-fluid">
@@ -100,7 +100,7 @@
 								<td >${payPlan.payRemind }</td>
 								<td >${payPlan.payDate }</td>
 								<td >${payPlan.isPaid }</td>
-								<td ><a class="ajaxify" href="PayPlanAction!edit?payPlan.id=${payPlan.id}">编辑(修改)</a><a class="ajaxify" href="PayPlanAction!deletePayPlan?delid=${payPlan.id }">删除</a></td>
+								<td ><a class="ajaxify" href="PayPlanAction!edit?payPlan.id=${payPlan.id}&method=4">编辑(修改)</a><a class="ajaxify" href="PayPlanAction!deletePayPlan?delid=${payPlan.id }&method=8">删除</a></td>
 							</tr>
 						</s:iterator>
 					</tbody>
@@ -117,21 +117,21 @@
 				</div>
 				<div class="pagination pull-right">
 					  <ul>
-						<li class="active"><a class="ajaxify" class="ajaxify" href="${url }?index=1">首页</a></li>
+						<li class="active"><a class="ajaxify" class="ajaxify" href="${url }&index=1">首页</a></li>
 						<s:if test='(#request.currentIndex) > 1'> 
-							<li class="active"><a class="ajaxify" class="ajaxify" href="${url }?index=${requestScope.currentIndex-1}">上页</a></li>
+							<li class="active"><a class="ajaxify" class="ajaxify" href="${url }&index=${requestScope.currentIndex-1}">上页</a></li>
 						</s:if>
 						<s:else>
 						<li class="disabled"><a class="ajaxify" href="#">上页</a></li>
 						</s:else>
 						
 						<s:if test='(#request.currentIndex) < #pageCount'> 
-							<li class="active"><a class="ajaxify" class="ajaxify" href="${url }?index=${requestScope.currentIndex+1}">下页</a></li>
+							<li class="active"><a class="ajaxify" class="ajaxify" href="${url }&index=${requestScope.currentIndex+1}">下页</a></li>
 						</s:if>
 						<s:else>
 							<li class="disabled"><a class="ajaxify" href="#">下页</a></li>
 						</s:else>
-					 	<li class="active"><a class="ajaxify" href="${url }?index=${pageCount }">末页</a></li>
+					 	<li class="active"><a class="ajaxify" href="${url }&index=${pageCount }">末页</a></li>
 					  </ul>
 				</div>
 			</div>

@@ -33,7 +33,7 @@ public class ProductAction extends ActionSupport {
 		int total = productService.getAllProducts(Product.class, hql).size();
 		// request.setAttribute("pid",(Product==null ? "": product.getId()));
 		request.setAttribute("totalSize", total);
-		request.setAttribute("url", "ProductAction!productList");
+		request.setAttribute("url", "ProductAction!productList?");
 		return "productList";
 	}
 

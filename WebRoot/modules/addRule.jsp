@@ -6,7 +6,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <h3>Leave a Comment</h3>
-<form action="RuleAction!addRule" id="model-form">
+<form action="RuleAction!addRule?method=1" id="model-form">
 	 <label>制度id</label>
 	<input type="text" name="rules.id" class="span5 m-wrap" value="${rule.id}" readOnly>
 	<label>制度名称<span class="color-red">*</span></label>

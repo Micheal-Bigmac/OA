@@ -280,7 +280,7 @@
 					<ul class="sub-menu">
 						<s:iterator var="children" value="#module.value">
 							<li>
-								<a class="ajaxmenu" href="${children.key.url}">
+								<a class="ajaxmenu" href="${children.key.url}?method=2">
 									<span>${children.key.name}</span>
 								</a>
 							</li>

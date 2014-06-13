@@ -4,10 +4,12 @@
 	<constant name="struts.objectFactory" value="spring" />
 	<package name="oa" extends="struts-default" namespace="/">
 		<interceptors>
-			<interceptor name="securityInterceptor" class="com.oa.extend.SecurityInterceptor">
+			<interceptor name="securityInterceptor" class="com.oa.extend.SecurityInterceptor"></interceptor>
+			<interceptor name="privilegeInterceptor" class="com.oa.extend.PrivilegeInterceptor">
 			</interceptor>
 			<interceptor-stack name="myDefaultStack">
 				<interceptor-ref name="securityInterceptor" />
+				<interceptor-ref name="privilegeInterceptor" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
@@ -24,6 +26,9 @@
 			</result>
 			<result name="login">
 				/login.jsp
+			</result>
+			<result name="error">
+				/JSP/noPrivilege.jsp
 			</result>
 		</global-results>
 
@@ -71,13 +76,8 @@
 			<result name="error">/JSP/OpenError.jsp</result>
 			<result name="distributePrivilegeToUser">/JSP/distributePrivilegeToUser.jsp</result>	
 		</action>
-
-
 		<action name="EventAction" class="com.oa.action.EventAction">
 		</action>
-
-
-		
 		<action name="WorkFlowAction" class="com.oa.action.WorkFlowAction">
 			<result name="listWorkFlow">
 				/JSP/listWorkFlow.jsp
@@ -175,13 +175,7 @@
 				/modules/addUserManual.jsp
 			</result>
 		</action>
-		
-		
-		
-		
-		
-		
-		
+	
 		<action name="AttendanceManagementAction" class="com.oa.action.AttendanceManagementAction">
 			<result name="attendanceSet">/JSP/attendanceSet.jsp</result>
 			<result name="OnAndOffRegister">/JSP/onAndOffRegister.jsp</result>
@@ -220,6 +214,8 @@
 			<result name="payPlanList">/JSP/listPayPlan.jsp</result>
 			<result name="moduleList">/JSP/listModule.jsp</result>
 			<result name="organizationList">/JSP/organizationManage.jsp</result>
+			<result name="agreementList">/JSP/agreementManage.jsp</result>
+			<result name="disciplinaryRecordsList">/JSP/disciplinaryRecordsManage.jsp</result>
 		</action>
 	</package>
 </struts>

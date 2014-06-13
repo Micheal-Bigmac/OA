@@ -76,7 +76,7 @@ System.out.println("修改id is");
 System.out.println("organization id is "+organization.getId());
 System.out.println("organization name si "+organization.getName());
 System.out.println("organization descript is "+organization.getDescription());
-		organizationService.update(organization);
+		//organizationService.update(organization);
 		return "updateOrg";
 	}
 	

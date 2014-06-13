@@ -36,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<div class="portlet-body form">
 		<!-- BEGIN FORM-->
-			<form id="form" action="SalesAgreementAction!addSalesAgreement" class="form-horizontal" method="post">
+			<form id="form" action="SalesAgreementAction!addSalesAgreement?method=1" class="form-horizontal" method="post">
 			<h3 class="form-section">销售合同信息</h3>
 				<div class="row-fluid">
 					<div class="span6 ">

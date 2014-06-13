@@ -49,11 +49,11 @@
 				<input id="textfield" name="textfield" type="text"  />
 			</td>
 			<td>
-				<input class="btn" id="select" type="button" value="搜索">
-			</td>
-			<td>
-				<input name="Submit" class="btn" type="button" value="高级搜索" style='margin-bottom: 10px;'/>
-			</td>
+			<input id="select" class="btn" name="Submit" type="submit" value="查 询"  style='margin-bottom: 10px;'/>
+		</td>
+		<td>
+			<input name="Submit" class="btn" type="button" value="高级搜索" style='margin-bottom: 10px;'/>
+		</td>
 		</tr>
 	</table>
 	</form>
@@ -64,7 +64,7 @@
 		<table>
 			<div class="row-fluid">
 					<span class="newfont07">选择：<a href="#"  id="selectAll">全选</a>-<a href="#"  id="unselect">反选</a>
-					<input class="btn" name="Submit" type="button" 	value="删除所选信息" id="deleteChose" data-action="DynamicFormAction!deleteDynamicForm|${url }" />
+					<input class="btn" name="Submit" type="button" 	value="删除所选信息" id="deleteChose" data-action="DynamicFormAction!deleteDynamicForm|${url }&method=8" />
 					
 					</span> 
 			</div>
@@ -109,8 +109,7 @@
 									${image }
 								</a>
 								</td>
-
-								<td >
+								<td>
 									 <a class="ajaxify"	href="DynamicFormAction!listFormField?workflowid=${workflow.id}" 
 									>定义表单</a>
 									<s:if test="#workflow.form != null">
@@ -133,21 +132,21 @@
 				</div>
 				<div class="pagination pull-right">
 					  <ul>
-						<li class="active"><a class="ajaxify" href="${url }?index=1">首页</a></li>
+						<li class="active"><a class="ajaxify" href="${url }&index=1">首页</a></li>
 						<s:if test='(#request.currentIndex) > 1'> 
-							<li class="active"><a class="ajaxify" href="${url }?index=${requestScope.currentIndex-1}">上页</a></li>
+							<li class="active"><a class="ajaxify" href="${url }&index=${requestScope.currentIndex-1}">上页</a></li>
 						</s:if>
 						<s:else>
 						<li class="disabled"><a href="#">上页</a></li>
 						</s:else>
 						
 						<s:if test='(#request.currentIndex) < #pageCount'> 
-							<li class="active"><a class="ajaxify" href="${url }?index=${requestScope.currentIndex+1}">下页</a></li>
+							<li class="active"><a class="ajaxify" href="${url }&index=${requestScope.currentIndex+1}">下页</a></li>
 						</s:if>
 						<s:else>
 							<li class="disabled"><a href="#">下页</a></li>
 						</s:else>
-					 	<li class="active"><a class="ajaxify" href="${url }?index=${pageCount }">末页</a></li>
+					 	<li class="active"><a class="ajaxify" href="${url }&index=${pageCount }">末页</a></li>
 					  </ul>
 				</div>
 			</div>

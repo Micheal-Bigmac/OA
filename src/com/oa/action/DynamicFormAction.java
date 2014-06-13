@@ -33,7 +33,7 @@ public String list(){
 		request.setAttribute("currentIndex", (index == 0 ? 1 : index));
 		int total = workFlowService.getAllWorkFlows(hql).size();
 		request.setAttribute("totalSize", total);
-		request.setAttribute("url", "DynamicFormAction!list");
+		request.setAttribute("url", "DynamicFormAction!list?");
 		return "workFlowList";
 	}
 

@@ -66,9 +66,10 @@ public class PerformanceExamineAction extends ActionSupport{
 		List<ListPerformanceExamine> performanceExamines = performanceExamineService.getPerformanceExaminePages((index==0 ? 1 : index), ListPerformanceExamine.class, hql);
 		int total = performanceExamineService.getAllPerformanceExamines(ListPerformanceExamine.class, hql);
 		HttpServletRequest request = ServletActionContext.getRequest();
-		request.setAttribute("listPerformanceExamine", performanceExamines);
+		request.setAttribute("listObject", performanceExamines);
 		request.setAttribute("currentIndex", (index==0 ?  1 : index ));
 		request.setAttribute("totalSize",total);
+		request.setAttribute("url", "PerformanceExamineAction!find?");
 		return "selectPerformanceExamine";
 	}
 	

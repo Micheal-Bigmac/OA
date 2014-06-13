@@ -37,7 +37,7 @@ public class PaymentPlanAction extends ActionSupport {
 		request.setAttribute("currentIndex", (index == 0 ? 1 : index));
 		int total = PaymentPlanService.getAllPaymentPlans(PaymentPlan.class, hql).size();
 		// request.setAttribute("pid",(PaymentPlan==null ? "": PaymentPlan.getId()));
-		request.setAttribute("url", "PaymentPlanAction!PaymentPlanList");
+		request.setAttribute("url", "PaymentPlanAction!PaymentPlanList?");
 		request.setAttribute("totalSize", total);
 		getSelect();
 		return "PaymentPlanList";

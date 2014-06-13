@@ -29,19 +29,13 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 		</div>
 		<div class="portlet-body form">
 		<!-- BEGIN FORM-->
-			<form id="form" action="DisciplinaryRecordsAction!addDis" class="form-horizontal" method="post">
+			<form id="form" action="DisciplinaryRecordsAction!addDis?method=1" class="form-horizontal" method="post">
 			<h3 class="form-section">奖惩管理</h3>
 				<div class="row-fluid">
 					<div class="span6 ">
 						<div class="control-group">
 							<label class="control-label">职员用户:</label>
 							<div class="controls">
-								<s:if test="#request.disciplinaryRecords == null">
-									<input type="hidden" name="method" value="1" />
-								</s:if>
-								<s:else>
-									<input type="hidden" name="method" value="4" />
-								</s:else>
 								<input type="hidden" name="disciplinaryRecords.id" value="${disciplinaryRecords.id}" />
 								
 								<input type="text" class="m-wrap span12" placeholder="" name="disciplinaryRecords.personId.name" value="${disciplinaryRecords.personId.name}"> <span class="help-block"></span>

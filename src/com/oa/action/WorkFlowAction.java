@@ -36,7 +36,7 @@ public class WorkFlowAction extends ActionSupport {
 		request.setAttribute("currentIndex", (index == 0 ? 1 : index));
 		int total = workFlowService.getAllWorkFlows(hql).size();
 		request.setAttribute("totalSize", total);
-		request.setAttribute("url", "WorkFlowAction!listWorkFlow");
+		request.setAttribute("url", "WorkFlowAction!listWorkFlow?");
 		return "listWorkFlow";
 	}
 

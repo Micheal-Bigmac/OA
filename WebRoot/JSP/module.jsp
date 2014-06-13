@@ -29,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<div class="portlet-body form">
 			<!-- BEGIN FORM-->
-			<form id="form" action="ModuleAction!addModule" class="form-horizontal">
+			<form id="form" action="ModuleAction!addModule?method=1" class="form-horizontal">
 				<h3 class="form-section">模块信息</h3>
 				<div class="row-fluid">
 					<div class="span6 ">

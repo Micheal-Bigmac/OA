@@ -26,19 +26,13 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 		</div>
 		<div class="portlet-body form">
 		<!-- BEGIN FORM-->
-			<form id="form" action="OrganizationAction!add" class="form-horizontal">
+			<form id="form" action="OrganizationAction!add?method=1" class="form-horizontal">
 			<h3 class="form-section">机构管理</h3>
 				<div class="row-fluid">
 					<div class="span6 ">
 						<div class="control-group">
 							<label class="control-label">机构名称:</label>
 							<div class="controls">
-								<s:if test="#request.organization == null">
-										<input type="hidden" name="method" value="1" />
-									</s:if>
-									<s:else>
-										<input type="hidden" name="method" value="4" />
-									</s:else>
 									<input type="hidden" name="parentid" value="${param.parentid}"/>
 									
 									<input type="hidden" name="organization.id" value="${organization.id}" />

@@ -19,20 +19,6 @@
 	</ul>
 </div>
 <div class='row-fluid'> 
-	<select name="select2">
-		<option>
-			按录入时间
-		</option>
-		<option>
-			按注销时间
-		</option>
-	</select>
-
-	<input name="textfield" type="text" readonly="readonly" />
-	<span>至</span>
-	<input name="textfield" type="text" readonly="readonly" />
-	<input class="btn" name="Submit" type="button" value="查 询" style='margin-bottom: 10px;'/>
-	<input name="Submit" class="btn" type="button" value="高级搜索" style='margin-bottom: 10px;'/>
 </div>
 
 <div class="row-fluid">
@@ -40,7 +26,7 @@
 		<table>
 			<div class="row-fluid">
 					<span class="newfont07">选择：<a href="#" class="right-font08" onclick="selectAll();">全选</a>-<a href="#" class="right-font08" onclick="unselectAll();">反选</a>
-						<button class="btn" type="button" id="deleteChose" data-action="DocumentAction!deleteDocument|${url }">删除所选公文信息</button>
+						<button class="btn" type="button" id="deleteChose" data-action="DocumentAction!deleteDocument|${url }&method=8">删除所选公文信息</button>
 					</span>
 			</div>
 			
@@ -81,10 +67,10 @@
 								</a>
 								</td>
 								<td ><a class="ajaxify"
-									href="DocumentAction!approveHistoryList?document.id=${document.id }">查看</a>
+									href="DocumentAction!approveHistoryList?document.id=${document.id }&method=2">查看</a>
 								</td>
 								<td > 
-										<a class="ajaxify" href="DocumentAction!deleteDocument?delid=${document.id }">删除</a>
+										<a class="ajaxify" href="DocumentAction!deleteDocument?delid=${document.id }&method=8">删除</a>
 								</td>
 							</tr>
 						</s:iterator>

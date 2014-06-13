@@ -58,7 +58,7 @@ out.println(basePath);
 		<table>
 			<div class="row-fluid">
 				<span >选择：<a href="#" id="selectAll">全选</a>-<a href="#" id="unselect">反选</a> </span>
-				<input name="Submit" class="btn" type="button" value="删除所选机构信息" id="deleteChose" data-action="OrganizationAction!delete|OrganizationAction!find"/>
+				<input name="Submit" class="btn" type="button" value="删除所选机构信息" id="deleteChose" data-action="OrganizationAction?method=8!delete|OrganizationAction!find"/>
 <!-- 				 <a href="JSP/yuangong.jsp" class="btn" data-toggle="modal" data-target="#myModal">添加机构信息</a>  -->
 					<a class="btn ajaxify" href="JSP/addOrganization.jsp?parentid=${requestScope.parentid }" >添加机构信息</a> 
 			</div>
@@ -90,8 +90,8 @@ out.println(basePath);
 							<td>${org.sn}</td>
 							<td>${org.description}</td>
 							<td>${org.pid.name}</td>
-							<td><a class="ajaxify" href="OrganizationAction!update?updateOrgId=${org.id}">修改</a>/<a class="ajaxify"
-								href="OrganizationAction!delete?delid=${org.id}">删除</a></td>
+							<td><a class="ajaxify" href="OrganizationAction!update?updateOrgId=${org.id}&method=4">修改</a>/<a class="ajaxify"
+								href="OrganizationAction!delete?delid=${org.id}&method=8">删除</a></td>
 						</tr>
 					</s:iterator>
 				</tbody>

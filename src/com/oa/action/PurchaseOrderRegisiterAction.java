@@ -35,7 +35,7 @@ public class PurchaseOrderRegisiterAction extends ActionSupport {
 		int total = PurchaseOrderRegisiterService.getAllPurchaseOrderRegisiters(PurchaseOrderRegisiter.class, hql).size();
 		// request.setAttribute("pid",(PurchaseOrderRegisiter==null ? "": PurchaseOrderRegisiter.getId()));
 		request.setAttribute("totalSize", total);
-		request.setAttribute("url", "PurchaseOrderRegisiterAction!PurchaseOrderRegisiterList");
+		request.setAttribute("url", "PurchaseOrderRegisiterAction!PurchaseOrderRegisiterList?");
 		return "PurchaseOrderRegisiterList";
 	}
 

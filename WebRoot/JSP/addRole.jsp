@@ -29,21 +29,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<div class="portlet-body form">
 		<!-- BEGIN FORM-->
-			<form id="form" action="RoleAction!addRole" class="form-horizontal">
+			<form id="form" action="RoleAction!addRole?method=1" class="form-horizontal">
 			<h3 class="form-section">角色信息</h3>
 				<div class="row-fluid">
 					<div class="span6 ">
 						<div class="control-group">
 							<label class="control-label">角色名称:</label>
 							<div class="controls">
-								<s:if test="#request.role == null">
-									<input type="hidden" name="method" value="1" />
-								</s:if>
-								<s:else>
-									<input type="hidden" name="method" value="4" />
-								</s:else>
 								<input type="hidden" name="role.id" value="${role.id}" />
-								
 								<input type="text" class="m-wrap span12" placeholder="" name="role.name" value="${role.name}"> <span class="help-block"></span>
 							</div>
 						</div>

@@ -58,9 +58,10 @@ public class DisciplinaryRecordsAction extends ActionSupport{
 		int total = disciplinaryRecordsService.getAllDisciplinaryRecords(DisciplinaryRecords.class, hql).size();
 		
 		HttpServletRequest request = ServletActionContext.getRequest();
-		request.setAttribute("listDis", disciplinaryRecords);
+		request.setAttribute("listObject", disciplinaryRecords);
 		request.setAttribute("currentIndex", (index==0 ?  1 : index));
 		request.setAttribute("totalSize",total);
+		request.setAttribute("url", "DisciplinaryRecordsAction!find?");
 		return "selectDis";
 	}
 	public DisciplinaryRecordsSerivce getDisciplinaryRecordsService() {

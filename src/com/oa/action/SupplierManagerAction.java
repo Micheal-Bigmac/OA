@@ -33,7 +33,7 @@ public class SupplierManagerAction extends ActionSupport {
 		int total = SupplierManagerService.getAllSupplierManagers(SupplierManager.class, hql).size();
 		// request.setAttribute("pid",(SupplierManager==null ? "": SupplierManager.getId()));
 		request.setAttribute("totalSize", total);
-		request.setAttribute("url", "SupplierManagerAction!SupplierManagerList");
+		request.setAttribute("url", "SupplierManagerAction!SupplierManagerList?");
 		return "SupplierManagerList";
 	}
 
