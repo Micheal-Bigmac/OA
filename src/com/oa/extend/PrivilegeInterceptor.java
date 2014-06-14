@@ -1,30 +1,12 @@
 package com.oa.extend;
 
-import java.io.PrintWriter;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
-
-import sun.launcher.resources.launcher;
-
-import com.oa.dao.SuperDaoInte;
-import com.oa.dao.impl.SuperDao;
-import com.oa.model.Acl;
 import com.oa.model.Module;
-import com.oa.model.Role;
-import com.oa.model.Users;
-import com.oa.model.UsersRoles;
-import com.oa.service.UserService;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;

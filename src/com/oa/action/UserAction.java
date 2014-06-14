@@ -175,17 +175,8 @@ public class UserAction extends ActionSupport {
 		return null;
 	}
 	
-	public String selfModify(){
-		Users user=(Users) ServletActionContext.getRequest().getSession().getAttribute("admin");
-		System.out.println(user.toString());
-		System.out.println("=======+++++=====");
-		Person person=personService.getPerson(user.getPersonid().getId());
-		System.out.println(person.toString());
-		ServletActionContext.getRequest().setAttribute("person", person);
-		returns="JSP/gerenxinxi.jsp";
-		
-		return "modify";
-	}
+	
+	
 	public String modifyPassword() throws IOException{
 		Users users=(Users) ServletActionContext.getRequest().getSession().getAttribute("admin");
 		 PrintWriter writer=ServletActionContext.getResponse().getWriter();

@@ -197,6 +197,9 @@
 			<result name="addPerformanceExamine">/JSP/addPerformanceExamine.jsp</result>
 			<result name="showSpecialPerformanceExamine">/JSP/showSpecialPerformanceExamine.jsp</result>
 		</action>
+		<action name="PersonalInfoAction" class="com.oa.action.PersonalInfoAction">
+			<result name="modify">/JSP/yuangong.jsp</result>
+		</action>
 		<action name="FindAction" class="com.oa.action.FindAction">
 			<result name="userList">/JSP/userManage.jsp</result>
 			<result name="personList">/JSP/listyuangong.jsp</result>
