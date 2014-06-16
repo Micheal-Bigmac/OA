@@ -357,6 +357,7 @@ public class UserAction extends ActionSupport {
 
 	public String back() {
 		ServletActionContext.getRequest().getSession().removeAttribute("admin");
+		
 //		Map<String, String> loginUsers = (Map<String, String>)ServletActionContext.getRequest().getSession().getServletContext().getAttribute("loginUsers");
 	/*	Users user = (Users)ServletActionContext.getRequest().getSession().getAttribute("admin");
 		System.out.println("user is "+user.getAccount());*/

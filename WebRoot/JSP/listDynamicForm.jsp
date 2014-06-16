@@ -64,7 +64,7 @@
 		<table>
 			<div class="row-fluid">
 					<span class="newfont07">选择：<a href="#"  id="selectAll">全选</a>-<a href="#"  id="unselect">反选</a>
-					<input class="btn" name="Submit" type="button" 	value="删除所选信息" id="deleteChose" data-action="DynamicFormAction!deleteDynamicForm|${url }&method=8" />
+					<%--<input class="btn" name="Submit" type="button" 	value="删除所选信息" id="deleteChose" data-action="DynamicFormAction!deleteDynamicForm|${url }a=1&method=8" />--%>
 					
 					</span> 
 			</div>
@@ -113,7 +113,7 @@
 									 <a class="ajaxify"	href="DynamicFormAction!listFormField?workflowid=${workflow.id}" 
 									>定义表单</a>
 									<s:if test="#workflow.form != null">
-										<a class="ajaxify" href="DynamicFormAction!deleteDynamicForm?delid=${workflow.id }">删除定义表单</a>
+										<a class="ajaxify" href="DynamicFormAction!deleteDynamicForm?delid=${workflow.id }&method=8">删除定义表单</a>
 									</s:if>
 								</td>
 							</tr>

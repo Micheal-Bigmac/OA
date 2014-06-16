@@ -60,7 +60,7 @@ public class PerformanceExamineServiceImpl implements PerformanceExamineSerivce{
 	}
 
 	public List<PerformanceExamine> selectPerformanceExamine(ListPerformanceExamine clazz) {
-		List<Object> pe = superDao.find("from ListPerformanceExamine pe where pe.name = '" + clazz.getName() + "'");
+		List<Object> pe = superDao.find("from PerformanceExamine pe where pe.lpe.name = '" + clazz.getName() + "'");
 		return convertToPerformanceExamine(pe);
 	}
 

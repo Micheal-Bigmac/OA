@@ -85,7 +85,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<!--/span-->
 				</div>
 				<div class="form-actions">
-					<button id="submit" type="button"  class="btn btn-primary">保存</button>
+					<button id="submit" type="button"  class="btn btn-primary" data-action="PaymentPlanAction!PaymentPlanList">保存</button>
 					<button type="button" class="btn">Cancel</button>
 				</div>
 			</form>
@@ -93,6 +93,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</div>
 </div>
+<script src="js/myAjaxify.js" type="text/javascript"/>
 <script src="js/bootstrap-datepicker.js" type="text/javascript"></script>
 <script>
 $('.datapicker').datepicker({
@@ -101,22 +102,5 @@ $('.datapicker').datepicker({
 	todayHighlight: true,
 	todayBtn: true,
 	language: "zh-CN"
-});
-
-$("#submit").click(function(e) {
-	$.ajax({
-		url: $('#form').attr('action'),
-		data: $('#form').serialize(),
-		success: function() {
-			pageContent = $('.page-content .page-content-body');
-			
-			$.ajax({
-			url: 'PaymentPlanAction!PaymentPlanList', 
-			success: function(res) {
-	        	pageContent.html(res);
-			}
-		});
-		}
-	});
 });
 </script>

@@ -45,7 +45,7 @@ $("#deleteChose").click(function(e){
 		url:action[0],
 		data:$('#fom').serialize(),
 		success: function(e){
-			alert("操作成功");
+			
 			reload();
 		},
 		error:function(){

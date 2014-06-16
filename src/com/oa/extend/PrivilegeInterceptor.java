@@ -54,10 +54,10 @@ public class PrivilegeInterceptor implements Interceptor {
 						System.out.println("key is null");
 					}
 					Map<Module, List> mapValue = maps.get(key);
-					if(key != null)
-					System.out.println("map parent name is " + key.getName());
-					Iterator<Module> iterChild = mapValue.keySet().iterator();
-					while (iterChild.hasNext()) {
+					if(key != null) {
+						System.out.println("map parent name is " + key.getName());
+						Iterator<Module> iterChild = mapValue.keySet().iterator();
+						while (iterChild.hasNext()) {
 						Module keyChild = iterChild.next();
 						System.out.println("map child name is "
 								+ keyChild.getName());
@@ -89,6 +89,8 @@ public class PrivilegeInterceptor implements Interceptor {
 										.hashCode();
 								    System.out.println("delete value is"+deleteValue);
 								    System.out.println("read value is "+readValue);
+								    System.out.println("update value is"+updateValue);
+								    System.out.println("create value is "+addValue);
 								}
 								if(addValue == value) {
 									return invocation.invoke();
@@ -105,6 +107,7 @@ public class PrivilegeInterceptor implements Interceptor {
 							}
 						}
 					}
+				}
 				}
 			} 
 		}

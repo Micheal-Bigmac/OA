@@ -54,7 +54,7 @@ public class WorkFlowAction extends ActionSupport {
 	public String addWorkFlow() {
 		System.out.println("here=====");
 		// System.out.println(workFlow.getId()+" add workflow");
-		if (workFlow.getId() == null) {
+		if (workFlow == null) {
 			System.out.println("WorkFlowAction addWorkFlow() id  is null");
 			boolean flag = false;
 			try {

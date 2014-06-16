@@ -34,13 +34,14 @@
 		</div>
 		<div class="portlet-body form">
 			<!-- BEGIN FORM-->
-			<form id="form" action="WorkFlowAction!addWorkFlow?method=1" class="form-horizontal" enctype="multipart/form-data" method="post">
+			<form id="form" action="WorkFlowAction!addWorkFlow" class="form-horizontal" enctype="multipart/form-data" method="post">
 				<h3 class="form-section">流程信息</h3>
 				<div class="row-fluid">
 					<div class="span6 ">
 						<div class="control-group">
 							<label class="control-label">添加流程定义:</label>
 							<div class="controls">
+								<input type="hidden" name="method" value="1" />
 								<input class="m-wrap span12" name="uploadFiles" id="uploadFile" type="file" />
 							</div>
 						</div>
@@ -76,7 +77,7 @@ $("#submi").click(function(e) {
 	e.preventDefault();
 	
 	$.ajaxFileUpload({
-		url:$('#form').attr('action')+"?workFlow.id="+$('#param').val(),
+		url:$('#form').attr('action')+"?workFlow.id="+$('#param').val()+'&method=1',
 		secureuri:false,
 		fileElementId:'uploadFiles',
 		success:function(data){

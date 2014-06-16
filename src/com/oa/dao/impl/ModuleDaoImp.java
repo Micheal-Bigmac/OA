@@ -497,7 +497,7 @@ public class ModuleDaoImp implements ModuleDao {
 			for(int i=0; i<listParentModule.size(); i++) {
 				LinkedHashMap<Module, List> categoryChildLinkedHashMap = new LinkedHashMap<Module, List>();
 				Set<Module> childModules  = listParentModule.get(i).getModules();
-				if(category.containsKey(listParentModule.get(i))){
+				if(category.containsKey(listParentModule.get(i))) {
 					continue;
 				}
 				if(childModules.size()>0) {
@@ -510,10 +510,12 @@ public class ModuleDaoImp implements ModuleDao {
 								String sql4 = "from UserPrivilege ur where ur.inheritance = -1 and ur.moduleId = ?";
 								UserPrivilege ur = (UserPrivilege)superDao.check(sql4, new Object[]{listChildModule.get(j)});
 								if(ur != null) {
-								List list = getAclState(ur.getUserValue());
-								categoryChildLinkedHashMap.put(listChildModule.get(j), list);
-								category.put(listParentModule.get(i), categoryChildLinkedHashMap);
+									List list = getAclState(ur.getUserValue());
+									categoryChildLinkedHashMap.put(listChildModule.get(j), list);
+									category.put(listParentModule.get(i), categoryChildLinkedHashMap);
+									System.out.println("category is not null");
 								} else {
+									System.out.println("else, category is null");
 									category.put(null,null);
 								}
 							}
@@ -521,6 +523,7 @@ public class ModuleDaoImp implements ModuleDao {
 					}
 					
 				} else {
+					System.out.println("else2, category is null");
 					category.put(listParentModule.get(i), null);
 				}
 			}
