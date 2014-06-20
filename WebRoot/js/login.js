@@ -1,4 +1,6 @@
 var Login = function () {
+    var autologin = false;
+    var expire_days = 365;	// cookies expire days
     
     return {
         //main function to initiate the module
@@ -10,24 +12,28 @@ var Login = function () {
 			if ($.cookie('password'))
 				$("#password").val($.cookie('password'));
 			if ($.cookie('remember')) {
-				 $("#remember").click();
-				 // Auto login if nothing after '?' in url
-				 if (! location.search)
-					 $('.login-form').submit();
+				if(! $("#remember")[0].checked)
+					$("#remember").click();
+				
+				// Auto login if nothing after '?' in url
+				if (! location.search && autologin) {
+					if ($("#account").val() && $("#password").val())
+						$('.login-form').submit();
+				}
 			}
 			
 			// Save login info into cookie
     		function saveInCookie() {
     			// always save account name
-    			$.cookie('account', $("#account").val());
+    			$.cookie('account', $("#account").val(), { expires: expire_days });
 
-    			var checked = $("#remember").parent().hasClass("checked");
+    			var checked = $("#remember")[0].checked;
     			if (checked) {
-    				$.cookie('password', $("#password").val(), { expires: 365 });
-    				$.cookie('remember', checked, { expires: 365 });
+    				$.cookie('password', $("#password").val(), { expires: expire_days });
+    				$.cookie('remember', checked, { expires: expire_days });
     			} else {
-    				$.cookie('password', "", { expires: 365 });
-    				$.cookie('remember', "", { expires: 365 });
+    				$.cookie('password', "", { expires: expire_days });
+    				$.cookie('remember', "", { expires: expire_days });
     			}
     		}
     		

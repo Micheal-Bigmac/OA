@@ -17,8 +17,8 @@
 			</p>
 		</div>
 		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">取消</a> 
-			<a href="#" class="btn btn-primary" id="submit" data-dismiss="modal">确定</a>
+			<a href="javascript:;" class="btn" data-dismiss="modal">取消</a> 
+			<a href="javascript:;" class="btn btn-primary" id="submit" data-dismiss="modal">确定</a>
 		</div>
 </div>
 
@@ -34,7 +34,7 @@
 			<i class="icon-angle-right"></i>
 		</li>
 		<li>
-			<a href="#">规章制度</a>
+			<a href="javascript:;">规章制度</a>
 		</li>
 	</ul>
 	<!-- END PAGE TITLE & BREADCRUMB-->
@@ -46,8 +46,7 @@
 <s:set var="row_num" value="#request.total/3" />
 <s:set var="column_num" value="#request.total%3"/>
 <!-- <s:property value="#request.ruleLists.size()"/><br> -->
-${row_num }
-${column_num }
+
 <%-- 
 	<s:iterator var="rule" value="#request.ruleLists" status="status">
 		 caption :${rule.captition }<br/>
@@ -74,15 +73,15 @@ ${column_num }
 						</div>
 						<div class="actions">
 							<div class="btn-group">
-							<a class="btn mini green" href="#" data-toggle="dropdown">
+							<a class="btn mini green" href="javascript:;" data-toggle="dropdown">
 							<i class="icon-briefcase"></i> Company
 							<i class="icon-angle-down"></i>
 							</a>
 							<ul class="dropdown-menu pull-right">
 								<li><a  href="RuleAction!addRuleView?id=${rule.id }&method=4" data-toggle="modal" data-target="#myModal"><i class="icon-pencil"></i> Edit</a></li>
-								<li><a href="#"><i class="icon-trash"></i> Delete</a></li>
+								<li><a href="javascript:;"><i class="icon-trash"></i> Delete</a></li>
 								<li class="divider"></li>
-								<li><a href="#"><i class="i"></i> ...</a></li>
+								<li><a href="javascript:;"><i class="i"></i> ...</a></li>
 							</ul>
 						</div>
 						</div>
@@ -114,9 +113,9 @@ ${column_num }
 							</a>
 							<ul class="dropdown-menu pull-right">
 								<li><a href="RuleAction!addRuleView?id=${rule.id }&method=4" data-toggle="modal" data-target="#myModal"><i class="icon-pencil"></i> Edit</a></li>
-								<li><a href="#"><i class="icon-trash"></i> Delete</a></li>
+								<li><a href="javascript:;"><i class="icon-trash"></i> Delete</a></li>
 								<li class="divider"></li>
-								<li><a href="#"><i class="i"></i> ...</a></li>
+								<li><a href="javascript:;"><i class="i"></i> ...</a></li>
 							</ul>
 						</div>
 						</div>
@@ -142,15 +141,15 @@ ${column_num }
 						</div>
 						<div class="actions">
 							<div class="btn-group">
-							<a class="btn mini green" href="#" data-toggle="dropdown">
+							<a class="btn mini green" href="javascript:;" data-toggle="dropdown">
 							<i class="icon-briefcase"></i> Company
 							<i class="icon-angle-down"></i>
 							</a>
 							<ul class="dropdown-menu pull-right">
 								<li><a href="RuleAction!addRuleView?id=${rule.id }" data-toggle="modal" data-target="#myModal"><i class="icon-pencil"></i> Edit</a></li>
-								<li><a href="#"><i class="icon-trash"></i> Delete</a></li>
+								<li><a href="javascript:;"><i class="icon-trash"></i> Delete</a></li>
 								<li class="divider"></li>
-								<li><a href="#"><i class="i"></i> ...</a></li>
+								<li><a href="javascript:;"><i class="i"></i> ...</a></li>
 							</ul>
 						</div>
 						</div>
@@ -174,15 +173,15 @@ ${column_num }
 				<div class="actions">
 					<a href="modules/addRule.jsp" class="btn green mini"  data-toggle="modal" data-target="#myModal"><i class="icon-plus"></i> Add</a>
 						<div class="btn-group">
-							<a class="btn mini green" href="#" data-toggle="dropdown">
+							<a class="btn mini green" href="javascript:;" data-toggle="dropdown">
 							<i class="icon-briefcase"></i> Company
 							<i class="icon-angle-down"></i>
 							</a>
 							<ul class="dropdown-menu pull-right">
 								<li><a href="RuleAction!addRuleView?id=${rule.id }" data-toggle="modal" data-target="#myModal"><i class="icon-pencil"></i> Edit</a></li>
-								<li><a href="#"><i class="icon-trash"></i> Delete</a></li>
+								<li><a href="javascript:;"><i class="icon-trash"></i> Delete</a></li>
 								<li class="divider"></li>
-								<li><a href="#"><i class="i"></i> ...</a></li>
+								<li><a href="javascript:;"><i class="i"></i> ...</a></li>
 							</ul>
 						</div>
 			</div>

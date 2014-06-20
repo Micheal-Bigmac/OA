@@ -34,7 +34,6 @@ var Calendar = function() {
 		},
 
 		initCalendar : function() {
-			
 			if (!jQuery().fullCalendar) {
 				return;
 			}
@@ -85,6 +84,7 @@ var Calendar = function() {
 				editable : true,
 				droppable : true,
 				drop : function(date, allDay) {
+					console.log("fullcalendar ======");
 					var originalEventObject = $(this).data('eventObject');
 					var copiedEventObject = $.extend({}, originalEventObject);
 

@@ -134,7 +134,7 @@ public class UserAction extends ActionSupport {
 		personService.getSeletsValue();
 		Users admin = (Users) ServletActionContext.getRequest().getSession().getAttribute("admin");
 		Users login=null;
-		
+		System.out.println("阿斯蒂芬");
 		if(admin == null){
 			if(user != null) {
 				login = userService.login("from Users u where u.account = ? and u.password= ?", new Object[]{user.getAccount(),user.getPassword()});

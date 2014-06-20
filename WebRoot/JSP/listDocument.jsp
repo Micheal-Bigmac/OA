@@ -30,13 +30,13 @@
 					选择：
 					<a href="#"  id="selectAll">全选</a>-<a href="#" id="unselect">反选</a>
 				 	<button class="btn" type="button" id="deleteChose" data-action="DocumentAction!deleteDocument|${url }&method=8">删除所选公文信息</button>
-					<a class="ajaxify btn" href="DocumentAction!toAddDocumentView&method=1">添加公文信息</a> 
+					<a class="ajaxify btn" href="DocumentAction!toAddDocumentView?method=1">添加公文信息</a> 
 					</div>
 					
 					<div class="span4 offset2">
-						<a class="btn ajaxify" href="DocumentAction!listMyDocument&method=2">我的公文</a>
-						<a class="btn ajaxify" href="DocumentAction!ApprovingDocumentList&method=2">待审公文</a>
-						<a class="btn ajaxify" href="DocumentAction!ApprovedDocumentList&method=2">已审核公文</a>
+						<a class="btn ajaxify" href="DocumentAction!listMyDocument?method=2">我的公文</a>
+						<a class="btn ajaxify" href="DocumentAction!ApprovingDocumentList?method=2">待审公文</a>
+						<a class="btn ajaxify" href="DocumentAction!ApprovedDocumentList?method=2">已审核公文</a>
 						</div>
 			</div>
 			

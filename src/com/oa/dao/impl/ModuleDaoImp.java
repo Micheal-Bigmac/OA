@@ -203,7 +203,7 @@ public class ModuleDaoImp implements ModuleDao {
 						strRole = strRole.substring(0,strRole.lastIndexOf(","));
 						List<Acl> acls = convertToListAcl(superDao.find(
 								"from Acl a where a.principalId in ("+ strRole+")"));
-						System.out.println("acl size issssssssssssss  "+acls.size());
+						System.out.println("acl size issssssssssssss 郭富城返回  "+acls.size());
 
 						String str = "";
 						if(acls.size()>0) {
@@ -223,7 +223,8 @@ public class ModuleDaoImp implements ModuleDao {
 							List<Module> parentModules = convertToListModule(superDao.getAllObjects(sql6));
 							System.out.println("parentModule size is "+parentModules.size());
 							for(int y=0; y<parentModules.size(); y++) {
-								System.out.println("parentModuls is "+parentModules.get(y).getName());
+								
+								System.out.println("父模块："+parentModules.get(y).getName());
 							}
 							String sql7 = "select distinct(m) from Module m where m.id in (" + str +")";
 							//part child
@@ -248,8 +249,8 @@ public class ModuleDaoImp implements ModuleDao {
 									List aclValueList = new ArrayList();
 									if(acls2.size()>0) {
 										for(int k=0; k<acls2.size(); k++) {
-											System.out.println("acl module name  is "+acls2.get(k).getModuleId().getName());
-											System.out.println("acl role name is "+acls2.get(k).getPrincipalId().getName());
+											System.out.println("acl 模块名字："+acls2.get(k).getModuleId().getName());
+											System.out.println("acl 角色名字："+acls2.get(k).getPrincipalId().getName());
 											System.out.println("acl aclState  is "+acls2.get(k).getAclState());
 											/////////////////////////
 											int aclValue = acls2.get(k).getAclState();

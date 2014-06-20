@@ -1,12 +1,15 @@
 package com.oa.action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 import org.json.JSONArray;
@@ -69,8 +72,9 @@ public class EventAction extends ActionSupport {
 	public void getListEvent() throws Exception{
 		List<EventCalender> eventCalenders=eventCalenderService.getAllEventCalenders(EventCalender.class, "");
 		JSONArray array=new JSONArray();
-		JSONObject object=new JSONObject();
+		
 		for(EventCalender calender : eventCalenders){
+			JSONObject object=new JSONObject();
 			object.put("id", calender.getId());
 			object.put("title", calender.getTitle());
 			object.put("allDay", calender.getAllDay());
@@ -79,7 +83,11 @@ public class EventAction extends ActionSupport {
 			object.put("location", calender.getLocation());
 			array.put(object);
 		}
-		ServletActionContext.getResponse().getWriter().println(array.toString());
+		
+		System.out.println("getListEvent: " + array.toString());
+		HttpServletResponse response=ServletActionContext.getResponse();
+		response.setCharacterEncoding("UTF-8"); 
+		response.getWriter().println(array.toString());
 	}
 /*	private Long dateToMissLong(Date datee){
 		  String date = new SimpleDateFormat("yyyy-MM-dd hh:mm").format(datee);

@@ -221,16 +221,19 @@ public class JbpmCoreImp implements JbpmCore {
 				actorId);
 		for (Iterator iterator = taskInstances.iterator(); iterator.hasNext();) {
 			TaskInstance ti = (TaskInstance) iterator.next();
+			System.out.println("outter "+ti.getName());
 			if (ti.getProcessInstance().getId() == processInstanceId) {
-
+				System.out.println("equals+++++++++++++++++");
 				// 先判断是否是要回退到起点
 				Set set = ti.getToken().getNode().getArrivingTransitions();
 				for (Iterator iterator2 = set.iterator(); iterator2.hasNext();) {
 					Transition t = (Transition) iterator2.next();
+					System.out.println("inner transition"+t.getName());
 					// 如果它需要回退到起点
 					if (t.getFrom().equals(
 							ti.getProcessInstance().getProcessDefinition()
 									.getStartState())) {
+						System.out.println("inner node equals");
 						int docId = (Integer) ti.getProcessInstance()
 								.getContextInstance().getVariable("document");
 						// 结束当前的流程实例
@@ -252,7 +255,9 @@ public class JbpmCoreImp implements JbpmCore {
 					}
 				}
 
+				System.out.println("===------------=====hewr");
 				// 如果不需要回退到起点
+				System.out.println("back====");
 				ti.end("回退");
 				break;
 			}

@@ -17,8 +17,8 @@
 			</p>
 		</div>
 		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">取消</a> 
-			<a href="#" class="btn btn-primary" id="submit" data-dismiss="modal">确定</a>
+			<a href="javascript:;" class="btn" data-dismiss="modal">取消</a> 
+			<a href="javascript:;" class="btn btn-primary" id="submit" data-dismiss="modal">确定</a>
 		</div>
 </div>
 
@@ -38,10 +38,10 @@
 					<i class="icon-angle-right"></i>
 				</li>
 				<li>
-					<a href="#">系统帮助</a>
+					<a href="javascript:;">系统帮助</a>
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="#">用户手册</a></li>
+				<li><a href="javascript:;">用户手册</a></li>
 			</ul>
 			<!-- END PAGE TITLE & BREADCRUMB-->
 		</div>
@@ -69,7 +69,7 @@
 								<div class="caption"><i class="icon-reorder"></i>${daily.title}</div>
 								<div class="actions">
 									<a href="PersonDailyAction!addUserManualView?id=${daily.id }&method=4" class="btn yellow mini" data-toggle="modal" data-target="#myModal"><i class="icon-pencil"></i> Edit</a>
-									<a href="#" class="btn green mini"><i class="icon-plus"></i> delete</a>
+									<a href="javascript:;" class="btn green mini"><i class="icon-plus"></i> delete</a>
 								</div>
 							</div>
 							<div class="portlet-body">

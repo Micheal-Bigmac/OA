@@ -54,7 +54,7 @@ public class WorkFlowAction extends ActionSupport {
 	public String addWorkFlow() {
 		System.out.println("here=====");
 		// System.out.println(workFlow.getId()+" add workflow");
-		if (workFlow == null) {
+		if (workFlow.getId() == null) {
 			System.out.println("WorkFlowAction addWorkFlow() id  is null");
 			boolean flag = false;
 			try {
@@ -88,6 +88,10 @@ public class WorkFlowAction extends ActionSupport {
 						break;
 					}
 				}
+				System.out.println("currentFile name "+ currentFileName.toString());
+				System.out.println(currentFileName.get(0).getAbsolutePath());
+				System.out.println(currentFileName.get(1).getAbsolutePath());
+				System.out.println(workFlow.getId());
 				if(currentFileName.size()==2){
 					workFlowService.updateWorkFlow(currentFileName.get(0).getAbsolutePath(),currentFileName.get(1).getAbsolutePath(),workFlow.getId());
 				}else if(currentFileName.size()==1){

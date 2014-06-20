@@ -77,7 +77,7 @@ $("#submi").click(function(e) {
 	e.preventDefault();
 	
 	$.ajaxFileUpload({
-		url:$('#form').attr('action')+"?workFlow.id="+$('#param').val()+'&method=1',
+		url:$('#form').attr('action')+"?workFlow.id="+$('#param').val(),
 		secureuri:false,
 		fileElementId:'uploadFiles',
 		success:function(data){

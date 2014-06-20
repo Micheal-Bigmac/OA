@@ -73,7 +73,7 @@
 				<div class="controls">
 					<div class="input-icon left">
 						<i class="icon-lock"></i> 
-						<input class="m-wrap placeholder-no-fix" id="password" type="password" placeholder="密码" name="user.password" />
+						<input class="m-wrap placeholder-no-fix" id="password" type="password" placeholder="密码" name="user.password" /><sapn></sapn>
 					</div>
 				</div>
 			</div>
@@ -83,7 +83,7 @@
 					<input type="checkbox" id="remember" name="remember"/> 记住密码
 				</label>
 				<button type="submit" class="btn green pull-right">
-					Login <i class="m-icon-swapright m-icon-white"></i>
+					登陆 <i class="m-icon-swapright m-icon-white"></i>
 				</button>
 			</div>
 		</form>
