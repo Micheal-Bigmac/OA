@@ -49,7 +49,7 @@
 						</div>
 					</div>
 					<input type="hidden" name="document.id" value="${param.id }">
-					<!-- <div class="span6 ">
+					 <div class="span6 ">
 						<div class="control-group">
 							<label class="control-label">是否回退</label>
 							<div class="controls">
@@ -61,7 +61,7 @@
 								</label>
 							</div>
 						</div>
-					</div> -->
+					</div>
 					<!--/span-->
 				</div>
 				<div class="form-actions">
