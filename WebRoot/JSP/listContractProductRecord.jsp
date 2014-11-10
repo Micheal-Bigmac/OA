@@ -6,7 +6,7 @@
 			+ path + "/";
 %>
 <%@taglib uri="/struts-tags" prefix="s"%>
-
+<%@include file="debugFile.inc" %>
 <!-- PAGE TITLE & BREADCRUMB-->
 <div class="row-fluid">
 	<h3 class="page-title">产品信息查看</h3>
@@ -93,7 +93,8 @@
 								<td >${contractProductRecord.agreement.paidPrice }</td>
 								<td >${contractProductRecord.agreement.loanPrice }</td>
 								<td >${contractProductRecord.agreement.isPaid }</td>
-								<td><a class="ajaxify" href="ContractProductAction!edit?contractProductRecord.id=${contractProductRecord.id}&method=4">编辑(修改)</a><a href="ContractProductAction!deleteContractProductRecord?delid=${contractProductRecord.id }&method=8">删除</a></td>
+								<td><a class="ajaxify" href="ContractProductAction!edit?contractProductRecord.id=${contractProductRecord.id}&method=4">编辑(修改)</a>
+								<a class="deleteOne" href="javascript:void(0)" data-action="ContractProductAction!deleteContractProductRecord?delid=${contractProductRecord.id }&method=8|${url}">删除</a></td>
 							</tr>
 						</s:iterator>
 					</tbody>

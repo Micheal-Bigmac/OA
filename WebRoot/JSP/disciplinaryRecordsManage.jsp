@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="debugFile.inc" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -107,8 +108,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td>${dis.awardUnit}</td>
 								<td>${dis.disciplinaryDate}</td>
 								<td><a class="ajaxify"
-									href="DisciplinaryRecordsAction!updateDis?disId=${dis.id}&method=4">修改</a>&nbsp;<a class="ajaxify"
-									href="DisciplinaryRecordsAction!deleteDis?disId=${dis.id}&method=8">删除</a>
+									href="DisciplinaryRecordsAction!updateDis?disId=${dis.id}&method=4">修改</a>&nbsp;
+									<a class="deleteOne" href="javascript:void(0)" data-action="DisciplinaryRecordsAction!deleteDis?disId=${dis.id}&method=8|${url}">删除</a>
 								</td>
 							</tr>
 						</s:iterator>

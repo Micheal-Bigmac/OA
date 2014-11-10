@@ -49,7 +49,7 @@ public class DisciplinaryRecordsAction extends ActionSupport{
 		List<DisciplinaryRecords> listDis = disciplinaryRecordsService.selectDis();
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("listDis", listDis);
-		return "selectDis";
+		return "operator_success";
 	}
 	
 	public String find(){

@@ -5,6 +5,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<%@include file="debugFile.inc" %>
 <%@taglib uri="/struts-tags" prefix="s"%>
 <SCRIPT language=JavaScript>
 
@@ -111,7 +112,8 @@
 								<td >${PurchaseOrderRegisiter.paidPrice }</td>
 								<td >${PurchaseOrderRegisiter.loanPrice }</td>
 								<td >${PurchaseOrderRegisiter.isPaid }</td>
-								<td ><a class="ajaxify" href="PurchaseOrderRegisiterAction!edit?purchaseOrderRegisiter.id=${PurchaseOrderRegisiter.id}&method=4">编辑(修改)</a><a href="PurchaseOrderRegisiterAction!deletePurchaseOrderRegisiter?delid=${PurchaseOrderRegisiter.id }&method=8">删除</a></td>
+								<td ><a class="ajaxify" href="PurchaseOrderRegisiterAction!edit?purchaseOrderRegisiter.id=${PurchaseOrderRegisiter.id}&method=4">编辑(修改)</a>
+								<a class="deleteOne" href="javascript:void(0)" data-action="PurchaseOrderRegisiterAction!deletePurchaseOrderRegisiter?delid=${PurchaseOrderRegisiter.id }&method=8|${url}">删除</a></td>
 							</tr>
 						</s:iterator>
 					</tbody>

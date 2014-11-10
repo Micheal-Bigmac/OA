@@ -6,20 +6,7 @@
 			+ path + "/";
 %>
 <%@taglib uri="/struts-tags" prefix="s"%>
-
-<SCRIPT language=JavaScript>
-
-	
-	function link() {
-		document.getElementById("fom").action = "JSP/yuangong.jsp";
-		document.getElementById("fom").submit();
-	}
-
-	function deleteChose() {
-		document.getElementById("fom").action = "WorkFlowAction!deleteWorkFlow";
-		document.getElementById("fom").submit();
-	}
-</SCRIPT>
+<%@include file="debugFile.inc" %>
 
 <!-- PAGE TITLE & BREADCRUMB-->
 <div class="row-fluid">
@@ -113,7 +100,7 @@
 									 <a class="ajaxify"	href="DynamicFormAction!listFormField?workflowid=${workflow.id}" 
 									>定义表单</a>
 									<s:if test="#workflow.form != null">
-										<a class="ajaxify" href="DynamicFormAction!deleteDynamicForm?delid=${workflow.id }&method=8">删除定义表单</a>
+										<a class="deleteOne" href="javascript:void(0)" data-action="DynamicFormAction!deleteDynamicForm?delid=${workflow.id }&method=8|${url}&index=${requestScope.currentIndex}">删除定义表单</a>
 									</s:if>
 								</td>
 							</tr>

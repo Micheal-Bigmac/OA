@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="debugFile.inc" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -43,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">产品名称:</label>
 							<div class="controls">
-								<select class="span12" name="orderProductRecord.product.id">
+								<select class="span12" name="orderProductRecord.product.id" check-type="required">
 									<s:iterator var="product" value="#session.products"> 
 											<option value=${product.id }  ${product.id == orderProductRecord.product.id ? 'selected':''}>${product.productName }</option>
 									</s:iterator>
@@ -56,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">订单名称:</label>
 							<div class="controls">
-								<select class="span12" name="orderProductRecord.order.id">
+								<select class="span12" name="orderProductRecord.order.id" check-type="required">
 									<s:iterator var="order" value="#session.purchaseOrderRegisiter">
 										<option value=${order.id } ${order.id == orderProductRecord.order.id ? 'selected':''}>${order.orderName }</option>
 									</s:iterator>
@@ -71,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">是否交付:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="orderProductRecord.order.isPaid" value="${orderProductRecord.order.isPaid}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="orderProductRecord.order.isPaid" value="${orderProductRecord.order.isPaid}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -79,7 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">数量:</label>
 							<div class="controls">
-									<input type="text" class="m-wrap span12" placeholder="" name="orderProductRecord.number" value="${orderProductRecord.number}"> <span class="help-block"></span>
+									<input type="text" class="m-wrap span12" placeholder="" name="orderProductRecord.number" value="${orderProductRecord.number}" check-type="number"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -90,7 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">已付款:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="orderProductRecord.order.paidPrice" value="${orderProductRecord.order.paidPrice}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="orderProductRecord.order.paidPrice" value="${orderProductRecord.order.paidPrice}" check-type="float"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -98,7 +99,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">欠款数:</label>
 							<div class="controls">
-									<input type="text" class="m-wrap span12" placeholder="" name="orderProductRecord.order.loanPrice" value="${orderProductRecord.order.loanPrice}"> <span class="help-block"></span>
+									<input type="text" class="m-wrap span12" placeholder="" name="orderProductRecord.order.loanPrice" value="${orderProductRecord.order.loanPrice}"  check-type="float"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>

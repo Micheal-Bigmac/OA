@@ -7,7 +7,7 @@
 			+ path + "/";
 %>
 <%@taglib uri="/struts-tags" prefix="s"%>
-
+<%@include file="debugFile.inc" %>
 
 <!-- PAGE TITLE & BREADCRUMB-->
 <div class="row-fluid">

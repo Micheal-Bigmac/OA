@@ -6,6 +6,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <base href="<%=basePath%>">
+<%@include file="debugFile.inc" %>
 
 <!-- PAGE TITLE & BREADCRUMB-->
 <div class="row-fluid">
@@ -41,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">产品名称:</label>
 							<div class="controls">
-								<select class="span12" name="contractProductRecord.product.id">
+								<select class="span12" name="contractProductRecord.product.id" check-type="required">
 									<s:iterator var="product" value="#session.products"> 
 											<option value=${product.id }  ${product.id == contractProductRecord.product.id ? 'selected':''}>${product.productName }</option>
 									</s:iterator>
@@ -54,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">合同名称:</label>
 							<div class="controls">
-								<select class="span12" name="contractProductRecord.agreement.id">
+								<select class="span12" name="contractProductRecord.agreement.id" check-type="required">
 									<s:iterator var="salesAgreement" value="#session.salesAgreements">
 										<option value=${salesAgreement.id } ${salesAgreement.id == contractProductRecord.agreement.id ? 'selected':''}>${salesAgreement.salesName }</option>
 									</s:iterator>
@@ -69,7 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">是否交付:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="contractProductRecord.agreement.isPaid" value="${contractProductRecord.agreement.isPaid}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="contractProductRecord.agreement.isPaid" value="${contractProductRecord.agreement.isPaid}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -77,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">数量:</label>
 							<div class="controls">
-									<input type="text" class="m-wrap span12" placeholder="" name="contractProductRecord.number" value="${contractProductRecord.number}"> <span class="help-block"></span>
+									<input type="text" class="m-wrap span12" placeholder="" name="contractProductRecord.number" value="${contractProductRecord.number}" check-type="number"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -88,7 +89,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">已付款:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="contractProductRecord.agreement.paidPrice" value="${contractProductRecord.agreement.paidPrice}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="contractProductRecord.agreement.paidPrice" value="${contractProductRecord.agreement.paidPrice}" check-type="float"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -96,7 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">欠款数:</label>
 							<div class="controls">
-									<input type="text" class="m-wrap span12" placeholder="" name="contractProductRecord.agreement.loanPrice" value="${contractProductRecord.agreement.loanPrice}"> <span class="help-block"></span>
+									<input type="text" class="m-wrap span12" placeholder="" name="contractProductRecord.agreement.loanPrice" value="${contractProductRecord.agreement.loanPrice}" check-type="float"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>

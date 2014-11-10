@@ -8,7 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
+/**
+ * 用户与角色关系表
+ * @author Big mac
+ *
+ */
 @Entity
 @Table(name="oa_usersroles")
 public class UsersRoles implements Serializable{

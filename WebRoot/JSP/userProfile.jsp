@@ -5,6 +5,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<%@include file="debugFile.inc" %>
 <%@taglib uri="/struts-tags" prefix="s"%>
 <meta http-equiv=”content-type” content=”text/html; charset=UTF-8″ />
 <link href="css/bootstrap-fileupload.css" rel="stylesheet" type="text/css" />

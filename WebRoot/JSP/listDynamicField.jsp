@@ -6,19 +6,8 @@
 			+ path + "/";
 %>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="debugFile.inc" %>
 
-<SCRIPT language=JavaScript>
-
-	function link() {
-		document.getElementById("fom").action = "DynamicFieldAction!AddFieldView?id=${id}";
-		document.getElementById("fom").submit();
-	}
-
-	function deleteChose() {
-		document.getElementById("fom").action = "DynamicFieldAction!deleteDynamicField";
-		document.getElementById("fom").submit();
-	}
-</SCRIPT>
 
 <base href="<%=basePath%>">
 
@@ -104,7 +93,7 @@
 										<s:if test="#input ==2 || #input ==3 || #input == 4 ">
 											<a class="ajaxify" href="FieldItemAction!ListItems?id=${dynamicField.id }">条目</a>&nbsp;|&nbsp;
 											</s:if>
-											<a href="DynamicFieldAction!deleteDynamicField?delid=${dynamicField.id }">删除</a>
+											<a class="deleteOne" href="javascript:void(0)" data-action="DynamicFieldAction!deleteDynamicField?delid=${dynamicField.id }&method=8|${url }&index=${requestScope.currentIndex}">删除</a>
 									</td>
 								</tr>
 							</s:iterator>
@@ -121,21 +110,21 @@
 				</div>
 				<div class="pagination pull-right">
 					  <ul>
-						<li class="active"><a class="ajaxify" href="DynamicFormAction!list?index=1">首页</a></li>
+						<li class="active"><a class="ajaxify" href="${url}&index=1">首页</a></li>
 						<s:if test='(#request.currentIndex) > 1'> 
-							<li class="active"><a class="ajaxify" href="DynamicFormAction!list?index=${requestScope.currentIndex-1}">上页</a></li>
+							<li class="active"><a class="ajaxify" href="${url}&index=${requestScope.currentIndex-1}">上页</a></li>
 						</s:if>
 						<s:else>
-						<li class="disabled"><a href="#">上页</a></li>
+						<li class="disabled"><a href="javascript:;">上页</a></li>
 						</s:else>
 						
 						<s:if test='(#request.currentIndex) < #pageCount'> 
-							<li class="active"><a class="ajaxify" href="DynamicFormAction!list?index=${requestScope.currentIndex+1}">下页</a></li>
+							<li class="active"><a class="ajaxify" href="${url}&index=${requestScope.currentIndex+1}">下页</a></li>
 						</s:if>
 						<s:else>
-							<li class="disabled"><a href="#">下页</a></li>
+							<li class="disabled"><a href="javascript:;">下页</a></li>
 						</s:else>
-					 	<li class="active"><a class="ajaxify" href="DynamicFormAction!list?index=${pageCount }">末页</a></li>
+					 	<li class="active"><a class="ajaxify" href="${url}&index=${pageCount }">末页</a></li>
 					  </ul>
 				</div>
 			</div>

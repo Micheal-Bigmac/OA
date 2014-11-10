@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="debugFile.inc" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -37,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<label class="control-label">角色名称:</label>
 							<div class="controls">
 								<input type="hidden" name="role.id" value="${role.id}" />
-								<input type="text" class="m-wrap span12" placeholder="" name="role.name" value="${role.name}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="role.name" value="${role.name}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>

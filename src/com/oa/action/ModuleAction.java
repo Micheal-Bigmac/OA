@@ -43,6 +43,11 @@ public class ModuleAction extends ActionSupport {
 		return "moduleList";
 		
 	}
+	public String edit(){
+		module=moduleService.getModle(module.getId());
+		ServletActionContext.getRequest().setAttribute("module", module);
+		return "editModule";
+	}
 
 	
 	public String addModule(){

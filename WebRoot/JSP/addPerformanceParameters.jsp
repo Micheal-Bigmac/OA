@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="debugFile.inc" %>
 <% String path = request.getContextPath(); 
 String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
@@ -36,7 +37,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 							<label class="control-label">参数名称:</label>
 							<div class="controls">
 								<input type="hidden" name="performanceParameters.id" value="${performanceParameters.id}" />								
-								<input type="text" class="m-wrap span12" placeholder="" name="performanceParameters.name" value="${performanceParameters.name}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="performanceParameters.name" value="${performanceParameters.name}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>

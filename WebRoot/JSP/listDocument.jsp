@@ -6,7 +6,7 @@
 			+ path + "/";
 %>
 <%@taglib uri="/struts-tags" prefix="s"%>
-
+<%@include file="debugFile.inc" %>
 <!-- PAGE TITLE & BREADCRUMB-->
 <div class="row-fluid">
 	<h3 class="page-title">流程列表</h3>
@@ -29,7 +29,7 @@
 					<span class="newfont07">
 					选择：
 					<a href="#"  id="selectAll">全选</a>-<a href="#" id="unselect">反选</a>
-				 	<button class="btn" type="button" id="deleteChose" data-action="DocumentAction!deleteDocument|${url }&method=8">删除所选公文信息</button>
+				 	<button class="btn" type="button" id="deleteChose" data-action="DocumentAction!deleteDocument|${url }?method=8">删除所选公文信息</button>
 					<a class="ajaxify btn" href="DocumentAction!toAddDocumentView?method=1">添加公文信息</a> 
 					</div>
 					
@@ -84,7 +84,7 @@
 											&nbsp;&nbsp;
 											<s:if test="#document.status=='新建'">
 											<a class="ajaxify" href="DocumentAction!submitView?document.id=${document.id }&method=1">提交</a>&nbsp;&nbsp;
-											<a class="ajaxify" href="DocumentAction!deleteDocument?delid=${document.id }&method=8">删除</a>
+											<a class="deleteOne" href="javascript:void(0)" data-action="DocumentAction!deleteDocument?delid=${document.id }&method=8|$${url }?index=${requestScope.currentIndex}">删除</a>
 											</s:if> 
 									</s:if>
 									<s:elseif test="#request.type=='approvingDocument'">
@@ -92,7 +92,7 @@
 										<a class="ajaxify" href="DocumentAction!submitView?document.id=${document.id }&method=1">提交</a>
 									</s:elseif>
 									<s:elseif test="#request.type == 'finishDocument'">
-										<a class="ajaxify" href="DocumentAction!deleteDocument?delid=${document.id }&method=8">删除</a>
+										<a class="deleteOne" href="javascript:void(0)" data-action="DocumentAction!deleteDocument?delid=${document.id }&method=8|${url }?index=${requestScope.currentIndex}">删除</a>
 									</s:elseif>
 								</td>
 							</tr>

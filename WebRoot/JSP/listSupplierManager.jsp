@@ -4,6 +4,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@include file="debugFile.inc" %>
 
 <!-- <link href="css/Mystyle.css" rel="stylesheet" type="text/css" > -->
 
@@ -87,7 +88,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<td>${supplierManager.telephone }</td>
 							<td>${supplierManager.phone }</td>
 							<td>${supplierManager.address }</td>
-							<td><a class="ajaxify" href="SupplierManagerAction!edit?supplierManager.id=${supplierManager.id}&method=4">编辑(修改)</a><a href="SupplierManagerAction!deletesupplierManager?delid=${supplierManager.id }&method=8">删除</a></td>
+							<td><a class="ajaxify" href="SupplierManagerAction!edit?supplierManager.id=${supplierManager.id}&method=4">编辑(修改)</a>
+							<a class="deleteOne" href="javascript:void(0)" data-action="SupplierManagerAction!deletesupplierManager?delid=${supplierManager.id }&method=8|${url}">删除</a></td>
 						</tr>
 					</s:iterator>
 					</tbody>

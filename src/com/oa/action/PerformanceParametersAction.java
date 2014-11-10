@@ -69,7 +69,7 @@ public class PerformanceParametersAction extends ActionSupport{
 		request.setAttribute("currentIndex", (index==0 ?  1 : index ));
 		request.setAttribute("totalSize",total);
 		
-		return "selectPerformanceParameters";
+		return "operator_success";
 	}
 	
 	public String find(){

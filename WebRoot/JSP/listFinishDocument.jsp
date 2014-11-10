@@ -6,7 +6,7 @@
 			+ path + "/";
 %>
 <%@taglib uri="/struts-tags" prefix="s"%>
-
+<%@include file="debugFile.inc" %>
 <!-- PAGE TITLE & BREADCRUMB-->
 <div class="row-fluid">
 	<h3 class="page-title">流程列表</h3>
@@ -70,7 +70,7 @@
 									href="DocumentAction!approveHistoryList?document.id=${document.id }&method=2">查看</a>
 								</td>
 								<td > 
-										<a class="ajaxify" href="DocumentAction!deleteDocument?delid=${document.id }&method=8">删除</a>
+										<a class="deleteOne" href="javascript:void(0)" data-action="DocumentAction!deleteDocument?delid=${document.id }&method=8|${url }?index=${requestScope.currentIndex}">删除</a>
 								</td>
 							</tr>
 						</s:iterator>

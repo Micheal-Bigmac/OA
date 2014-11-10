@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="debugFile.inc" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -27,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">客户名称:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="paymentPlan.clientName" value="${paymentPlan.clientName}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="paymentPlan.clientName" value="${paymentPlan.clientName}" check-type="required"> <span class="help-block"></span>
 								<input type="hidden" name="paymentPlan.id" value="${paymentPlan.id}">
 							</div>
 						</div>
@@ -36,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">合同名称:</label>
 							<div class="controls">
-								<select name="paymentPlan.order.id">
+								<select name="paymentPlan.order.id" check-type="required">
 									<s:iterator var="order" value="#session.salesAgreements">
 											<option value=${order.id } ${order.id == paymentPlan.order.id ? 'selected':''}>${order.salesName }</option>
 									</s:iterator>
@@ -51,7 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">金额:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="paymentPlan.price" value="${paymentPlan.price}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="paymentPlan.price" value="${paymentPlan.price}" check-type="float"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -59,7 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">付款提醒:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12 datapicker" placeholder="yyyy-MM-dd" name="paymentPlan.gatheringRemind" value="${paymentPlan.gatheringRemind}" readOnly> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12 datapicker" placeholder="yyyy-MM-dd" name="paymentPlan.gatheringRemind" value="${paymentPlan.gatheringRemind}" readOnly check-type="date"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -70,7 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">付款日期:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12 datapicker" placeholder="yyyy-MM-dd" name="paymentPlan.toDate" value="${paymentPlan.toDate}" readOnly> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12 datapicker" placeholder="yyyy-MM-dd" name="paymentPlan.toDate" value="${paymentPlan.toDate}" readOnly check-type="date"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -78,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">是否到账:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="paymentPlan.isPaid" value="${paymentPlan.isPaid}" > <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="paymentPlan.isPaid" value="${paymentPlan.isPaid}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -93,14 +94,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</div>
 </div>
-<script src="js/myAjaxify.js" type="text/javascript"/>
 <script src="js/bootstrap-datepicker.js" type="text/javascript"></script>
-<script>
-$('.datapicker').datepicker({
-	autoclose : true,
-	format: "yyyy-mm-dd",
-	todayHighlight: true,
-	todayBtn: true,
-	language: "zh-CN"
-});
-</script>
+<script src="js/myAjaxify.js" type="text/javascript"/>
+

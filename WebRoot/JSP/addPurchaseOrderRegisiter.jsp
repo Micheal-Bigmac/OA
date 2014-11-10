@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="debugFile.inc" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -46,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<s:if test="#request.purchaseOrderRegisiter">
 									<input type="hidden" name='purchaseOrderRegisiter.id' style="width: 154px" value="${purchaseOrderRegisiter.id }" readonly />	<span class="red">*</span> 
 								</s:if>
-								<input type="text" class="m-wrap span12" placeholder="" name="purchaseOrderRegisiter.orderName" value="${purchaseOrderRegisiter.orderName}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="purchaseOrderRegisiter.orderName" value="${purchaseOrderRegisiter.orderName}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -54,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">订单类别:</label>
 							<div class="controls">
-								<select class="span12" name="purchaseOrderRegisiter.orderType">
+								<select class="span12" name="purchaseOrderRegisiter.orderType" check-type="required">
 									<option <s:if test="#request.purchaseOrderRegisiter.orderType=='重要订单'">selected="selected"</s:if>>	重要订单</option>
 									<option <s:if test="#request.purchaseOrderRegisiter.orderType=='一般订单'">selected="selected"</s:if>>	一般订单	</option>
 								</select>
@@ -68,7 +69,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">订单编码:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="purchaseOrderRegisiter.orderCode" value="${purchaseOrderRegisiter.orderCode}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="purchaseOrderRegisiter.orderCode" value="${purchaseOrderRegisiter.orderCode}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -76,7 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">供应商:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="purchaseOrderRegisiter.provider" value="${purchaseOrderRegisiter.provider}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="purchaseOrderRegisiter.provider" value="${purchaseOrderRegisiter.provider}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -87,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">当前状态:</label>
 							<div class="controls">
-								<select class="span12" name="purchaseOrderRegisiter.currentState">
+								<select class="span12" name="purchaseOrderRegisiter.currentState" check-type="required">
 									<option <s:if test="#request.purchaseOrderRegisiter.currentState=='通过审核'">selected="selected"</s:if>>通过审核</option>
 									<option <s:if test="#request.purchaseOrderRegisiter.currentState=='审核中'">selected="selected"</s:if>>审核中</option>
 									<option <s:if test="#request.purchaseOrderRegisiter.currentState=='等待审核'">selected="selected"</s:if>>	等待审核	</option>
@@ -99,7 +100,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">合同总价:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="purchaseOrderRegisiter.tatalPrice" value="${purchaseOrderRegisiter.tatalPrice}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="purchaseOrderRegisiter.tatalPrice" value="${purchaseOrderRegisiter.tatalPrice}" check-type="float"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -110,7 +111,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">已付费用:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="purchaseOrderRegisiter.paidPrice" value="${purchaseOrderRegisiter.paidPrice}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="purchaseOrderRegisiter.paidPrice" value="${purchaseOrderRegisiter.paidPrice}" check-type="float"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -118,7 +119,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">尚付费用:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="purchaseOrderRegisiter.loanPrice" value="${purchaseOrderRegisiter.loanPrice}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="purchaseOrderRegisiter.loanPrice" value="${purchaseOrderRegisiter.loanPrice}" check-type="float"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -129,7 +130,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">是否交付:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="purchaseOrderRegisiter.isPaid" value="${purchaseOrderRegisiter.isPaid}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="purchaseOrderRegisiter.isPaid" value="${purchaseOrderRegisiter.isPaid}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>

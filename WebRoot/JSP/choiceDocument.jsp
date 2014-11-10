@@ -6,6 +6,7 @@
 			+ path + "/";
 %>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="debugFile.inc" %>
 <%@taglib uri="www.BigMac.com" prefix="oa"%>
 <!-- PAGE TITLE & BREADCRUMB-->
 <div class="row-fluid">
@@ -43,7 +44,7 @@
 							<label class="control-label">公文名称:</label>
 							<div class="controls">
 								<input type="hidden" name="document.id" value="${document.id }" /> 
-								<input type="text" class="m-wrap span12" placeholder="" name="document.title" value="${document.title}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="document.title" value="${document.title}" check-type="required" > <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -63,7 +64,7 @@
 						<div class="control-group">
 							<label class="control-label">添加公文附件:</label>
 							<div class="controls">
-								<input type="file" id="uploadFiles" class="m-wrap span12" placeholder="" name="uploadFiles"> <span class="help-block"></span>
+								<input type="file" id="uploadFiles" class="m-wrap span12" placeholder="" name="uploadFiles" check-type="doc"> <span class="help-block" check-type="required"></span>
 							</div>
 						</div>
 					</div>
@@ -80,11 +81,16 @@
 </div>
 <script src="js/ajaxfileupload.js" type="text/javascript"></script>
 <script>
+$(function() {
+	$("#form").validation();
+})
 $("#submit").click(function(e) {
 	console.log("asdfasd");
 	console.log($('#form').serialize());
 	e.preventDefault();
-	
+	if ($("#form").valid(this, '填写信息不完整。') == false) {
+		return false;
+	}
 	$.ajaxFileUpload({
 		url:$('#form').attr('action')+"?"+$('#form').serialize(),
 		secureuri:false,

@@ -5,6 +5,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@include file="debugFile.inc" %>
 <!-- PAGE TITLE & BREADCRUMB-->
 <div class="row-fluid">
 	<h3 class="page-title">模块管理</h3>
@@ -54,8 +55,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<s:if test="#request.pid">
 					<input class="btn" name="Submit" type="button" 	value="删除所选模块信息" id="deleteChose" data-action="ModuleAction!deletemodule|${url }" />
 				</s:if>
-				
-				<!-- <input name="Submit" class="btn ajaxify" type="button" 	value="添加模块信息" onclick="link();" /> -->
 				<a href="JSP/module.jsp?pid=${pid}" class="btn ajaxify">添加模块信息</a>
 			</div>
 			<div class="row-fluid">
@@ -98,9 +97,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</td>
 							<td>
 								<a class="btn ajaxify" href="ModuleAction!edit?module.id=${requestScope.MOUDLE.id }&method=4">编辑</a>&nbsp;|&nbsp;
-								<a class="btn ajaxify" href="yuangongsalary.html">发工资</a>&nbsp;|&nbsp;
-								<a class="btn ajaxify" href="yuangongxiangmu.html">项目</a>&nbsp;&nbsp;
+						<!-- 		<a class="btn ajaxify" href="yuangongsalary.html">发工资</a>&nbsp;|&nbsp;
+								<a class="btn ajaxify" href="yuangongxiangmu.html">项目</a>&nbsp;&nbsp; -->
 <!-- 								<input class="btn"  type="button" 	value="删除" id="deleteChose" data-action="ModuleAction!deletemodule?delid=${requestScope.MOUDLE.id }|${url }" /> -->
+								<a class="deleteOne" href="javascript:void(0)" data-action="ModuleAction!deletemodule?delid=${requestScope.MOUDLE.id }&method=8|${url }">删除</a
 							</td>
 						</tr>
 						</s:iterator>

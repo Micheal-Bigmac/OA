@@ -6,6 +6,7 @@
 			+ path + "/";
 %>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="debugFile.inc"%>
 
 
 <!-- PAGE TITLE & BREADCRUMB-->
@@ -61,7 +62,7 @@
 						href="#"  id="selectAll">全选</a>-<a
 						href="#"  id="unselect">反选</a>
 				</span> 
-				<button type="button" class="btn" id="deleteChose" data-action="ProductAction!deleteproduct|${url }&method=8" >删除所选产品信息</button>
+				<button type="button" class="btn" id="deleteChose" data-action="ProductAction!deletePerson?method=8|${url }" >删除所选产品信息</button>
 				<a href="JSP/addProduct.jsp" class="btn ajaxify">添加产品信息</a>
 			</div>
 			<div class="row-fluid">
@@ -97,7 +98,10 @@
 								<td >${product.totalOutbound }</td>
 								<td >${product.totalInventory }</td>
 								<td >${product.currentInventory }</td>
-								<td ><a class="ajaxify" href="ProductAction!edit?product.id=${product.id}&method=4">编辑(修改)</a><a href="ProductAction!deleteproduct?delid=${product.id }&method=8">删除</a></td>
+								<td ><a class="ajaxify" href="ProductAction!edit?product.id=${product.id}&method=4">编辑(修改)</a>
+<%-- 								<a class="deleteOne"  href="ProductAction!deleteproduct?delid=${product.id }&method=8">删除</a></td>
+ --%>								
+ 									<a class="deleteOne" href="javascript:void(0)" data-action="ProductAction!deleteproduct?delid=${product.id }&method=8|${url }">删除</a></td>
 							</tr>
 						</s:iterator>
 					</tbody>
@@ -138,7 +142,6 @@
 <script src="js/myAjaxify.js" type="text/javascript"></script>
 <script>
 $("#select").click(function(e) {
-	e.preventDefault();
 	var pageContent = $('.page-content .page-content-body');
 	
 	$.ajax({
@@ -152,4 +155,5 @@ $("#select").click(function(e) {
 		}
 	});
 });
+
 </script>

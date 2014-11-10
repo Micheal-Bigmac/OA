@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@page import="com.oa.model.Users"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="../JSP/debugFile.inc" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="debugFile.inc" %>
 <% String path = request.getContextPath(); 
 String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
@@ -38,7 +39,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 							<div class="controls">
 								<input type="hidden" name="disciplinaryRecords.id" value="${disciplinaryRecords.id}" />
 								
-								<input type="text" class="m-wrap span12" placeholder="" name="disciplinaryRecords.personId.name" value="${disciplinaryRecords.personId.name}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="disciplinaryRecords.personId.name" value="${disciplinaryRecords.personId.name}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -46,7 +47,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 						<div class="control-group">
 							<label class="control-label">奖惩区分:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="disciplinaryRecords.disciplinaryDistringuish" value="${disciplinaryRecords.disciplinaryDistringuish}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="disciplinaryRecords.disciplinaryDistringuish" value="${disciplinaryRecords.disciplinaryDistringuish}" check-type="required" > <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -57,7 +58,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 						<div class="control-group">
 							<label class="control-label">奖惩结果:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="disciplinaryRecords.disciplinaryResult" value="${disciplinaryRecords.disciplinaryResult}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="disciplinaryRecords.disciplinaryResult" value="${disciplinaryRecords.disciplinaryResult}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -65,7 +66,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 						<div class="control-group">
 							<label class="control-label">授予单位:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="disciplinaryRecords.awardUnit" value="${disciplinaryRecords.awardUnit}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="disciplinaryRecords.awardUnit" value="${disciplinaryRecords.awardUnit}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>

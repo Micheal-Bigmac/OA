@@ -6,6 +6,7 @@
 			+ path + "/";
 %>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="debugFile.inc" %>
 <base href="<%=basePath%>">
 <div class="row-fluid">
 	<h3 class="page-title">流程列表</h3>

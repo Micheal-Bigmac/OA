@@ -1,5 +1,7 @@
 package com.oa.model;
-
+/**
+ * 用户角色
+ */
 import java.io.Serializable;
 
 import javax.persistence.Entity;
@@ -18,10 +20,26 @@ public class Acl implements Serializable{
 	 */
 	private static final long serialVersionUID = -7012078162997556118L;
 	private Integer id;
+	/**
+	 * 主要类型
+	 */
 	private String principalType;
+	/**
+	 * 角色id
+	 */
 	private Role principalId;
+	/**
+	 * 模块ID
+	 */
 	private Module moduleId;
+	/**
+	 * 增删查改 分别对应 1 2 4 8 表示某个模块的权限操作
+	 */
 	private Integer aclState;
+	/**
+	 * 这个字段暂时没有用到
+	 * 
+	 */
 	private Integer alcTriState;
 	
 	@Id

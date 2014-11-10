@@ -118,7 +118,8 @@ var Calendar = function() {
 						html : true,
 						trigger: "click",
 						placement : "right",
-						title : event.title+'<a class="pull-right" href="#">编辑</a>',
+						/*title : event.title+'<a class="pull-right" href="#">编辑</a>',*/
+						title : event.title,
 						content : html
 					});
 					element.click(function(e) {

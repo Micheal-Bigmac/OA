@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="debugFile.inc" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -36,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<label class="control-label">联系人名称:</label>
 							<div class="controls">
 								<input type="hidden" name="supplierContract.id" value="${supplierContract.id}"/>
-								<input type="text" class="m-wrap span12" placeholder="" name='supplierContract.contactName' value="${supplierContract.contactName}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name='supplierContract.contactName' value="${supplierContract.contactName}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -45,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">供应商名称:</label>
 							<div class="controls">
-								<select name="supplierContract.supplier.id">
+								<select name="supplierContract.supplier.id" check-type="required">
 									<s:iterator var="provider" value="#session.supplierManagers">
 											<option value="${provider.id }" <s:if test="#request.supplierContract.supplier.id==provider.id">selected="selected"</s:if>>${provider.supplierName }</option>
 									</s:iterator>
@@ -60,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">职位:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name='supplierContract.position' value="${supplierContract.position}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name='supplierContract.position' value="${supplierContract.position}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -69,7 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">性别:</label>
 							<div class="controls">
-								<select name="supplierContract.gender">								
+								<select name="supplierContract.gender" check-type="required">								
 									<option ${supplierContract.gender == '女'? 'selected':''}>女</option>
 									<option ${supplierContract.gender == '男'? 'selected':''}>男</option>
 								</select>
@@ -83,7 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">工作电话:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name='supplierContract.phone' value="${supplierContract.phone}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name='supplierContract.phone' value="${supplierContract.phone}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>

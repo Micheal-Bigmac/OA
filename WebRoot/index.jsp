@@ -399,8 +399,10 @@
 			<script src="js/jquery.uniform.min.js" type="text/javascript"></script>
 			<script src="js/jquery.hz2py-min.js" type="text/javascript"></script>
 			
-			
+			<script src="js/bootstrap3-validation.js" type="text/javascript"></script>
 			<script src="js/myAjaxify.js" type="text/javascript"></script>
+			
+			
 		<!-- END CORE PLUGINS -->
 		<!-- BEGIN PAGE LEVEL SCRIPTS -->
 			<script src="js/index.js" type="text/javascript"></script>

@@ -6,7 +6,7 @@
 <link href="css/jqvmap.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="css/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen" />
 
-
+<%@include file="../JSP/debugFile.inc" %>
 <div class="row-fluid">
 	<div class="span12">
 

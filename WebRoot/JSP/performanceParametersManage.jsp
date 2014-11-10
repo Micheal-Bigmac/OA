@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="debugFile.inc" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -48,8 +49,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td>${pp.personId.name}</td>
 									<td>${pp.date}</td>
 									<td><a class="ajaxify"
-										href="PerformanceParametersAction!updatePerformanceParameters?performanceParametersId=${pp.id}&method=4">修改</a>/<a class="ajaxify"
-										href="PerformanceParametersAction!deletePerformanceParameters?performanceParametersId=${pp.id}&method=8">删除</a>
+										href="PerformanceParametersAction!updatePerformanceParameters?performanceParametersId=${pp.id}&method=4">修改</a>/
+										<a class="deleteOne" href="javascript:void(0)" data-action="PerformanceParametersAction!deletePerformanceParameters?performanceParametersId=${pp.id}&method=8|PerformanceParametersAction!find?index=${requestScope.currentIndex}">删除</a>
 									</td>
 								</tr>
 							</s:iterator>

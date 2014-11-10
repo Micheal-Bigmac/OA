@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="debugFile.inc" %>
 <% String path = request.getContextPath(); 
 String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
@@ -39,7 +40,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 							<div class="controls">
 								<input type="hidden" name="agreement.id" value="${agreement.id}" />
 								
-								<input type="text" class="m-wrap span12" placeholder="" name="agreement.aggState" value="${agreement.aggState}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="agreement.aggState" value="${agreement.aggState}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -47,7 +48,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 						<div class="control-group">
 							<label class="control-label">合同编号:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="agreement.aggId" value="${agreement.aggId}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="agreement.aggId" value="${agreement.aggId}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -58,7 +59,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 						<div class="control-group">
 							<label class="control-label">合同类型:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="agreement.aggType" value="${agreement.aggType}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="agreement.aggType" value="${agreement.aggType}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -66,7 +67,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 						<div class="control-group">
 							<label class="control-label">是否有竞业条款:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="agreement.competivieArtical" value="${agreement.competivieArtical}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="agreement.competivieArtical" value="${agreement.competivieArtical}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -77,7 +78,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 						<div class="control-group">
 							<label class="control-label">是否有保密协议:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="agreement.secretProtocal" value="${agreement.secretProtocal}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="agreement.secretProtocal" value="${agreement.secretProtocal}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -85,7 +86,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 						<div class="control-group">
 							<label class="control-label">签约日期:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12 datapicker" placeholder="" name="agreement.signContractDate" value="${agreement.signContractDate}" readOnly> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12 datapicker" placeholder="" name="agreement.signContractDate" value="${agreement.signContractDate}" readOnly check-type="date"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -96,7 +97,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 						<div class="control-group">
 							<label class="control-label">满约日期:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12 datapicker" placeholder="" name="agreement.fullAboutDate" value="${agreement.fullAboutDate}" readOnly> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12 datapicker" placeholder="" name="agreement.fullAboutDate" value="${agreement.fullAboutDate}" readOnly check-type="date"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -104,7 +105,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 						<div class="control-group">
 							<label class="control-label">鉴证机关:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="agreement.identifyOffice" value="${agreement.identifyOffice}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="agreement.identifyOffice" value="${agreement.identifyOffice}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -115,7 +116,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 						<div class="control-group">
 							<label class="control-label">鉴证日期:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12 datapicker" placeholder="" name="agreement.identifyDate" value="${agreement.identifyDate}" readOnly> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12 datapicker" placeholder="" name="agreement.identifyDate" value="${agreement.identifyDate}" readOnly check-type="date"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -123,7 +124,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 						<div class="control-group">
 							<label class="control-label">其他事宜:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="agreement.others" value="${agreement.others}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="agreement.others" value="${agreement.others}" > <span class="help-block"></span>
 							</div>
 						</div>
 					</div>

@@ -5,7 +5,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<%@include file="debugFile.inc" %>
 <!-- PAGE TITLE & BREADCRUMB-->
 <div class="row-fluid">
 	<h3 class="page-title">供应商管理</h3>
@@ -35,8 +35,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">供应商名称:</label>
 							<div class="controls">
-								<input type="hidden" name="supplierManager.id" value="${supplierManager.id}"/>
-								<input type="text" class="m-wrap span12" placeholder="" name='supplierManager.supplierName' value="${supplierManager.supplierName }"> <span class="help-block"></span>
+								<input type="hidden" name="supplierManager.id" value="${supplierManager.id}" />
+								<input type="text" class="m-wrap span12" placeholder="" name='supplierManager.supplierName' value="${supplierManager.supplierName }" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -44,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">供应商编码:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name='supplierManager.supplierCode' value="${supplierManager.supplierCode}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name='supplierManager.supplierCode' value="${supplierManager.supplierCode}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -55,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">简称:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name='supplierManager.shortName' value="${supplierManager.shortName}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name='supplierManager.shortName' value="${supplierManager.shortName}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -74,7 +74,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">手机号码:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name='supplierManager.phone' value="${supplierManager.phone}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name='supplierManager.phone' value="${supplierManager.phone}" > <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -82,7 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">地区:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name='supplierManager.address'	value="${supplierManager.address }" > <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name='supplierManager.address'	value="${supplierManager.address }" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>

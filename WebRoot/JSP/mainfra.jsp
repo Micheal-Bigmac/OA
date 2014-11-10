@@ -3,6 +3,7 @@ pageEncoding="UTF-8"%> <% String path = request.getContextPath();
 String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <%@taglib uri="/struts-tags" prefix="s" %>
+<%@include file="debugFile.inc" %>
 <head>
 <base href="<%=basePath%>"/>
 <title>项目管理系统</title>

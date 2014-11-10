@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
-
+<%@include file="../JSP/debugFile.inc" %>
 <!-- PAGE LEVEL STYLES -->
 <link href="css/fullcalendar.css" rel="stylesheet" />
 <link href="css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />

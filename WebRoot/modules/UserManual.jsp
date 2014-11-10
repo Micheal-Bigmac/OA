@@ -6,6 +6,7 @@
 			+ path + "/";
 %>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="../JSP/debugFile.inc" %>
 
 	<div id="myModal" class="modal hide fade">
 		<div class="modal-header">
@@ -87,36 +88,32 @@
 </div>
 
 <script src="js/portlet-draggable.js"></script> 
-<script type="text/javascript" src="js/myAjaxify.js"></script>
+<!-- <script type="text/javascript" src="js/myAjaxify.js"></script> -->
 
 <script>
 
 $("#myModal").on("hidden", function() {
 	$(this).removeData("modal");
-});
+}); 
 
 $("#submit").click(function() {
 	console.log('safasf');
 	console.log($('#model-form').attr('action'));
+	var pageContent = $('.page-content .page-content-body');
 	$.ajax({
 		url: $('#model-form').attr('action'),
 		data: $('#model-form').serialize(),
 		success: function() {
 			$('myModal').modal('hide');
 // 			e.preventDefault();
-			pageContent = $('.page-content .page-content-body');
 			
 			$.ajax({
-			url: 'PersonDailyAction!personDailyList', 
-			success: function(res) {
-	        	pageContent.html(res);
-			}
-		});
+				url: 'PersonDailyAction!personDailyList', 
+				success: function(res) {
+		        	pageContent.html(res);
+				}
+			});
 		}
 	});
-});
-
-$("#myModal").on("hidden", function() {
-	$(this).removeData("modal");
 });
 </script>

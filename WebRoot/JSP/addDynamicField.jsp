@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+	<%@include file="debugFile.inc" %>
 <%@taglib uri="/struts-tags" prefix="s"%>
 <%
 	String path = request.getContextPath();
@@ -41,7 +41,7 @@
 							<label class="control-label">标签${param.id }:</label>
 							<div class="controls">
 								<input name="dynamicFormId" type="hidden" value="${param.id }">
-								<input type="text" class="m-wrap span12" placeholder="" name="dynamicField.fieldLabel" value="${dynamicField.fieldLabel}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="dynamicField.fieldLabel" value="${dynamicField.fieldLabel}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -49,7 +49,7 @@
 						<div class="control-group">
 							<label class="control-label">名称:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="dynamicField.fieldName" value="${dynamicField.fieldName}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="dynamicField.fieldName" value="${dynamicField.fieldName}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -60,7 +60,7 @@
 						<div class="control-group">
 							<label class="control-label">类型:</label>
 							<div class="controls">
-								<select name='fieldType'> 
+								<select name='fieldType' check-type="required"> 
 									<s:iterator var="item" value="#session.fieldType" status="status">
 										<s:property value="#status.index"></s:property>
 										<option value="${status.index}">
@@ -75,7 +75,7 @@
 						<div class="control-group">
 							<label class="control-label">输入形式:</label>
 							<div class="controls">
-								<select name='fieldInput'>
+								<select name='fieldInput' check-type="required">
 									<s:iterator var="item" value="#session.fieldInput" status="status">
 											<option value="${status.index}">
 												${item.name }
@@ -98,9 +98,15 @@
 </div>
 <s:debug></s:debug>
 <script>
+$(function() {
+	$("#form").validation();
+})
+
 $("#submit").click(function(e) {
 	e.preventDefault();
-	
+	if ($("#form").valid(this, '填写信息不完整。') == false) {
+		return false;
+	}
 	console.log("asdfas");
 	$.post($('#form').attr('action') , $('#form').serialize(), function(res) {
 			console.log(res);

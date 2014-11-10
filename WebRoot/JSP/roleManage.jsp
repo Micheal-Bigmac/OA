@@ -5,7 +5,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<%@include file="debugFile.inc" %>
 <!-- PAGE TITLE & BREADCRUMB-->
 <div class="row-fluid">
 	<h3 class="page-title">权限系统</h3>
@@ -40,9 +40,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<tr >
 								<td>${role.id}</td>
 								<td>${role.name}</td>
-								<td><a class="ajaxify" href="RoleAction!updateShowRole?role.id=${role.id}&method=4">修改</a>&nbsp; <a
-									href="RoleAction!deleteRole?role.id=${role.id}&method=8">删除</a>&nbsp; <a class="ajaxify"
-									href="RoleAction!privilegeRole?role.id=${role.id}">角色授权</a></td>
+								<td><a class="ajaxify" href="RoleAction!updateShowRole?role.id=${role.id}&method=4">修改</a>&nbsp; 
+								<a class="deleteOne" href="javascript:void(0)" data-action="RoleAction!deleteRole?role.id=${role.id}&method=8|RoleAction!listRole?index=${requestScope.currentIndex}">删除</a>&nbsp; 
+								<a class="ajaxify"	href="RoleAction!privilegeRole?role.id=${role.id}">角色授权</a></td>
 							</tr>
 						</s:iterator>
 					</tbody>

@@ -6,7 +6,7 @@
 			+ path + "/";
 %>
 <%@taglib uri="/struts-tags" prefix="s"%>
-
+<%@include file="debugFile.inc" %>
 <SCRIPT language=JavaScript>
 	
 
@@ -103,7 +103,8 @@
 								<td >${supplierContract.phone }</td>
 								<td >${supplierContract.telephone }</td>
 								<td >${supplierContract.QQ }</td>
-								<td ><a class="ajaxify" href="SupplierContractAction!edit?supplierContract.id=${supplierContract.id}&method=4">编辑(修改)</a><a  href="SupplierContractAction!deleteSupplierContact?delid=${supplierContract.id }&method=8">删除</a></td>
+								<td ><a class="ajaxify" href="SupplierContractAction!edit?supplierContract.id=${supplierContract.id}&method=4">编辑(修改)</a>
+								<a  class="deleteOne" href="javascript:void(0)" data-action="SupplierContractAction!deleteSupplierContact?delid=${supplierContract.id }&method=8|${url}">删除</a></td>
 							</tr>
 						</s:iterator>
 					</tbody>

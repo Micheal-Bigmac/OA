@@ -2,39 +2,12 @@
 	pageEncoding="UTF-8"%>
 
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="debugFile.inc" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <base href="<%=basePath%>">
-
-<SCRIPT language=JavaScript>
-	function selectAll() {
-		var obj = document.fom.elements;
-		for ( var i = 0; i < obj.length; i++) {
-			if (obj[i].name == "delid") {
-				obj[i].checked = true;
-			}
-		}
-	}
-
-	function unselectAll() {
-		var obj = document.fom.elements;
-		for ( var i = 0; i < obj.length; i++) {
-			if (obj[i].name == "delid") {
-				if (obj[i].checked == true)
-					obj[i].checked = false;
-				else
-					obj[i].checked = true;
-			}
-		}
-	}
-
-	function link() {
-		document.getElementById("fom").action = "PerformanceExamineAction!getAddData";
-		document.getElementById("fom").submit();
-	}
-</SCRIPT>
 <div class="row-fluid">
 	<h3 class="page-title">绩效考核</h3>
 	<ul class="breadcrumb">
@@ -106,8 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td>${pe.instruction}</td>
 								<td>${pe.recordUser}</td>
 								<td>${pe.date}</td>
-								<td><a class="ajaxify"
-									href="PerformanceExamineAction!deletePerformanceExamine?peId=${pe.id}&method=8">删除</a>
+								<td><a class="deleteOne" href="javascript:void(0)" data-action="PerformanceExamineAction!deletePerformanceExamine?peId=${pe.id}&method=8|${url}">删除</a>
 								</td>
 							</tr>
 						</s:iterator>

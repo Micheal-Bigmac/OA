@@ -4,6 +4,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@include file="debugFile.inc" %>
 
 <SCRIPT language=JavaScript>
 
@@ -83,7 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td><s:property value="#person.getFirstUser().expireTime" /></td>
 								<td>
 								<s:if test="#person.getFirstUser().account != ''">
-									<a href="UserAction!deleteAccount?user.personid.id=${person.id }&method=8">删除账号</a>&nbsp;
+									<a class="deleteOne" href="javascript:void(0)" data-action="UserAction!deleteAccount?user.personid.id=${person.id }&method=8|${url}?${requestScope.currentIndex}">删除账号</a>&nbsp;
 									<a class="ajaxify" href="UserAction!distributeRole?user.personid.id=${person.id}">分配角色</a>&nbsp;
 									<a class="ajaxify" href="UserAction!distributeUser?user.personid.id=${person.id}">用户授权</a>&nbsp;
 								</s:if> 

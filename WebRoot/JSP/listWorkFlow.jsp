@@ -5,6 +5,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<%@include file="debugFile.inc" %>
 <%@taglib uri="/struts-tags" prefix="s"%>
 
 
@@ -94,7 +95,7 @@
 								<td >
 									 <a class="ajaxify"	href="JSP/submitDocument.jsp?id=${workflow.id}&method=4"
 									>编辑(修改)</a>
-									<a class="ajaxify" href="WorkFlowAction!deleteWorkFlow?delid=${workflow.id }&method=8">删除</a></td>
+									<a class="deleteOne" href="javascript:void(0)" data-action="WorkFlowAction!deleteWorkFlow?delid=${workflow.id }&method=8|${url}index=${requestScope.currentIndex-1}">删除</a></td>
 							</tr>
 						</s:iterator>
 					</tbody>

@@ -58,7 +58,7 @@ public class PerformanceExamineAction extends ActionSupport{
 		request.setAttribute("listPerformanceExamine", performanceExamines);
 		request.setAttribute("currentIndex", (index==0 ?  1 : index ));
 		request.setAttribute("totalSize",total);*/
-		return "selectPerformanceExamine";
+		return "operator_success";
 	}
 	
 	public String find(){

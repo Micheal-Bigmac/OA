@@ -6,6 +6,7 @@
 			+ path + "/";
 		
 %>
+<%@include file="JSP/debugFile.inc" %>
 <html>
 <head>
 <base href="<%=basePath%>" />
@@ -16,7 +17,7 @@
 <meta http-equiv="description" content="This is my page">
 
 </head>
-<body >
+<body>
 	操作成功
 </body>
 </html>

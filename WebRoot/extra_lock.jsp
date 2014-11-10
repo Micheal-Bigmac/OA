@@ -1,5 +1,6 @@
 
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@include file="../JSP/debugFile.inc" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="debugFile.inc" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"

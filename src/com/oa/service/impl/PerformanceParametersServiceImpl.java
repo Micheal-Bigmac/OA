@@ -22,7 +22,7 @@ public class PerformanceParametersServiceImpl implements PerformanceParametersSe
 
 	public List<PerformanceParameters> getPerformanceParametersPages(int i,
 			Class<PerformanceParameters> class1, String hql) {
-		return convertToPerformanceParameters(superDao.getAllObjects(class1, hql));
+		return convertToPerformanceParameters(superDao.getPage(i, class1, hql));
 	}
 
 	public List<PerformanceParameters> convertToPerformanceParameters(List<Object> objects) {

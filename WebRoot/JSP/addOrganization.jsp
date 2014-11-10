@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="debugFile.inc" %>
 <% String path = request.getContextPath(); 
 String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
@@ -36,7 +37,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 									<input type="hidden" name="parentid" value="${param.parentid}"/>
 									
 									<input type="hidden" name="organization.id" value="${organization.id}" />
-									<input type="text" class="m-wrap span12" placeholder="" name="organization.name" value="${organization.name}"> <span class="help-block"></span>
+									<input type="text" class="m-wrap span12" placeholder="" name="organization.name" value="${organization.name}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>

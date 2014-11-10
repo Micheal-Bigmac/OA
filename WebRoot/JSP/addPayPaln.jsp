@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@include file="debugFile.inc" %>
 <%@taglib uri="/struts-tags" prefix="s"%>
 <%
 String path = request.getContextPath();
@@ -43,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<label class="control-label">客户名称:</label>
 							<div class="controls">
 								<input type="hidden" name="payPlan.id" value="${payPlan.id}">
-								<input type="text" class="m-wrap span12" placeholder="" name="payPlan.clientName" value="${payPlan.clientName}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="payPlan.clientName" value="${payPlan.clientName}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -51,7 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">订单名称:</label>
 							<div class="controls">
-								<select class="span12" name="payPlan.order.id">
+								<select class="span12" name="payPlan.order.id" check-type="required">
 									<s:iterator var="order" value="#session.purchaseOrderRegisiter">
 										<option value=${order.id } ${order.id == payPlan.order.id ? 'selected':''}>${order.orderName }</option>
 									</s:iterator>
@@ -66,7 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">金额:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="payPlan.price" value="${payPlan.price}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="payPlan.price" value="${payPlan.price}" check-type="float"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -74,7 +75,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">付款提醒:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12 datapicker" placeholder="yyyy-MM-dd" name="payPlan.payRemind" value="${payPlan.payRemind}" readOnly> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12 datapicker" placeholder="yyyy-MM-dd" name="payPlan.payRemind" value="${payPlan.payRemind}" readOnly check-type="date"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -85,7 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">付款日期:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12 datapicker" placeholder="yyyy-MM-dd" name="payPlan.payDate" value="${payPlan.payDate}" readOnly> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12 datapicker" placeholder="yyyy-MM-dd" name="payPlan.payDate" value="${payPlan.payDate}" readOnly check-type="date"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -93,7 +94,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">是否到账:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="payPlan.isPaid" value="${payPlan.isPaid}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="payPlan.isPaid" value="${payPlan.isPaid}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>

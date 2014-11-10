@@ -96,7 +96,7 @@ System.out.println("organization id is "+organization.getId());
 System.out.println("organization name is "+organization.getName());
 System.out.println("organization descript is "+organization.getDescription());
 		organizationService.delete(organization);*/
-		return "deleteOrg";
+		return "operator_success";
 	}
 	
 	public String find() {

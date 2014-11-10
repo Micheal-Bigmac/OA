@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="debugFile.inc" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-out.println(basePath);
 %>
 
 
@@ -90,8 +90,8 @@ out.println(basePath);
 							<td>${org.sn}</td>
 							<td>${org.description}</td>
 							<td>${org.pid.name}</td>
-							<td><a class="ajaxify" href="OrganizationAction!update?updateOrgId=${org.id}&method=4">修改</a>/<a class="ajaxify"
-								href="OrganizationAction!delete?delid=${org.id}&method=8">删除</a></td>
+							<td><a class="ajaxify" href="OrganizationAction!update?updateOrgId=${org.id}&method=4">修改</a>/
+							<a class="deleteOne" href="javascript:void(0)" data-action="OrganizationAction!delete?delid=${org.id}&method=8|${url}">删除</a></td>
 						</tr>
 					</s:iterator>
 				</tbody>

@@ -6,6 +6,7 @@
 			+ path + "/";
 %>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="debugFile.inc" %>
 <SCRIPT language=JavaScript>
 	
 	function link() {
@@ -100,7 +101,8 @@
 								<td >${payPlan.payRemind }</td>
 								<td >${payPlan.payDate }</td>
 								<td >${payPlan.isPaid }</td>
-								<td ><a class="ajaxify" href="PayPlanAction!edit?payPlan.id=${payPlan.id}&method=4">编辑(修改)</a><a class="ajaxify" href="PayPlanAction!deletePayPlan?delid=${payPlan.id }&method=8">删除</a></td>
+								<td ><a class="ajaxify" href="PayPlanAction!edit?payPlan.id=${payPlan.id}&method=4">编辑(修改)</a>
+								<a class="deleteOne" href="javascript:void(0)" data-action="PayPlanAction!deletePayPlan?delid=${payPlan.id }&method=8|${url}">删除</a></td>
 							</tr>
 						</s:iterator>
 					</tbody>

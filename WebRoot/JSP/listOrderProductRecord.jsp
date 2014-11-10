@@ -6,7 +6,7 @@
 			+ path + "/";
 %>
 <%@taglib uri="/struts-tags" prefix="s"%>
-
+<%@include file="debugFile.inc" %>
 <SCRIPT language=JavaScript>
 	
 	function link() {
@@ -106,7 +106,8 @@
 								<td >${orderProductRecord.order.paidPrice }</td>
 								<td >${orderProductRecord.order.loanPrice }</td>
 								<td >${orderProductRecord.order.isPaid }</td>
-								<td ><a class="ajaxify" href="OrderProductRecordAction!edit?orderProductRecord.id=${orderProductRecord.id}&method=4">编辑(修改)</a><a href="OrderProductRecordAction!deleteOrderProductRecord?delid=${orderProductRecord.id }&method=8">删除</a></td>
+								<td ><a class="ajaxify" href="OrderProductRecordAction!edit?orderProductRecord.id=${orderProductRecord.id}&method=4">编辑(修改)</a>
+								<a class="deleteOne" href="javascript:void(0)" data-action="OrderProductRecordAction!deleteOrderProductRecord?delid=${orderProductRecord.id }&method=8|${url}">删除</a></td>
 							</tr>
 						</s:iterator>
 					</tbody>

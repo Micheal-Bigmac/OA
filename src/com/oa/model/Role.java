@@ -14,7 +14,11 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cascade;
 
 import com.sun.org.apache.bcel.internal.generic.NEW;
-
+/**
+ * 用户角色
+ * @author Big mac
+ *
+ */
 @Entity
 @Table(name="oa_role")
 public class Role implements Serializable{

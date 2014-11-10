@@ -1,6 +1,8 @@
 package com.oa.model;
 
-
+/**
+ * 用户没有角色 但是有权限
+ */
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;

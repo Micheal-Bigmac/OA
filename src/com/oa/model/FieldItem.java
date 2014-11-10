@@ -1,5 +1,7 @@
 package com.oa.model;
-
+/**
+ * 下拉框列表元素
+ */
 import java.io.Serializable;
 
 import javax.persistence.Entity;

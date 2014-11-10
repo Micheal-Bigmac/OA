@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="debugFile.inc" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -51,7 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">合同名称:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="salesAgreement.salesName" value="${salesAgreement.salesName}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="salesAgreement.salesName" value="${salesAgreement.salesName}"   check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -62,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">合同类别:</label>
 							<div class="controls">
-								<select class="span12" name="salesAgreement.contractTitle">
+								<select class="span12" name="salesAgreement.contractTitle"  check-type="required">
 									<option <s:if test="#request.salesAgreement.contractTitle=='重要合同'">selected="selected"</s:if>>重要合同</option>
 									<option <s:if test="#request.salesAgreement.contractTitle=='重要合同稍等'">selected="selected"</s:if>>	重要合同稍等</option>
 									<option <s:if test="#request.salesAgreement.contractTitle=='一般'">selected="selected"</s:if>>一般</option>
@@ -74,7 +75,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">签约客户:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="salesAgreement.contractName" value="${salesAgreement.contractName}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="salesAgreement.contractName" value="${salesAgreement.contractName}"  check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -85,7 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">合同编码:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="salesAgreement.salesCode" value="${salesAgreement.salesCode}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="salesAgreement.salesCode" value="${salesAgreement.salesCode}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -93,7 +94,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">当前状态:</label>
 							<div class="controls">
-								<select class="span12" name="salesAgreement.currentStatus">
+								<select class="span12" name="salesAgreement.currentStatus" check-type="required">
 									<option <s:if test="#request.salesAgreement.currentStatus=='完成采购'">selected="selected"</s:if>>	完成采购</option>
 									<option <s:if test="#request.salesAgreement.currentStatus=='正在采购">selected="selected"</s:if>>	正在采购</option>
 									<option <s:if test="#request.salesAgreement.currentStatus=='等待审核">selected="selected"</s:if>>	等待审核</option>
@@ -109,7 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">合同总价:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="salesAgreement.tatalPrice" value="${salesAgreement.tatalPrice}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="salesAgreement.tatalPrice" value="${salesAgreement.tatalPrice}" check-type="float"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -117,7 +118,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">已付费用:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="salesAgreement.paidPrice" value="${salesAgreement.paidPrice}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="salesAgreement.paidPrice" value="${salesAgreement.paidPrice}" check-type="float"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -128,7 +129,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">尚欠费用:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="salesAgreement.loanPrice" value="${salesAgreement.loanPrice}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="salesAgreement.loanPrice" value="${salesAgreement.loanPrice}" check-type="float"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -136,7 +137,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">是否交付:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="salesAgreement.isPaid" value="${salesAgreement.isPaid}"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="salesAgreement.isPaid" value="${salesAgreement.isPaid}" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="debugFile.inc" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -36,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">模块编号:</label>
 							<div class="controls">
-								<input type="text" name='module.id' class="m-wrap span12" placeholder="" readonly value="${module.id }" > <span class="help-block">This is inline help</span>
+								<input type="text" name='module.id' class="m-wrap span12" placeholder="" readonly value="${module.id }"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -45,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group error">
 							<label class="control-label">模块名称:</label>
 							<div class="controls">
-								<input type="text" name='module.name' class="m-wrap span12" placeholder="" value="${module.name }"> <span class="help-block">This field has error.</span>
+								<input type="text" name='module.name' class="m-wrap span12" placeholder="" value="${module.name }" check-type="required"> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -57,7 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">唯一标识:</label>
 							<div class="controls">
-								<input type="text" name='module.sn'  class="m-wrap span12" value="${module.sn }">
+								<input type="text" name='module.sn'  class="m-wrap span12" value="${module.sn }" check-type="required">
 							</div>
 						</div>
 					</div>
@@ -66,7 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">模块路径:</label>
 							<div class="controls">
-								<input type="text" name='module.url'  class="m-wrap span12" value="${module.url }">
+								<input type="text" name='module.url'  class="m-wrap span12" value="${module.url }" check-type="required">
 							</div>
 						</div>
 					</div>
@@ -78,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="control-group">
 							<label class="control-label">主模块id:</label>
 							<div class="controls">
-								<input type="text" name='pid'  class="m-wrap span12" value="${param.pid }" readOnly>
+								<input type="text" name='pid'  class="m-wrap span12" value="${param.pid }" readOnly >
 							</div>
 						</div>
 					</div>

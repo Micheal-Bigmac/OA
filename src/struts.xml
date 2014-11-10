@@ -67,6 +67,7 @@
 		</action>
 		<action name="ModuleAction" class="com.oa.action.ModuleAction">
 			<result name="moduleList">/JSP/listModule.jsp</result>
+			<result name="editModule">/JSP/module.jsp</result>
 		</action>
 		<action name="RoleAction" class="com.oa.action.RoleAction">
 			<result name="listRole">/JSP/roleManage.jsp</result>

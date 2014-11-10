@@ -6,6 +6,7 @@
 			+ path + "/";
 %>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="debugFile.inc" %>
 
 
 <!-- PAGE TITLE & BREADCRUMB-->
@@ -92,7 +93,8 @@
 								<td >${paymentPlan.gatheringRemind }</td>
 								<td >${paymentPlan.toDate }</td>
 								<td >${paymentPlan.isPaid }</td>
-								<td ><a class="ajaxify" href="PaymentPlanAction!edit?paymentPlan.id=${paymentPlan.id}&method=4">编辑(修改)</a><a href="PaymentPlanAction!deletePaymentPlan?delid=${paymentPlan.id }&method=8">删除</a></td>
+								<td ><a class="ajaxify" href="PaymentPlanAction!edit?paymentPlan.id=${paymentPlan.id}&method=4">编辑(修改)</a>
+								<a class="deleteOne" href="javascript:void(0)" data-action="PaymentPlanAction!deletePaymentPlan?delid=${paymentPlan.id }&method=8|${url}">删除</a></td>
 							</tr>
 						</s:iterator>
 					</tbody>

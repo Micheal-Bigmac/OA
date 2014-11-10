@@ -6,7 +6,7 @@
 			+ path + "/";
 %>
 <%@taglib uri="/struts-tags" prefix="s"%>
-
+<%@include file="../JSP/debugFile.inc" %>
 <div id="myModal" class="modal hide fade">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -195,9 +195,7 @@
 	</s:iterator>
 </div>
 
-
 <script src="js/portlet-draggable.js"></script> 
-<script type="text/javascript" src="js/myAjaxify.js"></script>
 <script>
 		jQuery(document).ready(function() {       
 		   App.init();

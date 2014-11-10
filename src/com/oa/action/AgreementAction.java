@@ -62,7 +62,7 @@ public class AgreementAction extends ActionSupport{
 		request.setAttribute("currentIndex", (index==0 ?  1 : index ));
 		request.setAttribute("totalSize",total);
 		
-		return "selectAgree";
+		return "operator_success";
 	}
 	
 	public String find(){

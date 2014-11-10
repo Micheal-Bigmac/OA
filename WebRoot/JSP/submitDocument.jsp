@@ -6,6 +6,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<%@include file="debugFile.inc" %>
 <!-- PAGE TITLE & BREADCRUMB-->
 <div class="row-fluid">
 	<h3 class="page-title">流程列表</h3>
@@ -42,7 +43,7 @@
 							<label class="control-label">添加流程定义:</label>
 							<div class="controls">
 								<input type="hidden" name="method" value="1" />
-								<input class="m-wrap span12" name="uploadFiles" id="uploadFile" type="file" />
+								<input class="m-wrap span12" name="uploadFiles" id="uploadFile" type="file" check-type="xml" required-message="文件格式 xml"/>
 							</div>
 						</div>
 					</div>
@@ -50,7 +51,7 @@
 						<div class="control-group">
 							<label class="control-label">添加流程图片${param.id }:</label>
 							<div class="controls">
-								<input class="m-wrap span12" name="uploadFiles"  id="uploadFile"  type="file" />
+								<input class="m-wrap span11" name="uploadFiles"  id="uploadFile"  type="file" check-type="image" required-message="文件格式  jpg png bmp" />
 								 <input type="hidden"  id="param" name="workFlow.id" value='${param.id }'>
 							</div>
 						</div>
@@ -69,12 +70,16 @@
 </div>
 
 <script src="js/ajaxfileupload.js" type="text/javascript"></script>
+<script src="js/myAjaxify.js" type="text/javascript" />
 <script>
 
 $("#submi").click(function(e) {
 	console.log($('#param').val());
 	console.log($('#form').serialize());
 	e.preventDefault();
+	if ($("#form").valid(this, '填写信息不完整。') == false) {
+		return false;
+	}
 	
 	$.ajaxFileUpload({
 		url:$('#form').attr('action')+"?workFlow.id="+$('#param').val(),
