@@ -22,7 +22,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name="oa_organization")
 public class Organization implements Serializable{
-
 	private static final long serialVersionUID = 9153552834578848687L;
 	/**
 	 * 机构编号
