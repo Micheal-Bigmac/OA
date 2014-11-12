@@ -53,7 +53,9 @@ public class test {
 		list.add("b");
 		list.add("c");
 		list.add("d");
-		System.out.println(list.get(1));
-		System.out.println(list.indexOf("c"));
+		String []arg=list.toArray(new String[list.size()]);
+		System.out.println(arg);
+//		System.out.println(list.get(1));
+//		System.out.println(list.indexOf("c"));
 	}
 }
