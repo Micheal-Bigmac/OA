@@ -3,31 +3,21 @@
 <%@include file="debugFile.inc"%>
 <%
 	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 <base href="<%=basePath%>">
 <!-- PAGE TITLE & BREADCRUMB-->
 <div class="row-fluid">
 	<h3 class="page-title">产品信息查看</h3>
 	<ul class="breadcrumb">
-		<li><i class="icon-home"></i> <a class="ajaxify" href="index.jsp">主页</a> <i class="icon-angle-right"></i>
-		</li>
-		<li><a class="ajaxify" href="#">产品信息查看</a> <i class="icon-angle-right"></i>
-		</li>
-		<li><a class="ajaxify" href="#">销售合同登记</a><i class="icon-angle-right"></i>
-		</li>
-		<li><a class="ajaxify" href="#">合同产品登记</a><i class="icon-angle-right"></i>
-		</li>
-		<li><a class="ajaxify" href="#">收款计划</a><i class="icon-angle-right"></i>
-		</li>
-		<li><a class="ajaxify" href="#">采购订单登记</a><i class="icon-angle-right"></i>
-		</li>
-		<li><a class="ajaxify" href="#">订单产品登记</a><i class="icon-angle-right"></i>
-		</li>
-		<li><a class="ajaxify" href="#">付款计划</a>
-		</li>
+		<li><i class="icon-home"></i> <a class="ajaxify" href="index.jsp">主页</a> <i class="icon-angle-right"></i></li>
+		<li><a class="ajaxify" href="#">产品信息查看</a> <i class="icon-angle-right"></i></li>
+		<li><a class="ajaxify" href="#">销售合同登记</a><i class="icon-angle-right"></i></li>
+		<li><a class="ajaxify" href="#">合同产品登记</a><i class="icon-angle-right"></i></li>
+		<li><a class="ajaxify" href="#">收款计划</a><i class="icon-angle-right"></i></li>
+		<li><a class="ajaxify" href="#">采购订单登记</a><i class="icon-angle-right"></i></li>
+		<li><a class="ajaxify" href="#">订单产品登记</a><i class="icon-angle-right"></i></li>
+		<li><a class="ajaxify" href="#">付款计划</a></li>
 	</ul>
 </div>
 <div class="tab-pane  active" id="tab_2">
@@ -134,6 +124,8 @@
 					</div>
 					<!--/span-->
 				</div>
+				<%@ include file="workFlowSelect.jsp" %> 
+				<%-- <jsp:include page="workFlowSelect.jsp" ></jsp:include> --%>
 				<div class="form-actions">
 					<button id="submit" type="button" class="btn btn-primary" data-action="ProductAction!productList">保存</button>
 					<button type="button" class="btn">Cancel</button>
@@ -143,5 +135,4 @@
 		</div>
 	</div>
 </div>
-
 <script src="js/myAjaxify.js" type="text/javascript" />

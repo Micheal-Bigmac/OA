@@ -7,9 +7,19 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.oa.listenner.Persistence;
+import com.oa.listenner.persintenceListenner;
+import com.oa.model.Document;
 import com.oa.model.Product;
+import com.oa.model.Users;
+import com.oa.model.WorkFlow;
+import com.oa.service.DocumentService;
 import com.oa.service.ProductService;
+import com.oa.service.WorkFlowService;
+import com.oa.util.Constant;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class ProductAction extends ActionSupport {
@@ -19,11 +29,14 @@ public class ProductAction extends ActionSupport {
 	private int index;
 	private Integer pid;
 	private String returns;
+	private WorkFlowService workFlowService;
+	private DocumentService documentService;
+	private Integer workflowId;
+	private static Logger logger=LoggerFactory.getLogger(ProductAction.class);
 
 	public String productList() {
-		String hql="";
-		List<Product> Products = productService.getPageProducts((index == 0 ? 1
-				: index), Product.class, hql);
+		String hql = "";
+		List<Product> Products = productService.getPageProducts((index == 0 ? 1 : index), Product.class, hql);
 		for (Product m : Products) {
 			System.out.println(m.toString());
 		}
@@ -34,9 +47,13 @@ public class ProductAction extends ActionSupport {
 		// request.setAttribute("pid",(Product==null ? "": product.getId()));
 		request.setAttribute("totalSize", total);
 		request.setAttribute("url", "ProductAction!productList?");
+		getWorkFlowList();
 		return "productList";
 	}
-
+	private void getWorkFlowList(){
+		List<WorkFlow> workFlows = workFlowService.getAllWorkFlows("");
+		ServletActionContext.getRequest().getSession().setAttribute("workFlows", workFlows);
+	}
 
 	public String addproduct() {
 		/*
@@ -45,8 +62,19 @@ public class ProductAction extends ActionSupport {
 		 * flag=ProductService.addproduct(product);
 		 */
 		Serializable flag = null;
+		Users users = (Users) ServletActionContext.getRequest().getSession().getAttribute("admin");
+		String key=null;
 		if (product.getId() == null) {
-			flag = productService.addProduct(product);
+//			flag = productService.addProduct(product);
+			Document document=new Document();
+			String temp=users.getAccount()+Constant.productManage;
+			document.setTitle(temp);
+			document.setDescription(temp);
+			key=Persistence.setVariable(product);
+			document.setTypePersist(key+"|product");
+			logger.info(Persistence.getVariable(key).toString());
+			document.setUrl("JSP/addProduct.jsp");
+			flag=documentService.addDocument(document, workflowId, users.getId(), null);
 			returns = "ProductAction!productList";
 			return flag == null ? "operator_failure" : null;
 		}
@@ -67,8 +95,9 @@ public class ProductAction extends ActionSupport {
 		returns = "ProductAction!productList";
 		return "operator_success";
 	}
-	public String edit(){
-		Product temp=productService.getProduct(product.getId());
+
+	public String edit() {
+		Product temp = productService.getProduct(product.getId());
 		ServletActionContext.getRequest().setAttribute("product", temp);
 		return "editView";
 	}
@@ -112,6 +141,28 @@ public class ProductAction extends ActionSupport {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	public WorkFlowService getWorkFlowService() {
+		return workFlowService;
+	}
+
+	@Resource
+	public void setWorkFlowService(WorkFlowService workFlowService) {
+		this.workFlowService = workFlowService;
+	}
+	public Integer getWorkflowId() {
+		return workflowId;
+	}
+	public void setWorkflowId(Integer workflowId) {
+		this.workflowId = workflowId;
+	}
+	public DocumentService getDocumentService() {
+		return documentService;
+	}
+	@Resource
+	public void setDocumentService(DocumentService documentService) {
+		this.documentService = documentService;
 	}
 
 }

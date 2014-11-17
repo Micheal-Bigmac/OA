@@ -67,7 +67,11 @@ public class Document implements Serializable{
 	
 	private Long processInstanceId;
 	
+	//持久化在本地文件的Key
+	private String typePersist;
 	
+	//持久化本地key对应的URL
+	private String url;
 	//
 	private Set<DocumentProperty> props=new HashSet<DocumentProperty>();
 	
@@ -147,6 +151,18 @@ public class Document implements Serializable{
 	}
 	public void setProps(Set<DocumentProperty> props) {
 		this.props = props;
+	}
+	public String getTypePersist() {
+		return typePersist;
+	}
+	public void setTypePersist(String typePersist) {
+		this.typePersist = typePersist;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition
+  xmlns=""  name="多角色组合审批第二次修改">
+<start-state name="开始">
+      <transition name="提交管理员审批" to="系统管理员审批"></transition>
+   </start-state>
+   <task-node name="系统管理员审批">
+      <event type="node-enter">
+         <action class="com.oa.jbpm.handler.RollbackTransitionAction" />
+      </event>
+      <task name="审批">
+            <assignment class="com.oa.jbpm.handler.AdminDealProcess">
+               <roleName>系统管理员</roleName>
+            </assignment>      
+      </task>
+      <transition name="提交给部门领导审批" to="部门领导"></transition>
+   </task-node>
+   <task-node name="部门领导">
+      <event type="node-enter">
+         <action class="com.oa.jbpm.handler.RollbackTransitionAction" />
+      </event>
+      <task name="审批">
+            <assignment class="com.oa.jbpm.handler.AdminDealProcess">
+               <roleName>部门领导</roleName>
+            </assignment>      
+      </task>
+      <transition name="结束流程" to="结束"></transition>
+   </task-node>
+   <end-state name="结束"></end-state> 
+</process-definition>

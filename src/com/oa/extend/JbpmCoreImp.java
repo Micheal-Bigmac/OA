@@ -141,9 +141,11 @@ public class JbpmCoreImp implements JbpmCore {
 		JbpmContext context = getJbpmContext();
 		ProcessInstance instance = context.getProcessInstance(processInstanceId);
 
+//		instance.getContextInstance().setVariable("currentNode", instance.getRootToken().getNode().getName());
 		// 当前节点
 		String currentNodeName = instance.getRootToken().getNode().getName();
-
+//		instance.getRootToken().getActiveChildren().values().iterator().next();
+		
 		// 起点的名称
 		String startNodeName = instance.getProcessDefinition().getStartState().getName();
 
@@ -198,6 +200,7 @@ public class JbpmCoreImp implements JbpmCore {
 			}
 		}
 		String name = instance.getRootToken().getNode().getName();
+
 		// 返回转向之后的节点名称
 		context.close();
 		return name;

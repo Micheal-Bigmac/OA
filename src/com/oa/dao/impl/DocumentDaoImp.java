@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.oa.dao.DocumentDao;
 import com.oa.extend.JbpmCore;
+import com.oa.listenner.Persistence;
 import com.oa.model.Document;
 import com.oa.model.DocumentProperty;
 import com.oa.model.Users;
@@ -38,24 +39,20 @@ public class DocumentDaoImp implements DocumentDao {
 	 */
 
 	// 添加公文
-	public void addDocument(Document document, int workflowId, int userId,
-			List<DocumentProperty> props) {
+	public Serializable addDocument(Document document, int workflowId, int userId, List<DocumentProperty> props) {
 
 		// 保存公文信息
-		document.setWorkFlow((WorkFlow) jbpmCore.getJbpmTemplate()
-				.getHibernateTemplate().load(WorkFlow.class, workflowId));
-		document.setUsers((Users) jbpmCore.getJbpmTemplate()
-				.getHibernateTemplate().load(Users.class, userId));
+		document.setWorkFlow((WorkFlow) jbpmCore.getJbpmTemplate().getHibernateTemplate().load(WorkFlow.class, workflowId));
+		document.setUsers((Users) jbpmCore.getJbpmTemplate().getHibernateTemplate().load(Users.class, userId));
 		document.setStatus(Document.New);
 		document.setCreateTime(new Date());
 
 		// 设置其它属性
 		// document.setPropertiesMap(props);
 
-		jbpmCore.getJbpmTemplate().getHibernateTemplate().save(document);
+		Serializable flag=jbpmCore.getJbpmTemplate().getHibernateTemplate().save(document);
 		System.out.println("=------------========");
-		System.out
-				.println(document.toString() + " documentDaoImp addDocument ");
+		System.out.println(document.toString() + " documentDaoImp addDocument ");
 		if (props != null) {
 			for (DocumentProperty property : props) {
 				if (property != null) {
@@ -64,12 +61,12 @@ public class DocumentDaoImp implements DocumentDao {
 			}
 		}
 		// 添加流程实例
-		long processInstanceId = jbpmCore.addProcessInstance(document
-				.getWorkFlow().getName(), document, props);
+		long processInstanceId = jbpmCore.addProcessInstance(document.getWorkFlow().getName(), document, props);
 
 		// 绑定流程实例的标识到公文对象
 		document.setProcessInstanceId(processInstanceId);
 		jbpmCore.getJbpmTemplate().getHibernateTemplate().update(document);
+		return flag;
 	}
 
 	public void deleteDocuments(Class clazz, String[] ids, String hql) {
@@ -86,8 +83,7 @@ public class DocumentDaoImp implements DocumentDao {
 	}
 
 	// 查找正在等待审批的公文=-=-=-=-=-======================-------------------------------==============
-	public List<Document> searchPageApprovingDocuments(String username,
-			int index) {
+	public List<Document> searchPageApprovingDocuments(String username, int index) {
 		// System.out.println(username+"===--approving ");
 		List docs = jbpmCore.searchMyTaskList(username);
 		// System.out.println("DocumentDaoImp 待审公文"+docs.size());
@@ -120,8 +116,7 @@ public class DocumentDaoImp implements DocumentDao {
 	}
 
 	// 分页显示审批过的公文
-	public List<Document> searchPageApprovedDocument(int index,
-			String CompleteHql) {
+	public List<Document> searchPageApprovedDocument(int index, String CompleteHql) {
 		return objectToDocuments(superDao.getpage(index, CompleteHql));
 	}
 
@@ -140,28 +135,23 @@ public class DocumentDaoImp implements DocumentDao {
 	/**
 	 * 我的所有公文===================
 	 */
-	public List<Document> searchAllMyDocument(Class clazz, int userId,
-			boolean finished) {
+	public List<Document> searchAllMyDocument(Class clazz, int userId, boolean finished) {
 		if (finished == false) {
 			String hql = "from Document d where d.users.id =" + userId;
 			return objectToDocuments(superDao.getAllObjects(hql));
 		} else {
-			String hql = "from Document d where d.users.id =" + userId
-					+ " and d.status='结束'";
+			String hql = "from Document d where d.users.id =" + userId + " and d.status='结束'";
 			return objectToDocuments(superDao.getAllObjects(hql));
 		}
 	}
 
-	public List<Document> searchPageDocument(Class clazz, int userId,
-			int index, boolean finished) {
+	public List<Document> searchPageDocument(Class clazz, int userId, int index, boolean finished) {
 		if (finished == false) {
-			String hql = "from Document d where d.users.id =" + userId;
+			String hql = "from Document d where d.users.id =" + userId +" and d.status!='结束' ";
 			return objectToDocuments(superDao.getpage(index, hql));
 		} else {
-			String hql = "from Document d where d.users.id =" + userId
-					+ " and d.status='结束'";
-			System.out.println(hql
-					+ " ================================ finish document");
+			String hql = "from Document d where d.users.id =" + userId + " and d.status='结束'";
+			System.out.println(hql + " ================================ finish document");
 			return objectToDocuments(superDao.getpage(index, hql));
 		}
 	}
@@ -181,23 +171,28 @@ public class DocumentDaoImp implements DocumentDao {
 	 */
 	public List searchNextStep(int documentId, String userId) {
 		Document doc = (Document) superDao.select(Document.class, documentId);
-		return jbpmCore.searchNextTransitions(doc.getProcessInstanceId(),
-				userId);
+		return jbpmCore.searchNextTransitions(doc.getProcessInstanceId(), userId);
 	}
 
 	// 提交到流程
-	public void submitToWorkFlow(int userId, int documentId,
-			String transitionName) {
+	public void submitToWorkFlow(int userId, int documentId, String transitionName) {
 		// Users user = (Users)getHibernateTemplate().load(User.class, userId);
 		Users user = (Users) superDao.select(Users.class, userId);
 		String username = user.getAccount();
 
-		Document document = (Document) superDao.select(Document.class,
-				documentId);
+		Document document = (Document) superDao.select(Document.class, documentId);
 		long processInstanceId = document.getProcessInstanceId();
 
-		String status = jbpmCore.nextStep(processInstanceId, username,
-				transitionName);
+		String status = jbpmCore.nextStep(processInstanceId, username, transitionName);
+		if("结束".equals(status)){
+			String key=document.getTypePersist();
+			if(key!=null){
+				key=key.replaceAll("(.*)\\|.*", "$1");
+				Object object=Persistence.getVariable(key);
+				superDao.add(object);
+				Persistence.removeVariable(key);
+			}
+		}
 
 		document.setStatus(status);
 		superDao.update(document);

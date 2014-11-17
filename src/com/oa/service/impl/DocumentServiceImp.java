@@ -25,8 +25,8 @@ public class DocumentServiceImp implements DocumentService {
 	/* (non-Javadoc)
 	 * @see com.oa.service.impl.DocumentService#addDocument(com.oa.model.Document, int, int)
 	 */
-	public void addDocument(Document document,int workflowId,int userId,List<DocumentProperty> props){
-		documentDao.addDocument(document, workflowId, userId,props);
+	public Serializable addDocument(Document document,int workflowId,int userId,List<DocumentProperty> props){
+		return documentDao.addDocument(document, workflowId, userId,props);
 	}
 	
 	/* (non-Javadoc)

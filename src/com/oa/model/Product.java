@@ -30,6 +30,7 @@ public class Product implements Serializable{
 	private Integer totalInventory;  // 库存总量
 	private Integer currentInventory;// 当前总量
 	
+	
 	private Set<ContractProductRecord> contractProductRecords=new HashSet<ContractProductRecord>();
 	private Set<OrderProductRecord> orderProductRecords=new HashSet<OrderProductRecord>();
 	@Id
@@ -104,4 +105,5 @@ public class Product implements Serializable{
 	public void setTotalOutbound(Integer totalOutbound) {
 		this.totalOutbound = totalOutbound;
 	}
+
 }

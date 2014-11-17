@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition
+  xmlns=""  name="给多个角色动态设置任务（task）第误次配置(多角色自动动态分配任务+自带回退功能)">
+<start-state name="开始">
+      <transition name="提交管理员审批" to="系统管理员审批"></transition>
+   </start-state>
+   <task-node name="系统管理员审批" end-tasks="yes">
+      <event type="node-enter">
+         <action class="com.oa.jbpm.handler.DynamicDeployTask" >
+            <roleName>系统管理员</roleName>
+         </action>
+         <action class="com.oa.jbpm.handler.RollbackTransitionAction" />
+      </event>
+      <task name="系统管理员审批1"/>
+      <transition name="提交部门经理审批" to="部门经理审批"></transition>
+   </task-node>
+   <task-node name="部门经理审批" end-tasks="yes">
+      <event type="node-enter">
+         <action class="com.oa.jbpm.handler.DynamicDeployTask" >
+            <roleName>部门领导</roleName>
+         </action>
+         <action class="com.oa.jbpm.handler.RollbackTransitionAction" />
+      </event>
+      <task name="系统管理员审批1"/>
+      <transition name="结束流程" to="结束"></transition>
+   </task-node>
+   <end-state name="结束"></end-state> 
+</process-definition>

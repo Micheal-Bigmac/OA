@@ -14,7 +14,7 @@ public interface DocumentService {
 	 * @param workflowId 公文对应的流程ID
 	 * @param userId 公文的创建者ID
 	 */
-	public abstract void addDocument(Document document, int workflowId,
+	public abstract Serializable addDocument(Document document, int workflowId,
 			int userId,List<DocumentProperty> props);
 
 	/**

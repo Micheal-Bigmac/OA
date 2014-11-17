@@ -38,7 +38,7 @@ public class DocumentAction extends ActionSupport {
 	private WorkFlowService workFlowService;
 	private ApproveHistoryService approveHistoryService;
 	private Document document;
-	
+
 	/*
 	 * private File uploadFiles; private String uploadFilesContentType; private
 	 * String uploadFilesFileName;
@@ -64,13 +64,11 @@ public class DocumentAction extends ActionSupport {
 	private int back;
 
 	public String approve() {
-		Users users = (Users) ServletActionContext.getRequest().getSession()
-				.getAttribute("admin");
+		Users users = (Users) ServletActionContext.getRequest().getSession().getAttribute("admin");
 		ApproveHistory history = new ApproveHistory();
 		history.setComments(idea);
 		history.setApproveTime(new Date());
-		approveHistoryService.addApproveHistory(history, document.getId(),
-				users.getId(), (back == 1 ? true : false));
+		approveHistoryService.addApproveHistory(history, document.getId(), users.getId(), (back == 1 ? true : false));
 		returns = "DocumentAction!ApprovingDocumentList";
 		return "operator_success";
 	}
@@ -80,8 +78,7 @@ public class DocumentAction extends ActionSupport {
 		Users user = (Users) request.getSession().getAttribute("admin");
 		int userId = user.getId();
 		System.out.println(user.toString());
-		List<Document> documents = documentService.serachPageFinishDocuments(
-				(index == 0 ? 1 : index), userId);
+		List<Document> documents = documentService.serachPageFinishDocuments((index == 0 ? 1 : index), userId);
 		request.setAttribute("currentIndex", (index == 0 ? 1 : index));
 		request.setAttribute("myDocumentList", documents);
 		int totals = documentService.serachAllFinishDocuments(userId).size();
@@ -101,8 +98,7 @@ public class DocumentAction extends ActionSupport {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		Users user = (Users) request.getSession().getAttribute("admin");
 		System.out.println(user.toString());
-		List<Document> documents = documentService.searchMyDocumentsPage(
-				(index == 0 ? 1 : index), user.getId());
+		List<Document> documents = documentService.searchMyDocumentsPage((index == 0 ? 1 : index), user.getId());
 		request.setAttribute("currentIndex", (index == 0 ? 1 : index));
 		request.setAttribute("myDocumentList", documents);
 		int totals = documentService.searchAllMyDocument(user.getId()).size();
@@ -120,12 +116,10 @@ public class DocumentAction extends ActionSupport {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		Users user = (Users) request.getSession().getAttribute("admin");
 		String username = user.getAccount();
-		List<Document> documents = documentService
-				.searchPageApprovingDocuments(username,
-						(index == 0 ? 1 : index));
+		List<Document> documents = documentService.searchPageApprovingDocuments(username, (index == 0 ? 1 : index));
 		request.setAttribute("currentIndex", (index == 0 ? 1 : index));
 		request.setAttribute("myDocumentList", documents);
-		System.out.println(username+"  ========= zy");
+		System.out.println(username + "  ========= zy");
 		List temp = documentService.SearchAllApprovingDocuments(username);
 		int totals = (temp == null ? 0 : temp.size());
 		request.setAttribute("totalSize", totals);
@@ -143,13 +137,10 @@ public class DocumentAction extends ActionSupport {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		Users user = (Users) request.getSession().getAttribute("admin");
 
-		List<ApproveHistory> documents = approveHistoryService
-				.searchPageApproveHistory((index == 0 ? 1 : index),
-						document.getId());
+		List<ApproveHistory> documents = approveHistoryService.searchPageApproveHistory((index == 0 ? 1 : index), document.getId());
 		request.setAttribute("currentIndex", (index == 0 ? 1 : index));
 		request.setAttribute("approveHistoryList", documents);
-		int totals = approveHistoryService.searchAllApproveHistory(
-				document.getId()).size();
+		int totals = approveHistoryService.searchAllApproveHistory(document.getId()).size();
 		request.setAttribute("totalSize", totals);
 		request.setAttribute("url", "DocumentAction!approveHistoryList");
 		request.setAttribute("type", "approveHistory");
@@ -167,12 +158,10 @@ public class DocumentAction extends ActionSupport {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		Users user = (Users) request.getSession().getAttribute("admin");
 
-		List<Document> documents = documentService.searchPageApprovedDocuments(
-				user.getId(), index);
+		List<Document> documents = documentService.searchPageApprovedDocuments(user.getId(), index);
 		request.setAttribute("currentIndex", (index == 0 ? 1 : index));
 		request.setAttribute("myDocumentList", documents);
-		int totals = documentService.searchAllApprovedDocuments(user.getId())
-				.size();
+		int totals = documentService.searchAllApprovedDocuments(user.getId()).size();
 		request.setAttribute("totalSize", totals);
 		request.setAttribute("url", "DocumentAction!ApprovedDocumentList");
 		request.setAttribute("type", "approvedDocument");
@@ -182,37 +171,37 @@ public class DocumentAction extends ActionSupport {
 	public String addDocument() throws IOException {
 		System.out.println("DocumentAction ===-- ");
 		HttpServletRequest request = ServletActionContext.getRequest();
-		Users users = (Users) ServletActionContext.getRequest().getSession()
-				.getAttribute("admin");
-		
+		Users users = (Users) ServletActionContext.getRequest().getSession().getAttribute("admin");
+
 		if (addtoServer()) {
 			System.out.println(" upload file success");
 			show();
 			System.out.println("===========================");
-//			System.out.println(props.toString());
-			/*for(DocumentProperty property : props){
-				System.err.println(property.toString()+"");
-			}*/
-		
-			System.out.println(" workflow " +workflowId);
-			 documentService.addDocument(document, workflowId,users.getId(),props);
+			// System.out.println(props.toString());
+			/*
+			 * for(DocumentProperty property : props){
+			 * System.err.println(property.toString()+""); }
+			 */
+
+			System.out.println(" workflow " + workflowId);
+			documentService.addDocument(document, workflowId, users.getId(), props);
 		}
 		returns = "DocumentAction!listMyDocument";
 		return "operator_success";
 	}
 
 	public void show() {
-//		System.out.println(props.size());
-		int i=0;
-		if(props == null){
-			return ;
+		// System.out.println(props.size());
+		int i = 0;
+		if (props == null) {
+			return;
 		}
 		for (DocumentProperty property : props) {
-			if(property.getJava_io_File()!=null){
+			if (property.getJava_io_File() != null) {
 				property.setJava_io_File(currentFileName.get(0).getAbsolutePath());
 				props.set(i, property);
 				currentFileName.remove(0);
-			} else if (property.isNull()){
+			} else if (property.isNull()) {
 				props.set(i, null);
 			}
 			System.out.println(property.toString());
@@ -232,12 +221,10 @@ public class DocumentAction extends ActionSupport {
 	}
 
 	public String submitView() {
-		Users users = (Users) ServletActionContext.getRequest().getSession()
-				.getAttribute("admin");
+		Users users = (Users) ServletActionContext.getRequest().getSession().getAttribute("admin");
 		System.out.println(document.getId());
-		List nextTransation = documentService.searchNextStep(document.getId(),users.getAccount());
-		ServletActionContext.getRequest().setAttribute("transitionList",
-				nextTransation);
+		List nextTransation = documentService.searchNextStep(document.getId(), users.getAccount());
+		ServletActionContext.getRequest().setAttribute("transitionList", nextTransation);
 		ServletActionContext.getRequest().setAttribute("id", document.getId());
 		return "submitToNextOne";
 	}
@@ -245,13 +232,11 @@ public class DocumentAction extends ActionSupport {
 	/**
 	 * no problem
 	 * 
-	 * @return
+	 * @returnLllsdfsd55
 	 */
 	public String submit() {
-		Users users = (Users) ServletActionContext.getRequest().getSession()
-				.getAttribute("admin");
-		documentService.submitToWorkFlow(users.getId(), document.getId(),
-				transition);
+		Users users = (Users) ServletActionContext.getRequest().getSession().getAttribute("admin");
+		documentService.submitToWorkFlow(users.getId(), document.getId(), transition);
 		returns = "DocumentAction!listMyDocument";
 		return "operator_success";
 	}
@@ -259,16 +244,13 @@ public class DocumentAction extends ActionSupport {
 	private boolean addtoServer() throws IOException {
 		for (int i = 0; i < uploadFiles.size(); i++) {
 			if (uploadFiles.get(i).length() != 0) {
-				String upload = ServletActionContext.getServletContext()
-						.getRealPath("/upload");
+				String upload = ServletActionContext.getServletContext().getRealPath("/upload");
 				String filename = uploadFilesFileName.get(i);
-				SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-						"yyyyMMddhhmmss");
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
 				String temp = filename.substring(0, filename.lastIndexOf("."));
 				String temp2 = filename.substring(filename.lastIndexOf("."));
-				String filepath = temp + simpleDateFormat.format(new Date())
-						+ temp2;
-			
+				String filepath = temp + simpleDateFormat.format(new Date()) + temp2;
+
 				File savefile = new File(upload, filepath);
 				System.out.println(savefile.toString());
 				currentFileName.add(savefile);
@@ -297,8 +279,7 @@ public class DocumentAction extends ActionSupport {
 			HttpServletResponse response = ServletActionContext.getResponse();
 			response.reset();
 			response.setContentType("application/x-download;charset=GBK");
-			response.setHeader("Content-Disposition",
-					"attachment;filename=temp.doc");
+			response.setHeader("Content-Disposition", "attachment;filename=temp.doc");
 			OutputStream outputStream = response.getOutputStream();
 			byte[] buffer = new byte[inputStream.available()];
 
@@ -395,8 +376,7 @@ public class DocumentAction extends ActionSupport {
 	}
 
 	@Resource
-	public void setApproveHistoryService(
-			ApproveHistoryService approveHistoryService) {
+	public void setApproveHistoryService(ApproveHistoryService approveHistoryService) {
 		this.approveHistoryService = approveHistoryService;
 	}
 
@@ -457,8 +437,8 @@ public class DocumentAction extends ActionSupport {
 		System.out.println(props.toString());
 		System.out.println("set list <documentProperty ");
 		this.props = props;
-		for(DocumentProperty property : props){
-			System.err.println(property.toString()+"");
+		for (DocumentProperty property : props) {
+			System.err.println(property.toString() + "");
 		}
 	}
 }
