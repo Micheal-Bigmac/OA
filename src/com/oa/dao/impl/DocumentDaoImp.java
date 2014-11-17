@@ -182,6 +182,7 @@ public class DocumentDaoImp implements DocumentDao {
 
 		Document document = (Document) superDao.select(Document.class, documentId);
 		long processInstanceId = document.getProcessInstanceId();
+		
 
 		String status = jbpmCore.nextStep(processInstanceId, username, transitionName);
 		if("结束".equals(status)){
