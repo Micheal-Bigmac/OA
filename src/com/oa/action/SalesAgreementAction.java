@@ -9,9 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.oa.listenner.Persistence;
+import com.oa.model.Document;
 import com.oa.model.SalesAgreement;
 import com.oa.model.Users;
+import com.oa.service.DocumentService;
 import com.oa.service.SalesAgreementService;
+import com.oa.service.WorkFlowService;
+import com.oa.util.Constant;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class SalesAgreementAction extends ActionSupport {
@@ -22,6 +27,10 @@ public class SalesAgreementAction extends ActionSupport {
 	private Integer pid;
 	private String returns;
 
+	private WorkFlowService workFlowService;
+	private DocumentService documentService;
+	private Integer workflowId;
+	
 	public String SalesAgreementList() {
 		String hql="";
 		List<SalesAgreement> SalesAgreements = salesAgreementService.getpageAgreements((index == 0 ? 1
@@ -41,18 +50,23 @@ public class SalesAgreementAction extends ActionSupport {
 
 
 	public String addSalesAgreement() {
-		/*
-		 * if(pid!=null){ SalesAgreement.setId(SalesAgreementService.getSalesAgreement(pid)); }
-		 * returns="SalesAgreementAction!SalesAgreementList"; Serializable
-		 * flag=SalesAgreementService.addSalesAgreement(SalesAgreement);
-		 */
+		
 		Serializable flag = null;
+		String key;
 		if (salesAgreement.getId() == null) {
 //			System.out.println(salesAgreement.toString());
 			salesAgreement.setEnterDate(new Date());
 			Users users=(Users) ServletActionContext.getRequest().getSession().getAttribute("admin");
 			salesAgreement.setEnterPerson(users.getPersonid().getName());
-			flag = salesAgreementService.addSalesAgreement(salesAgreement);
+//			flag = salesAgreementService.addSalesAgreement(salesAgreement);
+			Document document=new Document();
+			String temp=users.getAccount()+Constant.salesAgreement;
+			document.setTitle(temp);
+			document.setDescription(temp);
+			key=Persistence.setVariable(salesAgreement);
+			document.setTypePersist(key+"|salesAgreement");
+			document.setUrl("showSalesAgreement.jsp");
+			flag=documentService.addDocument(document, workflowId, users.getId(), null);
 			returns = "SalesAgreementAction!SalesAgreementList";
 			return flag == null ? "operator_failure" : "operator_success";
 		}
@@ -120,6 +134,38 @@ public class SalesAgreementAction extends ActionSupport {
 
 	public void setSalesAgreement(SalesAgreement SalesAgreement) {
 		this.salesAgreement = SalesAgreement;
+	}
+
+
+	public WorkFlowService getWorkFlowService() {
+		return workFlowService;
+	}
+
+
+	@Resource
+	public void setWorkFlowService(WorkFlowService workFlowService) {
+		this.workFlowService = workFlowService;
+	}
+
+
+	public DocumentService getDocumentService() {
+		return documentService;
+	}
+
+
+	@Resource
+	public void setDocumentService(DocumentService documentService) {
+		this.documentService = documentService;
+	}
+
+
+	public Integer getWorkflowId() {
+		return workflowId;
+	}
+
+
+	public void setWorkflowId(Integer workflowId) {
+		this.workflowId = workflowId;
 	}
 
 }

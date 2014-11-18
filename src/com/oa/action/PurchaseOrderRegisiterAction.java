@@ -9,9 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.oa.listenner.Persistence;
+import com.oa.model.Document;
 import com.oa.model.PurchaseOrderRegisiter;
 import com.oa.model.Users;
+import com.oa.service.DocumentService;
 import com.oa.service.PurchaseOrderRegisiterService;
+import com.oa.util.Constant;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class PurchaseOrderRegisiterAction extends ActionSupport {
@@ -22,6 +26,9 @@ public class PurchaseOrderRegisiterAction extends ActionSupport {
 	private Integer pid;
 	private String returns;
 
+	private DocumentService documentService;
+	private Integer workflowId;
+	
 	public String PurchaseOrderRegisiterList() {
 		String hql="";
 		List<PurchaseOrderRegisiter> purchaseOrderRegisiter = PurchaseOrderRegisiterService.getPagePurchaseOrderRegisiters((index == 0 ? 1
@@ -40,12 +47,22 @@ public class PurchaseOrderRegisiterAction extends ActionSupport {
 	}
 
 	public String addPurchaseOrderRegisiter() {
+		Users users = (Users) ServletActionContext.getRequest().getSession().getAttribute("admin");
+		String key=null;
 		Serializable flag = null;
 		if (purchaseOrderRegisiter.getId() == null) {
-			Users user=(Users) ServletActionContext.getRequest().getSession().getAttribute("admin");
-			purchaseOrderRegisiter.setEnterPerson(user.getPersonid().getName());
+			purchaseOrderRegisiter.setEnterPerson(users.getPersonid().getName());
 			purchaseOrderRegisiter.setEnterDate(new Date());
-			flag = PurchaseOrderRegisiterService.addPurchaseOrderRegisiter(purchaseOrderRegisiter);
+			
+			Document document=new Document();
+			String temp=users.getAccount()+Constant.purchaseOrderRegisiter;
+			document.setTitle(temp);
+			document.setDescription(temp);
+			key=Persistence.setVariable(purchaseOrderRegisiter);
+			document.setTypePersist(key+"|purchaseOrderRegisiter");
+			document.setUrl("showPurchaseOrderRegisiter.jsp");
+			flag=documentService.addDocument(document, workflowId, users.getId(), null);
+//			flag = PurchaseOrderRegisiterService.addPurchaseOrderRegisiter(purchaseOrderRegisiter);
 			returns = "PurchaseOrderRegisiterAction!PurchaseOrderRegisiterList";
 			return flag == null ? "operator_failure" : "operator_success";
 		}
@@ -113,6 +130,23 @@ public class PurchaseOrderRegisiterAction extends ActionSupport {
 
 	public void setPurchaseOrderRegisiter(PurchaseOrderRegisiter PurchaseOrderRegisiter) {
 		this.purchaseOrderRegisiter = PurchaseOrderRegisiter;
+	}
+
+	public DocumentService getDocumentService() {
+		return documentService;
+	}
+
+	@Resource
+	public void setDocumentService(DocumentService documentService) {
+		this.documentService = documentService;
+	}
+
+	public Integer getWorkflowId() {
+		return workflowId;
+	}
+
+	public void setWorkflowId(Integer workflowId) {
+		this.workflowId = workflowId;
 	}
 
 }

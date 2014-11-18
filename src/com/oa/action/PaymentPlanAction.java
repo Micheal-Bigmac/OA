@@ -9,11 +9,16 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.oa.listenner.Persistence;
+import com.oa.model.Document;
 import com.oa.model.PaymentPlan;
 import com.oa.model.PurchaseOrderRegisiter;
 import com.oa.model.SalesAgreement;
+import com.oa.model.Users;
+import com.oa.service.DocumentService;
 import com.oa.service.PaymentPlanService;
 import com.oa.service.SalesAgreementService;
+import com.oa.util.Constant;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class PaymentPlanAction extends ActionSupport {
@@ -24,6 +29,9 @@ public class PaymentPlanAction extends ActionSupport {
 	private int index;
 	private Integer pid;
 	private String returns;
+	
+	private DocumentService documentService;
+	private Integer workflowId;
 
 	public String PaymentPlanList() {
 		String hql="";
@@ -50,14 +58,20 @@ public class PaymentPlanAction extends ActionSupport {
 	}
 
 	public String addPaymentPlan() {
-		/*
-		 * if(pid!=null){ PaymentPlan.setId(PaymentPlanService.getPaymentPlan(pid)); }
-		 * returns="PaymentPlanAction!PaymentPlanList"; Serializable
-		 * flag=PaymentPlanService.addPaymentPlan(PaymentPlan);
-		 */
+		
+		Users users = (Users) ServletActionContext.getRequest().getSession().getAttribute("admin");
+		String key=null;
 		Serializable flag = null;
 		if (PaymentPlan.getId() == null) {
-			flag = PaymentPlanService.addPaymentPlan(PaymentPlan);
+//			flag = PaymentPlanService.addPaymentPlan(PaymentPlan);
+			Document document=new Document();
+			String temp=users.getAccount()+Constant.paymentPlan;
+			document.setTitle(temp);
+			document.setDescription(temp);
+			key=Persistence.setVariable(PaymentPlan);
+			document.setTypePersist(key+"|paymentPlan");
+			document.setUrl("showPaymentPlan.jsp");
+			flag=documentService.addDocument(document, workflowId, users.getId(), null);
 			returns = "PaymentPlanAction!PaymentPlanList";
 			return flag == null ? "operator_failure" : "operator_success";
 		}
@@ -131,6 +145,23 @@ public class PaymentPlanAction extends ActionSupport {
 	@Resource
 	public void setSalesAgreementService(SalesAgreementService salesAgreementService) {
 		this.salesAgreementService = salesAgreementService;
+	}
+
+	public DocumentService getDocumentService() {
+		return documentService;
+	}
+
+	@Resource
+	public void setDocumentService(DocumentService documentService) {
+		this.documentService = documentService;
+	}
+
+	public Integer getWorkflowId() {
+		return workflowId;
+	}
+
+	public void setWorkflowId(Integer workflowId) {
+		this.workflowId = workflowId;
 	}
 
 

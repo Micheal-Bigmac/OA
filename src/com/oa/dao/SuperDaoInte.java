@@ -10,6 +10,8 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import com.oa.model.Module;
 
 public interface SuperDaoInte {
+	
+	public void saveOrUpdate(Object object);
 
 	public abstract Serializable add(Object model);
 

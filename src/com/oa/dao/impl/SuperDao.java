@@ -169,4 +169,8 @@ public class SuperDao implements SuperDaoInte {
 		return list;
 	}
 
+	public void saveOrUpdate(Object object) {
+		hibernateTemplate.saveOrUpdate(object);
+	}
+
 }

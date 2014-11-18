@@ -14,9 +14,8 @@ import java.util.Random;
 //将内存中的一个对象持久化到一个文件中
 public class Persistence {
 
-	private static Map variables = null;
-	private static String saveFileName = System.getProperty("java.io.tmpdir") + "/temp.object";
-	private static File tempFile;
+	public static Map variables = null;
+	private static String saveFileName =  System.getProperty("java.io.tmpdir")+"/temp.object";
 	static {
 		if (new File(saveFileName).exists()) {
 			try {
@@ -41,19 +40,19 @@ public class Persistence {
 		if (variables != null) {
 			variables.put(randomNameString, value);
 		}
-		// saveToFile();
+		 saveToFile();
 		return randomNameString;
 	}
 
 	public static void saveToFile() {
 		try {
-			FileOutputStream outputStream = new FileOutputStream(tempFile);
+			FileOutputStream outputStream = new FileOutputStream(saveFileName);
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
 			objectOutputStream.writeObject(variables);
 			objectOutputStream.flush();
+			outputStream.flush();
 			objectOutputStream.close();
 			outputStream.close();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -67,5 +66,8 @@ public class Persistence {
 	}
 	public static void removeVariable(String name){
 		variables.remove(name);
+	}
+	public static void main(String[] args) {
+		System.out.println(variables.size());
 	}
 }

@@ -190,7 +190,7 @@ public class DocumentDaoImp implements DocumentDao {
 			if(key!=null){
 				key=key.replaceAll("(.*)\\|.*", "$1");
 				Object object=Persistence.getVariable(key);
-				superDao.add(object);
+				superDao.saveOrUpdate(object);
 				Persistence.removeVariable(key);
 			}
 		}

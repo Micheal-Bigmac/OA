@@ -103,7 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 					<!--/span-->
 				</div>
-				
+				<%@ include file="workFlowSelect.jsp" %> 
 				<div class="form-actions">
 					<button id="submit" type="button" class="btn btn-primary" data-action="ContractProductAction!ContractProductRecordList">保存</button>
 					<button type="button" class="btn">Cancel</button>

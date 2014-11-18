@@ -9,12 +9,17 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.oa.listenner.Persistence;
+import com.oa.model.Document;
 import com.oa.model.OrderProductRecord;
 import com.oa.model.Product;
 import com.oa.model.PurchaseOrderRegisiter;
+import com.oa.model.Users;
+import com.oa.service.DocumentService;
 import com.oa.service.OrderProductRecordService;
 import com.oa.service.ProductService;
 import com.oa.service.PurchaseOrderRegisiterService;
+import com.oa.util.Constant;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class OrderProductRecordAction extends ActionSupport {
@@ -27,38 +32,49 @@ public class OrderProductRecordAction extends ActionSupport {
 	private Integer pid;
 	private String returns;
 
+	private DocumentService documentService;
+	private Integer workflowId;
+
 	public String OrderProductRecordList() {
-		String hql="";
-		List<OrderProductRecord> OrderProductRecords = orderProductRecordService.getPageOrderProductRecords((index == 0 ? 1
-				: index), OrderProductRecord.class, hql);
+		String hql = "";
+		List<OrderProductRecord> OrderProductRecords = orderProductRecordService.getPageOrderProductRecords((index == 0 ? 1 : index), OrderProductRecord.class, hql);
 		for (OrderProductRecord m : OrderProductRecords) {
 			System.out.println(m.toString());
 		}
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("listObject", OrderProductRecords);
 		request.setAttribute("currentIndex", (index == 0 ? 1 : index));
-		
-		List<Product> products=productService.getAllProducts(Product.class, "");
-		List<PurchaseOrderRegisiter> purchaseOrderRegisiter=purchaseOrderRegisiterService.getAllPurchaseOrderRegisiters(PurchaseOrderRegisiter.class, hql);
-		HttpSession session=ServletActionContext.getRequest().getSession();
+
+		List<Product> products = productService.getAllProducts(Product.class, "");
+		List<PurchaseOrderRegisiter> purchaseOrderRegisiter = purchaseOrderRegisiterService.getAllPurchaseOrderRegisiters(PurchaseOrderRegisiter.class, hql);
+		HttpSession session = ServletActionContext.getRequest().getSession();
 		session.setAttribute("products", products);
 		session.setAttribute("purchaseOrderRegisiter", purchaseOrderRegisiter);
-		
+
 		int total = orderProductRecordService.getAllOrderProductRecords(OrderProductRecord.class, hql).size();
-		System.out.println("=============================="+total);
-		// request.setAttribute("pid",(OrderProductRecord==null ? "": OrderProductRecord.getId()));
+		System.out.println("==============================" + total);
+		// request.setAttribute("pid",(OrderProductRecord==null ? "":
+		// OrderProductRecord.getId()));
 		request.setAttribute("totalSize", total);
 		request.setAttribute("url", "OrderProductRecordAction!OrderProductRecordList?");
 		return "OrderProductRecordList";
 	}
 
-	
-
 	public String addOrderProductRecord() {
-		
+
 		Serializable flag = null;
+		Users users = (Users) ServletActionContext.getRequest().getSession().getAttribute("admin");
+		String key=null;
 		if (orderProductRecord.getId() == null) {
-			flag = orderProductRecordService.addOrderProductRecord(orderProductRecord);
+//			flag = orderProductRecordService.addOrderProductRecord(orderProductRecord);
+			Document document=new Document();
+			String temp=users.getAccount()+Constant.orderProductRecord;
+			document.setTitle(temp);
+			document.setDescription(temp);
+			key=Persistence.setVariable(orderProductRecord);
+			document.setTypePersist(key+"|orderProductRecord");
+			document.setUrl("showOrderProductRecord.jsp");
+			flag=documentService.addDocument(document, workflowId, users.getId(), null);
 			returns = "OrderProductRecordAction!OrderProductRecordList";
 			return flag == null ? "operator_failure" : "operator_success";
 		}
@@ -81,8 +97,9 @@ public class OrderProductRecordAction extends ActionSupport {
 		returns = "OrderProductRecordAction!OrderProductRecordList";
 		return "operator_success";
 	}
-	public String edit(){
-		OrderProductRecord temp=orderProductRecordService.getOrderProductRecord(orderProductRecord.getId());
+
+	public String edit() {
+		OrderProductRecord temp = orderProductRecordService.getOrderProductRecord(orderProductRecord.getId());
 		ServletActionContext.getRequest().setAttribute("orderProductRecord", temp);
 		return "editView";
 	}
@@ -132,22 +149,35 @@ public class OrderProductRecordAction extends ActionSupport {
 		return productService;
 	}
 
-
 	@Resource
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
 	}
 
-
 	public PurchaseOrderRegisiterService getPurchaseOrderRegisiterService() {
 		return purchaseOrderRegisiterService;
 	}
 
+	@Resource
+	public void setPurchaseOrderRegisiterService(PurchaseOrderRegisiterService purchaseOrderRegisiterService) {
+		this.purchaseOrderRegisiterService = purchaseOrderRegisiterService;
+	}
+
+	public DocumentService getDocumentService() {
+		return documentService;
+	}
 
 	@Resource
-	public void setPurchaseOrderRegisiterService(
-			PurchaseOrderRegisiterService purchaseOrderRegisiterService) {
-		this.purchaseOrderRegisiterService = purchaseOrderRegisiterService;
+	public void setDocumentService(DocumentService documentService) {
+		this.documentService = documentService;
+	}
+
+	public Integer getWorkflowId() {
+		return workflowId;
+	}
+
+	public void setWorkflowId(Integer workflowId) {
+		this.workflowId = workflowId;
 	}
 
 }

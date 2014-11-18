@@ -1,24 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
-<%@taglib uri="/struts-tags" prefix="s"%>
-<%@include file="debugFile.inc" %>
-<% String path = request.getContextPath(); 
-String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
-<link href="css/bootstrap-datepicker.css" rel="stylesheet" type="text/css" />
-
 <base href="<%=basePath%>">
-
-<div class="row-fluid">
-	<h3 class="page-title">人事合同</h3>
-	<ul class="breadcrumb">
-		<li><i class="icon-home"></i> <a class="ajaxify" href="index.jsp">主页</a> <i class="icon-angle-right"></i></li>
-		<li><a class="ajaxify" href="#">人力资源</a> <i class="icon-angle-right"></i></li>
-		<li><a class="ajaxify" href="#">奖罚记录</a><i class="icon-angle-right"></i></li>
-		<li><a class="ajaxify" href="#">绩效参数</a><i class="icon-angle-right"></i></li>
-		<li><a class="ajaxify" href="#">绩效考核</a><i class="icon-angle-right"></i></li>
-	</ul>
-</div>
-
+<%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="debugFile.inc"%>
+<link href="css/bootstrap-datepicker.css" rel="stylesheet" type="text/css" />
 <div class="tab-pane  active" id="tab_2">
 	<div class="portlet box green">
 		<div class="portlet-title">
@@ -31,7 +19,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 		</div>
 		<div class="portlet-body form">
 		<!-- BEGIN FORM-->
-			<form id="form" action="AgreementAction!addAgree?method=1" class="form-horizontal" method="post">
+			<form class="form-horizontal" method="post">
 			<h3 class="form-section">合同管理</h3>
 				<div class="row-fluid">
 					<div class="span6 ">
@@ -40,7 +28,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 							<div class="controls">
 								<input type="hidden" name="agreement.id" value="${agreement.id}" />
 								
-								<input type="text" class="m-wrap span12" placeholder="" name="agreement.aggState" value="${agreement.aggState}" check-type="required"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="agreement.aggState" value="${agreement.aggState}" check-type="required" readOnly> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -48,7 +36,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 						<div class="control-group">
 							<label class="control-label">合同编号:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="agreement.aggId" value="${agreement.aggId}" check-type="required"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="agreement.aggId" value="${agreement.aggId}" check-type="required" readOnly> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -59,7 +47,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 						<div class="control-group">
 							<label class="control-label">合同类型:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="agreement.aggType" value="${agreement.aggType}" check-type="required"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="agreement.aggType" value="${agreement.aggType}" check-type="required" readOnly> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -67,7 +55,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 						<div class="control-group">
 							<label class="control-label">是否有竞业条款:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="agreement.competivieArtical" value="${agreement.competivieArtical}" check-type="required"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="agreement.competivieArtical" value="${agreement.competivieArtical}" check-type="required" readOnly> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -78,7 +66,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 						<div class="control-group">
 							<label class="control-label">是否有保密协议:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="agreement.secretProtocal" value="${agreement.secretProtocal}" check-type="required"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="agreement.secretProtocal" value="${agreement.secretProtocal}" check-type="required" readOnly> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -105,7 +93,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 						<div class="control-group">
 							<label class="control-label">鉴证机关:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="agreement.identifyOffice" value="${agreement.identifyOffice}" check-type="required"> <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="agreement.identifyOffice" value="${agreement.identifyOffice}" check-type="required" readOnly> <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
@@ -124,16 +112,11 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 						<div class="control-group">
 							<label class="control-label">其他事宜:</label>
 							<div class="controls">
-								<input type="text" class="m-wrap span12" placeholder="" name="agreement.others" value="${agreement.others}" > <span class="help-block"></span>
+								<input type="text" class="m-wrap span12" placeholder="" name="agreement.others" value="${agreement.others}" readOnly > <span class="help-block"></span>
 							</div>
 						</div>
 					</div>
 					<!--/span-->
-				</div>
-				<%@ include file="workFlowSelect.jsp" %> 
-				<div class="form-actions">
-					<button id="submit" type="button" class="btn btn-primary" data-action="AgreementAction!find">保存</button>
-					<button type="button" class="btn">Cancel</button>
 				</div>
 			</form>
 			<!-- END FORM-->

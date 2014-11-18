@@ -20,7 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import org.junit.runner.Request;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.oa.listenner.Persistence;
 import com.oa.model.ApproveHistory;
 import com.oa.model.Document;
 import com.oa.model.DocumentProperty;
@@ -38,6 +41,7 @@ public class DocumentAction extends ActionSupport {
 	private WorkFlowService workFlowService;
 	private ApproveHistoryService approveHistoryService;
 	private Document document;
+	private Logger logger = LoggerFactory.getLogger(DocumentAction.class);
 
 	/*
 	 * private File uploadFiles; private String uploadFilesContentType; private
@@ -212,8 +216,12 @@ public class DocumentAction extends ActionSupport {
 	public String deleteDocument() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String ids[] = request.getParameterValues("delid");
+		Document docs=null;
+		String key;
 		for (String a : ids) {
-			System.out.println(a);
+			docs=documentService.findDocument(Integer.valueOf(a));
+			key=docs.getTypePersist().replaceAll("(.*)\\|.*", "$1");
+			Persistence.removeVariable(key);
 		}
 		returns = "DocumentAction!listMyDocument";
 		documentService.deleteDocuments(ids);
@@ -224,6 +232,16 @@ public class DocumentAction extends ActionSupport {
 		Users users = (Users) ServletActionContext.getRequest().getSession().getAttribute("admin");
 		System.out.println(document.getId());
 		List nextTransation = documentService.searchNextStep(document.getId(), users.getAccount());
+		Document docs=documentService.findDocument(document.getId());
+		logger.info(Persistence.variables.size()+"");
+		String docType=docs.getTypePersist();
+		if(docType!=null){
+			String[] key=docType.split("\\|");
+			ServletActionContext.getRequest().setAttribute("url", docs.getUrl());
+			ServletActionContext.getRequest().setAttribute(key[1], Persistence.getVariable(key[0]));
+			logger.info(key[1]+"-------"+Persistence.getVariable(key[0]));
+			logger.info("url----"+docs.getUrl());
+		}
 		ServletActionContext.getRequest().setAttribute("transitionList", nextTransation);
 		ServletActionContext.getRequest().setAttribute("id", document.getId());
 		return "submitToNextOne";

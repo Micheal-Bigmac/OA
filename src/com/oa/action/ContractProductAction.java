@@ -9,12 +9,17 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.oa.listenner.Persistence;
 import com.oa.model.ContractProductRecord;
+import com.oa.model.Document;
 import com.oa.model.Product;
 import com.oa.model.SalesAgreement;
+import com.oa.model.Users;
 import com.oa.service.ContractProductRecordService;
+import com.oa.service.DocumentService;
 import com.oa.service.ProductService;
 import com.oa.service.SalesAgreementService;
+import com.oa.util.Constant;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class ContractProductAction extends ActionSupport {
@@ -26,6 +31,9 @@ public class ContractProductAction extends ActionSupport {
 	private int index;
 	private Integer pid;
 	private String returns;
+	
+	private DocumentService documentService;
+	private Integer workflowId;
 
 	public String ContractProductRecordList() {
 		String hql="";
@@ -49,8 +57,18 @@ public class ContractProductAction extends ActionSupport {
 	public String addContractProduct() {
 	
 		Serializable flag = null;
+		String key;
 		if (contractProductRecord.getId() == null) {
-			flag = contractProductRecordService.addContractProductRecord(contractProductRecord);
+			Users users = (Users) ServletActionContext.getRequest().getSession().getAttribute("admin");
+			Document document =new Document();
+			String temp=users.getAccount()+Constant.contractProduct;
+			document.setTitle(temp);
+			document.setDescription(temp);
+			key=Persistence.setVariable(contractProductRecord);
+			document.setTypePersist(key+"|contractProductRecord");
+			document.setUrl("showContractProductRecord.jsp");
+			flag=documentService.addDocument(document, workflowId, users.getId(), null);
+//			flag = contractProductRecordService.addContractProductRecord(contractProductRecord);
 			returns = "ContractProductAction!ContractProductRecordList";
 			return flag == null ? "operator_failure" : "operator_success";
 		}
@@ -146,6 +164,27 @@ public class ContractProductAction extends ActionSupport {
 	@Resource
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
+	}
+
+
+	public DocumentService getDocumentService() {
+		return documentService;
+	}
+
+
+	@Resource
+	public void setDocumentService(DocumentService documentService) {
+		this.documentService = documentService;
+	}
+
+
+	public Integer getWorkflowId() {
+		return workflowId;
+	}
+
+
+	public void setWorkflowId(Integer workflowId) {
+		this.workflowId = workflowId;
 	}
 
 }

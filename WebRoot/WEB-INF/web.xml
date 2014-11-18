@@ -4,9 +4,9 @@
     <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>
   
-  <listener>
+<!--   <listener>
   	<listener-class>com.oa.listenner.persintenceListenner</listener-class>
-  </listener>
+  </listener> -->
   <filter>
     <filter-name>security</filter-name>
     <filter-class>com.oa.extend.SecurityFilter</filter-class>

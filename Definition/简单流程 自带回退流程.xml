@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition xmlns="" name="简单流程一个Task-node下多个Task">
+	<start-state name="开始">
+		<transition name="提交孙三审批" to="孙三审批"></transition>
+	</start-state>
+	<task-node name="孙三审批">
+		<event type="node-enter">
+			<action class="com.oa.jbpm.handler.RollbackTransitionAction" />
+		</event>
+		<task name="审批1">
+			<assignment actor-id="ss" />
+		</task>
+		<transition name="提交李四审批" to="李四审批"></transition>
+	</task-node>
+	<task-node name="李四审批" >
+		<event type="node-enter">
+			<action class="com.oa.jbpm.handler.RollbackTransitionAction" />
+		</event>
+		<task name="审批2">
+			<assignment actor-id="ls" />
+		</task>
+		<task name="审批2">
+			<assignment actor-id="zw" />
+		</task>
+		<transition name="提交周五审批" to="周五审批"></transition>
+	</task-node>
+	<task-node name="周五审批">
+		<event type="node-enter">
+			<action class="com.oa.jbpm.handler.RollbackTransitionAction" />
+		</event>
+		<task name="审批3">
+			<assignment actor-id="zw" />
+		</task>
+		<transition name="结束流程" to="结束"></transition>
+	</task-node>
+	<end-state name="结束"></end-state>
+</process-definition>

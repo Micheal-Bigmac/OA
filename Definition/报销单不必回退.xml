@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition
+  xmlns=""  name="报销单流程">
+   <start-state name="start">
+      <transition name="提交赵一" to="赵一"></transition>
+   </start-state>
+   <task-node name="赵一">
+      <event type="node-enter">
+          <action class="com.oa.jbpm.handler.PropsHandler"></action>
+      </event>
+   	  <task><assignment actor-id="zy"/></task>
+      <transition name="提交孙三" to="孙三" condition="#{money le 10000}"></transition>
+      <transition name="提交李四" to="李四" condition="#{money le 10000}"></transition>
+      <transition name="提交钱二" to="钱二" condition="#{money gt 10000}"></transition>
+      <transition name="提交周五" to="周五" condition="#{money gt 10000}"></transition>
+   </task-node>   
+   <task-node name="孙三">
+   	  <task><assignment actor-id="ss"/></task>
+      <transition name="提交吴六" to="吴六"></transition>
+   </task-node>
+   <task-node name="李四">
+   	  <task><assignment actor-id="ls"/></task>
+      <transition name="提交吴六" to="吴六"></transition>
+   </task-node>
+   <task-node name="钱二">
+      <task><assignment actor-id="qe"/></task>
+      <transition name="提交领导三人会签" to="领导三人会签" condition="#{money gt 100000}"></transition>
+      <transition name="小于10万，直接提交领导助手" to="陈十" condition="#{money le 100000}"></transition>
+   </task-node>
+   <task-node name="周五">
+      <task><assignment actor-id="zw"/></task>
+      <transition name="提交沈一四" to="沈一四"></transition>
+   </task-node>
+      <fork name="领导三人会签">
+      <transition name="提交郑七" to="郑七"></transition>
+      <transition name="提交王八" to="王八"></transition>
+      <transition name="提交冯九" to="冯九"></transition>
+   </fork>
+   <task-node name="郑七">
+      <task><assignment actor-id="zq"/></task>
+      <transition name="提交陈十" to="join1"></transition>
+   </task-node>
+   <task-node name="王八">
+      <task><assignment actor-id="wb"/></task>
+      <transition name="提交陈十" to="join1"></transition>
+   </task-node>
+   <task-node name="冯九">
+      <task><assignment actor-id="fj"/></task>
+      <transition name="提交陈十" to="join1"></transition>
+   </task-node>
+
+   <join name="join1">
+      <transition name="" to="陈十"></transition>
+   </join>
+   <task-node name="陈十">
+      <task><assignment actor-id="cs"/></task>
+      <transition name="提交仲裁审批" to="仲裁审批"></transition>
+   </task-node>
+   <task-node name="仲裁审批" signal="last-wait">
+   	  <task name="t1"><assignment actor-id="zyy"/></task>
+   	  <task name="t2"><assignment actor-id="wye"/></task>
+   	  <task name="t3"><assignment actor-id="jys"/></task>
+      <transition name="提交沈一四" to="沈一四"></transition>
+   </task-node>
+   <task-node name="沈一四">
+      <task><assignment actor-id="sys"/></task>
+      <transition name="提交杨一六" to="杨一六"></transition>
+   </task-node>
+   <task-node name="吴六">
+      <task><assignment actor-id="wl"/></task>
+      <transition name="提交杨一六" to="杨一六"></transition>
+   </task-node>   
+   <task-node name="杨一六">
+      <task><assignment actor-id="yyl"/></task>
+      <transition name="完成流程" to="结束"></transition>
+   </task-node>
+
+   <end-state name="结束"></end-state>
+
+
+</process-definition>

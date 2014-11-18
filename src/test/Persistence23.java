@@ -18,7 +18,7 @@ import org.omg.CORBA.PRIVATE_MEMBER;
 public class Persistence23 {
 
 	private static Map variables = null;
-	private static String saveFileName = "c:/temp.object";
+	private static String saveFileName = System.getProperty("java.io.tmpdir")+"/temp.object";
 
 	static {
 		if (new File(saveFileName).exists()) {
@@ -70,7 +70,7 @@ public class Persistence23 {
 	}
 
 	public static void testsaveToFile() {
-	/*	List<String> arraies = new ArrayList<String>();
+		/*List<String> arraies = new ArrayList<String>();
 		arraies.add(Persistence.setVariable("sdf"));
 		arraies.add(Persistence.setVariable("sdf"));
 		arraies.add(Persistence.setVariable("sdf"));
@@ -94,11 +94,12 @@ public class Persistence23 {
 
 	public static void main(String[] args) {
 
+		System.out.println(variables.size());
 //		testsaveToFile();
 		String name="sfasf3435s|sfsaf";
 		System.out.println(name.replaceAll("(.*)\\|.*", "$1"));
 		// testReadFromFile();
 
-		// System.out.println(System.getProperty("java.io.tmpdir"));
+//		 System.out.println(System.getProperty("java.io.tmpdir"));
 	}
 }

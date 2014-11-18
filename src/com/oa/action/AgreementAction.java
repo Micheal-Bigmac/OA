@@ -1,14 +1,21 @@
 package com.oa.action;
 
 import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import org.apache.struts2.ServletActionContext;
+
+import com.oa.listenner.Persistence;
 import com.oa.model.Agreement;
 import com.oa.model.Agreement;
+import com.oa.model.Document;
 import com.oa.model.Users;
 import com.oa.service.AgreementSerivce;
+import com.oa.service.DocumentService;
+import com.oa.util.Constant;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class AgreementAction extends ActionSupport{
@@ -17,14 +24,26 @@ public class AgreementAction extends ActionSupport{
 	private Integer agreeId;
 	private Agreement agreement;
 	private int index;
+	
+	private DocumentService documentService;
+	private Integer workflowId;
 	public String addAgree() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
 		Users user = (Users)session.getAttribute("admin");
+		String key;
 		
 		if(agreement.getId() == null) {
 			agreement.setPersonId(user.getPersonid());
-			agreementService.addAgree(agreement);
+			Document document=new Document();
+			String temp=user.getAccount()+Constant.agreement;
+			document.setTitle(temp);
+			document.setDescription(temp);
+			key=Persistence.setVariable(agreement);
+			document.setTypePersist(key+"|agreement");
+			document.setUrl("showAgreement.jsp");
+			documentService.addDocument(document, workflowId, user.getId(), null);
+//			agreementService.addAgree(agreement);
 			System.out.println("add");
 		} else {
 			agreement.setPersonId(user.getPersonid());
@@ -102,5 +121,18 @@ public class AgreementAction extends ActionSupport{
 	}
 	public void setIndex(int index) {
 		this.index = index;
+	}
+	public DocumentService getDocumentService() {
+		return documentService;
+	}
+	@Resource
+	public void setDocumentService(DocumentService documentService) {
+		this.documentService = documentService;
+	}
+	public Integer getWorkflowId() {
+		return workflowId;
+	}
+	public void setWorkflowId(Integer workflowId) {
+		this.workflowId = workflowId;
 	}
 }

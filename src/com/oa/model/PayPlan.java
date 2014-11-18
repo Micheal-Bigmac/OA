@@ -1,5 +1,6 @@
 package com.oa.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -15,7 +16,7 @@ import javax.persistence.Table;
  * @author Big mac
  *付款计划
  */
-public class PayPlan {
+public class PayPlan implements Serializable{
 
 	private Integer id;
 	private PurchaseOrderRegisiter order;

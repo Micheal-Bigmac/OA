@@ -15,9 +15,9 @@
 		</interceptors>
 		<default-interceptor-ref name="myDefaultStack" />
 		<global-results>
-            <result name="unhandledException">
-                /JSP/systemFail.jsp
-            </result>
+			<result name="unhandledException">
+				/JSP/systemFail.jsp
+			</result>
 			<result name="operator_success">
 				/direct.jsp
 			</result>
@@ -32,15 +32,12 @@
 			</result>
 		</global-results>
 
-		<!-- <global-exception-mappings>
-			<exception-mapping exception="org.hibernate.exception.ConstraintViolationException"
-				result="unhandledException" />
-			<exception-mapping exception="java.sql.BatchUpdateException"
-				result="unhandledException" />
-		</global-exception-mappings> -->
+		<!-- <global-exception-mappings> <exception-mapping exception="org.hibernate.exception.ConstraintViolationException" 
+			result="unhandledException" /> <exception-mapping exception="java.sql.BatchUpdateException" 
+			result="unhandledException" /> </global-exception-mappings> -->
 
-		<action name="UserAction" class="com.oa.action.UserAction" >
-			<result name="login_failure" >/login.jsp</result>
+		<action name="UserAction" class="com.oa.action.UserAction">
+			<result name="login_failure">/login.jsp</result>
 			<result name="login_success">/index.jsp</result>
 			<result name="modify">/JSP/yuangong.jsp</result>
 			<result name="accountModify">/JSP/accountModify.jsp</result>
@@ -52,7 +49,7 @@
 			<result name="logout">login.jsp</result>
 			<result name="error">/JSP/OpenError.jsp</result>
 			<result name="distributePrivilegeToUser">/JSP/distributePrivilegeToUser.jsp</result>
-		</action>	
+		</action>
 		<action name="OrganizationAction" class="com.oa.action.OrganizationAction">
 			<result name="listOrg">/JSP/organizationManage.jsp</result>
 			<result name="updateOrg">/JSP/addOrganization.jsp</result>
@@ -75,7 +72,7 @@
 			<result name="input">/JSP/addRole.jsp</result>
 			<result name="showRolePrivilege">/JSP/showRolePrivilege.jsp</result>
 			<result name="error">/JSP/OpenError.jsp</result>
-			<result name="distributePrivilegeToUser">/JSP/distributePrivilegeToUser.jsp</result>	
+			<result name="distributePrivilegeToUser">/JSP/distributePrivilegeToUser.jsp</result>
 		</action>
 		<action name="EventAction" class="com.oa.action.EventAction">
 		</action>
@@ -101,7 +98,7 @@
 				/JSP/test.jsp
 			</result>
 		</action>
-	
+
 		<action name="DynamicFormAction" class="com.oa.action.DynamicFormAction">
 			<result name="workFlowList">
 				/JSP/listDynamicForm.jsp
@@ -176,7 +173,7 @@
 				/modules/addUserManual.jsp
 			</result>
 		</action>
-	
+
 		<action name="AttendanceManagementAction" class="com.oa.action.AttendanceManagementAction">
 			<result name="attendanceSet">/JSP/attendanceSet.jsp</result>
 			<result name="OnAndOffRegister">/JSP/onAndOffRegister.jsp</result>

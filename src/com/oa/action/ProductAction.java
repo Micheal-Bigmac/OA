@@ -56,11 +56,7 @@ public class ProductAction extends ActionSupport {
 	}
 
 	public String addproduct() {
-		/*
-		 * if(pid!=null){ product.setId(ProductService.getProduct(pid)); }
-		 * returns="productAction!productList"; Serializable
-		 * flag=ProductService.addproduct(product);
-		 */
+		
 		Serializable flag = null;
 		Users users = (Users) ServletActionContext.getRequest().getSession().getAttribute("admin");
 		String key=null;
@@ -73,7 +69,7 @@ public class ProductAction extends ActionSupport {
 			key=Persistence.setVariable(product);
 			document.setTypePersist(key+"|product");
 			logger.info(Persistence.getVariable(key).toString());
-			document.setUrl("JSP/addProduct.jsp");
+			document.setUrl("showProduct.jsp");
 			flag=documentService.addDocument(document, workflowId, users.getId(), null);
 			returns = "ProductAction!productList";
 			return flag == null ? "operator_failure" : null;

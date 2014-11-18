@@ -5,7 +5,7 @@
 	<div class="row-fluid">
 		<div class="span6 ">
 			<div class="control-group">
-				<label class="control-label">产品名称:</label>
+				<label class="control-label">请选择进行审批的流程:</label>
 				<div class="controls">
 					<select class="span12" name="workflowId" check-type="required">
 						<s:iterator var="workflow" value="#session.workFlows">
