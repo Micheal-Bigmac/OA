@@ -46,7 +46,7 @@
 				<span class="newfont07">选择：<a href="#"  id="selectAll">全选</a>-<a href="#"  id="unselect">反选</a>
 			</span>
 			<a class="ajaxify btn" href="DynamicFieldAction!deleteDynamicField">删除所选表单信息</a>
-			<a class="ajaxify btn" href="DynamicFieldAction!AddFieldView?id=${id}">添加表单域</a>
+			<a class="ajaxify btn" href="DynamicFieldAction!AddFieldView?dynamicFormId=${id}">添加表单域</a>
 			</div>
 			<div class="row-fluid">
 				<div class="row-fluid" style="text-align: center;font-size:20px;background-color:#EEEEEE">
@@ -89,7 +89,7 @@
 
 									
 									<td bgcolor="#FFFFFF" align="center"> 
-									<a class="ajaxify" href="DynamicFieldAction!modifyDynamicField?id=${dynamicField.id }">修改</a>&nbsp;|&nbsp;
+									<a class="ajaxify" href="DynamicFieldAction!modifyDynamicField?id=${dynamicField.id }&dynamicFormId=${id}">修改</a>&nbsp;|&nbsp;
 										<s:if test="#input ==2 || #input ==3 || #input == 4 ">
 											<a class="ajaxify" href="FieldItemAction!ListItems?id=${dynamicField.id }">条目</a>&nbsp;|&nbsp;
 											</s:if>

@@ -46,16 +46,22 @@ public class DocumentDaoImp implements DocumentDao {
 		document.setUsers((Users) jbpmCore.getJbpmTemplate().getHibernateTemplate().load(Users.class, userId));
 		document.setStatus(Document.New);
 		document.setCreateTime(new Date());
-
+		
+		String key=Persistence.setVariable((Serializable) props);
+		document.setTypePersist(key+"|properties");
 		// 设置其它属性
 		// document.setPropertiesMap(props);
 
 		Serializable flag=jbpmCore.getJbpmTemplate().getHibernateTemplate().save(document);
+		
+		
 		System.out.println("=------------========");
 		System.out.println(document.toString() + " documentDaoImp addDocument ");
 		if (props != null) {
 			for (DocumentProperty property : props) {
 				if (property != null) {
+					//防止删除不掉公文
+					property.setDocument(document);
 					superDao.add(property);
 				}
 			}

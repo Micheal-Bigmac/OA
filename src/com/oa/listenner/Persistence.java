@@ -11,11 +11,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import org.apache.struts2.ServletActionContext;
+
+import bsh.This;
+
 //将内存中的一个对象持久化到一个文件中
 public class Persistence {
 
 	public static Map variables = null;
-	private static String saveFileName =  System.getProperty("java.io.tmpdir")+"/temp.object";
+	private static String saveFileName =  "C:/temp.object";
 	static {
 		if (new File(saveFileName).exists()) {
 			try {
@@ -68,6 +72,6 @@ public class Persistence {
 		variables.remove(name);
 	}
 	public static void main(String[] args) {
-		System.out.println(variables.size());
+		System.out.println();
 	}
 }

@@ -94,11 +94,12 @@ public class Persistence23 {
 
 	public static void main(String[] args) {
 
-		System.out.println(variables.size());
+//		System.out.println(variables.size());
 //		testsaveToFile();
 		String name="sfasf3435s|sfsaf";
 		System.out.println(name.replaceAll("(.*)\\|.*", "$1"));
 		// testReadFromFile();
+		System.out.println(Persistence23.class.getClass().getClassLoader().getResource("/").getPath());
 
 //		 System.out.println(System.getProperty("java.io.tmpdir"));
 	}

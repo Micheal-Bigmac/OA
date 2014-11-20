@@ -181,7 +181,6 @@ public class PerformanceExamineServiceImpl implements PerformanceExamineSerivce{
 		System.out.println(pe.size());
 		for(int i=0; i<pe.size(); i++) {
 			System.out.println(pe.get(i).getPersonId().getId());
-			//set.add(pe.get(i).getPersonId().getId());
 			list.add(pe.get(i).getPersonId().getId());
 			listName.add(pe.get(i).getPersonId().getName());
 		}
@@ -213,16 +212,17 @@ public class PerformanceExamineServiceImpl implements PerformanceExamineSerivce{
 			List lists = new ArrayList();
 			for(int i=0; i<pe.size(); i++) {
 				if(pe.get(i).getPersonId().getId()==list.get(j)) {
-					System.out.println("pe.get(i).getPersonId().getId() "+pe.get(i).getPersonId().getId());
-					System.out.println("list.get(j) "+list.get(j));
+/*					System.out.println("pe.get(i).getPersonId().getId() "+pe.get(i).getPersonId().getId());
+					System.out.println("list.get(j) "+list.get(j));*/
 					lists.add(pe.get(i).getScore());
 				}
 			}
 			map = new LinkedHashMap<String, List>();
-			System.out.println("listName.get(j).toString() is "+listName.get(j).toString());
-			for(int n=0; n<lists.size(); n++) {
+			
+//			System.out.println("listName.get(j).toString() is "+listName.get(j).toString());
+		/*	for(int n=0; n<lists.size(); n++) {
 				System.out.println("list(n is) "+lists.get(n));
-			}
+			}*/
 			map.put(listName.get(j).toString(), lists);
 			maps.put(Integer.valueOf(list.get(j).toString()),map);
 		}

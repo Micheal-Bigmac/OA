@@ -30,7 +30,7 @@ public class DynamicField implements Serializable{
 	
 	///
 	private Set<FieldItem> fieldItems=new HashSet<FieldItem>();
-	@Id
+	@Id 
 	@GeneratedValue
 	public Integer getId() {
 		return id;

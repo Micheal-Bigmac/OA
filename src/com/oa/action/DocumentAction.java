@@ -216,12 +216,14 @@ public class DocumentAction extends ActionSupport {
 	public String deleteDocument() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String ids[] = request.getParameterValues("delid");
-		Document docs=null;
+		Document docs = null;
 		String key;
 		for (String a : ids) {
-			docs=documentService.findDocument(Integer.valueOf(a));
-			key=docs.getTypePersist().replaceAll("(.*)\\|.*", "$1");
-			Persistence.removeVariable(key);
+			docs = documentService.findDocument(Integer.valueOf(a));
+			if (docs.getTypePersist() != null) {
+				key = docs.getTypePersist().replaceAll("(.*)\\|.*", "$1");
+				Persistence.removeVariable(key);
+			}
 		}
 		returns = "DocumentAction!listMyDocument";
 		documentService.deleteDocuments(ids);
@@ -230,18 +232,20 @@ public class DocumentAction extends ActionSupport {
 
 	public String submitView() {
 		Users users = (Users) ServletActionContext.getRequest().getSession().getAttribute("admin");
-		System.out.println(document.getId());
 		List nextTransation = documentService.searchNextStep(document.getId(), users.getAccount());
-		Document docs=documentService.findDocument(document.getId());
-		logger.info(Persistence.variables.size()+"");
-		String docType=docs.getTypePersist();
-		if(docType!=null){
-			String[] key=docType.split("\\|");
+		Document docs = documentService.findDocument(document.getId());
+//		logger.info(Persistence.variables.size() + "");
+		String docType = docs.getTypePersist();
+		if (docType != null) {
+			String[] key = docType.split("\\|");
 			ServletActionContext.getRequest().setAttribute("url", docs.getUrl());
+			ServletActionContext.getRequest().setAttribute("key", docType);
 			ServletActionContext.getRequest().setAttribute(key[1], Persistence.getVariable(key[0]));
-			logger.info(key[1]+"-------"+Persistence.getVariable(key[0]));
-			logger.info("url----"+docs.getUrl());
+			logger.info(key[1] + "-------" + Persistence.getVariable(key[0]));
+			logger.info("url----" + docs.getUrl());
 		}
+		ServletActionContext.getRequest().setAttribute("workflowId", docs.getWorkFlow().getId());
+		ServletActionContext.getRequest().setAttribute("isProperNull", docs.getProps().size());
 		ServletActionContext.getRequest().setAttribute("transitionList", nextTransation);
 		ServletActionContext.getRequest().setAttribute("id", document.getId());
 		return "submitToNextOne";

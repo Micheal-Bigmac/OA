@@ -8,6 +8,12 @@
 	<function>
 		<name>TemplateToString</name>
 		<function-class>com.oa.util.FreeMarketUtil</function-class>
-		<function-signature>java.lang.String TemplateToString(int)</function-signature>
+		<function-signature>java.lang.String TemplateToString(int)
+		</function-signature>
+	</function>
+	<function>
+		<name>TemplateToString2</name>
+		<function-class>com.oa.util.FreeMarketUtil</function-class>
+		<function-signature>java.lang.String TemplateToString2(int,java.lang.String)</function-signature>
 	</function>
 </taglib>

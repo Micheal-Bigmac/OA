@@ -10,7 +10,6 @@ public class persintenceListenner implements ServletContextListener {
 	}
 
 	public void contextInitialized(ServletContextEvent arg0) {
-		
 	}
 
 }

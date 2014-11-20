@@ -51,11 +51,9 @@ public class JbpmCoreImp implements JbpmCore {
 		// 将公文的相关属性设置进入流程实例变量 ============================没有出去空的选项
 		if (props != null) {
 			for (DocumentProperty property : props) {
-				if (!property.isNull()) {
+				if (property!=null&&!property.isNull()) {
 					String propertyname = property.getPropertyName();
 					Object value = property.getValue();
-					System.out.println(property.getPropertyName());
-					System.out.println(property.getValue());
 					instance.getContextInstance().setVariable(propertyname, value);
 				}
 			}

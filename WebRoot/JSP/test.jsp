@@ -8,6 +8,7 @@
 %>
 <%@include file="debugFile.inc"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@taglib uri="www.BigMac.com" prefix="oa"%>
 <base href="<%=basePath%>">
 <div class="row-fluid">
 	<h3 class="page-title">流程列表</h3>
@@ -20,6 +21,26 @@
 	</ul>
 </div>
 <jsp:include page="${url }" />
+<s:if test="#request.isProperNull>0">
+	<div class="tab-pane  active" id="tab_2">
+		<div class="portlet box green">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="icon-reorder"></i>申请项
+				</div>
+				<div class="tools">
+					<a href="javascript:;" class="collapse"></a> <a href="#portlet-config" data-toggle="modal" class="config"></a> <a href="javascript:;" class="reload"></a> <a href="javascript:;" class="remove"></a>
+				</div>
+			</div>
+			<div class="portlet-body form">
+				<form class="form-horizontal" method="post" enctype="multipart/form-data">
+					<h3 class="form-section">申请项信息</h3>
+					${oa:TemplateToString2(workflowId,key)}
+				</form>
+			</div>
+		</div>
+	</div>
+</s:if>
 <div class="tab-pane  active" id="tab_2">
 	<div class="portlet box green">
 		<div class="portlet-title">

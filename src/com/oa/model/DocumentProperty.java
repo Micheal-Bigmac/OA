@@ -1,5 +1,7 @@
 package com.oa.model;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,7 +14,7 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "oa_documentProperty")
-public class DocumentProperty {
+public class DocumentProperty implements Serializable {
 
 	private Integer id;
 
@@ -25,6 +27,7 @@ public class DocumentProperty {
 
 	//
 	private Document document;
+	private String property;
 
 	String getJava_lang_String() {
 		return java_lang_String;
@@ -48,21 +51,24 @@ public class DocumentProperty {
 
 	@Transient
 	public boolean isNull() {
-		if (this.java_lang_String != null || this.java_io_File != null
-				|| this.java_lang_Integer != null
-				|| this.java_lang_Long != null
-				|| this.java_util_Date!=null) {
+		if (this.java_lang_String != null || this.java_io_File != null || this.java_lang_Integer != null || this.java_lang_Long != null || this.java_util_Date != null) {
 			return false;
 		}
 		return true;
 	}
+
 	@Transient
-	public Object getValue(){
-		if(this.java_io_File!=null) return java_io_File;
-		else if(java_lang_Integer!=null) return java_lang_Integer;
-		else if(java_lang_Long!=null) return java_lang_Long;
-		else if(java_lang_String!=null) return java_lang_String;
-		else return java_util_Date;
+	public Object getValue() {
+		if (this.java_io_File != null)
+			return java_io_File;
+		else if (java_lang_Integer != null)
+			return java_lang_Integer;
+		else if (java_lang_Long != null)
+			return java_lang_Long;
+		else if (java_lang_String != null)
+			return java_lang_String;
+		else
+			return java_util_Date;
 	}
 
 	public void setJava_lang_Integer(String java_lang_Integer) {
@@ -115,10 +121,22 @@ public class DocumentProperty {
 
 	@Override
 	public String toString() {
-		return "DocumentProperty [id=" + id + ", java_lang_String="
-				+ java_lang_String + ", java_util_Date=" + java_util_Date
-				+ ", java_lang_Integer=" + java_lang_Integer
-				+ ", java_lang_Long=" + java_lang_Long + ", java_io_File="
-				+ java_io_File + ", propertyName=" + propertyName + "]";
+		return "DocumentProperty [id=" + id + ", java_lang_String=" + java_lang_String + ", java_util_Date=" + java_util_Date + ", java_lang_Integer=" + java_lang_Integer + ", java_lang_Long=" + java_lang_Long + ", java_io_File=" + java_io_File + ", propertyName=" + propertyName + "]";
+	}
+
+	@Transient
+	public String getProperty() {
+		if (java_lang_Integer != null)
+			return java_lang_Integer;
+		else if (java_lang_Long != null)
+			return java_lang_Long;
+		else if (java_lang_String != null)
+			return java_lang_String;
+		else
+			return java_util_Date;
+	}
+
+	public void setProperty(String property) {
+		this.property = property;
 	}
 }

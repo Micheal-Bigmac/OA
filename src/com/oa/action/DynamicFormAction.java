@@ -27,8 +27,7 @@ public class DynamicFormAction extends ActionSupport {
 	public String list() {
 
 		String hql = "";
-		List<WorkFlow> workFlows = workFlowService.getPageWorkFlows(
-				(index == 0 ? 1 : index), hql);
+		List<WorkFlow> workFlows = workFlowService.getPageWorkFlows((index == 0 ? 1 : index), hql);
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("listObject", workFlows);
 		request.setAttribute("currentIndex", (index == 0 ? 1 : index));
@@ -44,24 +43,21 @@ public class DynamicFormAction extends ActionSupport {
 		DynamicForm dynamicForm = new DynamicForm();
 		dynamicForm.setWorkFlow(workFlowService.getWorkFlow(workflowid));
 		dynamicForm.setTemplate("document_form.ftl");
-		int id = (Integer) dynamicFormService
-				.addOrUpdateDynamicForm(dynamicForm);
+		int id = (Integer) dynamicFormService.addOrUpdateDynamicForm(dynamicForm);
 		ServletActionContext.getRequest().setAttribute("id", id);
 
 		getDynamicFieldList(id);
-		ServletActionContext.getRequest().setAttribute("url","DynamicFormAction!listFormField?workflowid="+workflowid);
+		ServletActionContext.getRequest().setAttribute("url", "DynamicFormAction!listFormField?workflowid=" + workflowid);
 		return "listFormField";
 	}
 
 	private void getDynamicFieldList(int id) {
-		List<DynamicField> fields = dynamicFieldService.getPageDynamicFields(
-				(index == 0 ? 1 : index), " and s.dynamicForm.id =" + id);
+		List<DynamicField> fields = dynamicFieldService.getPageDynamicFields((index == 0 ? 1 : index), " and s.dynamicForm.id =" + id);
 		System.out.println(fields.size() + "||||||||||||");
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("dynamicFieldList", fields);
 		request.setAttribute("currentIndex", (index == 0 ? 1 : index));
-		int total = dynamicFieldService.getAllDynamicFields(
-				" and s.dynamicForm.id =" + id).size();
+		int total = dynamicFieldService.getAllDynamicFields(" and s.dynamicForm.id =" + id).size();
 		request.setAttribute("totalSize", total);
 	}
 
