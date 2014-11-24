@@ -217,6 +217,7 @@
 			<result name="organizationList">/JSP/organizationManage.jsp</result>
 			<result name="agreementList">/JSP/agreementManage.jsp</result>
 			<result name="disciplinaryRecordsList">/JSP/disciplinaryRecordsManage.jsp</result>
+			<result name="listPerformanceExamineList">/JSP/performanceExamineManage.jsp</result>
 		</action>
 	</package>
 </struts>

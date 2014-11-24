@@ -787,10 +787,10 @@ var App = function () {
         }
     };
     
-    var handlePageLoader = function() {
+   /* var handlePageLoader = function() {
     	loader = new SVGLoader( document.getElementById( 'loader' ), { speedIn :200 } );
  
-    };
+    };*/
 
     //* END:CORE HANDLERS *//
 
@@ -826,7 +826,6 @@ var App = function () {
             handlePopovers(); // handles bootstrap popovers
             handleAccordions(); //handles accordions
             handleChoosenSelect(); // handles bootstrap chosen dropdowns     
-            handlePageLoader();
             
             App.addResponsiveHandler(handleChoosenSelect); // reinitiate chosen dropdown on main content resize. disable this line if you don't really use chosen dropdowns.
             App.addResponsiveHandler(handleScrollers);
@@ -865,7 +864,7 @@ var App = function () {
             App.scrollTo();
         },
 
-        // wrapper function to  block element(indicate loading)
+/*        // wrapper function to  block element(indicate loading)
         blockUI: function (el, centerY) {
             var t = $(".page-sidebar").position().top;
             var l = $(".page-sidebar").width() + $(".page-sidebar").position().left;
@@ -877,6 +876,31 @@ var App = function () {
         // wrapper function to  un-block element(finish loading)
         unblockUI: function (el) {
         	loader.hide();
+        },*/
+        // wrapper function to  block element(indicate loading)
+        blockUI: function (el, centerY) {
+            var el = jQuery(el); 
+            
+            el.block({
+                    message: '<div class="spinner">\
+                    	<div class="rect1"></div>\
+                    	<div class="rect2"></div>\
+                    	<div class="rect3"></div>\
+                    	<div class="rect4"></div>\
+                    	<div class="rect5"></div></div>',
+                    centerY: centerY != undefined ? centerY : true,
+                    css: {
+                        top: '100px',
+                        border: 'none',
+//                        padding: '2px',
+                        backgroundColor: 'none',
+                    }
+                });
+        },
+
+        // wrapper function to  un-block element(finish loading)
+        unblockUI: function (el) {
+            jQuery(el).unblock();
         },
 
         // initializes uniform elements

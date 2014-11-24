@@ -14,7 +14,6 @@
 <head>
 <base href="<%=basePath%>">
 <title>My JSP 'MyJdffsp.jsp' starting page</title>
-<link href="css/css.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body>

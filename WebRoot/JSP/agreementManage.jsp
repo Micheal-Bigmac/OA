@@ -23,19 +23,31 @@
 		</li>
 	</ul>
 </div>
-<div class='row-fluid'>
+
+<div class='portlet-body form'>
 	<form name="formSelect" id="form_Select" method="post" action="FindAction!findByCondition">
-		<table>
-			<tr>
-				<td><select id="findCondition" name="findCondition">
+		<div class="row-fluid">
+			<div class="span6">
+				<div class="control-group">
+					<div class="controls">
+						<select id="findCondition" name="findCondition">
 						<option value="aggId">按合同编号</option>
 						<option value="aggType">按合同类型</option>
-				</select></td>
-				<td><input id="className" name="className" type="hidden" value="Agreement" /> <input id="textfield" name="textfield" type="text" /></td>
-				<td><input id="select" class="btn" name="Submit" type="submit" value="查 询" style='margin-bottom: 10px;' /></td>
-				<td><input name="Submit" class="btn" type="button" value="高级搜索" style='margin-bottom: 10px;' /></td>
-			</tr>
-		</table>
+				</select>
+						<input id="className" name="className" type="hidden" value="Agreement" />
+				 <input id="textfield" name="textfield" type="text" />
+					</div>
+				</div>
+			</div>
+			<div class="span6">
+				<div class="control-group">
+					<div class="controls">
+						<button id="select" type="button" class="btn btn-primary">查 询</button>
+						<button id="Submit" class="btn btn-primary" type="button">高级搜索</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</form>
 </div>
 <div class="row-fluid">

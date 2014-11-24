@@ -320,7 +320,7 @@ public class FindAction extends ActionSupport {
 			if(textfield.trim().equalsIgnoreCase("") || textfield.trim().equals("")) {
 				hql = "";
 			} else {
-				hql = "and s.supplierCode = '" + textfield + "'";			
+				hql = "and s.supplierCode like '%" + textfield + "%'";			
 			}
 			newClassList = findService.findByCondition((index==0 ? 1 : index), className, findCondition, textfield, hql);
 			total = findService.getAllContents(className, hql).size();
@@ -507,68 +507,6 @@ public class FindAction extends ActionSupport {
 			if(className.trim().equals("Person"))
 				request.setAttribute("url", "FindAction!findByCondition?className=Person&findCondition=phone&textfield="+textfield);
 		}
-		/*else if(className!=null) {
-			if(className.equals("OrderProductRecord")) {
-			System.out.println("ok");
-			List<OrderProductRecord> listOP = null;
-			if(findCondition.equals("productName")) {
-				listOP= findService.findByConditionsOPR("from OrderProductRecord c where c.product.productName like '%"+textfield+"%'");
-			}
-			if(findCondition.equals("orderName")) {
-				listOP= findService.findByConditionsOPR("from OrderProductRecord c where c.order.orderName like '%"+textfield+"%'");
-			}
-			System.out.println(hql);
-			className = "OrderProductRecord";
-			String seqName = (String) className.subSequence(0, 1);
-			String otherName = (String)className.subSequence(1,className.length());
-			className = seqName.toLowerCase()+otherName;
-			String newClass = className + "s";
-			System.out.println("new class is "+newClass);
-			
-			HttpServletRequest request = ServletActionContext.getRequest();
-			request.setAttribute("listObject", listOP);
-			request.setAttribute("currentIndex", (index==0 ?  1 : index));
-			
-			System.out.println("total is " + total);
-			request.setAttribute("totalSize", total);
-			request.setAttribute("url", "FindAction!findByCondition");
-			return "orderProductRecordList";
-		} }else {
-			if(className2 != null) {
-				hql = "and s." + findCondition + " like '%" + textfield + "%'";
-				newClassList = findService.findByCondition((index==0 ? 1 : index), className, findCondition, textfield, hql);
-				total = findService.getAllContents(className, hql).size();
-				System.out.println(hql);
-				String seqName = (String) className.subSequence(0, 1);
-				String otherName = (String)className.subSequence(1,className.length());
-				className = seqName.toLowerCase()+otherName;
-				String newClass = className + "s";
-				System.out.println("new class is "+newClass);
-				
-				HttpServletRequest request = ServletActionContext.getRequest();
-				request.setAttribute("listObject", newClassList);
-				request.setAttribute("currentIndex", (index==0 ?  1 : index));
-				
-				System.out.println("total is " + total);
-				request.setAttribute("totalSize", total);
-				request.setAttribute("url", "FindAction!findByCondition");
-				return "dynamicFormList";
-			} else {
-				System.out.println("name");
-				if(textfield.trim().equalsIgnoreCase("") || textfield.trim().equals("")) {
-					hql = "";
-					System.out.println("hql is "+hql);
-				} else {
-					hql = "and s." + findCondition + " like '%" + textfield + "%'";
-					System.out.println("hql is "+hql);
-				}
-				
-				newClassList = findService.findByCondition((index==0 ? 1 : index), className, findCondition, textfield, hql);
-				total = findService.getAllContents(className, hql).size();
-				HttpServletRequest request = ServletActionContext.getRequest();
-				request.setAttribute("url", "FindAction!findByCondition?className=Module&findCondition=name&textfield="+textfield);
-			}
-	}*/
 		System.out.println(hql);
 		String seqName = (String) className.subSequence(0, 1);
 		String otherName = (String)className.subSequence(1,className.length());

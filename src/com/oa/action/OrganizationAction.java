@@ -37,30 +37,18 @@ public class OrganizationAction extends ActionSupport {
 	
 	public String add() {
 		if(organization.getId() != null) {
-System.out.println("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
 			//organization = organizationService.check("from Organization o where o.id=?", new Object[]{updateOrgId});
-System.out.println("orga.id" + organization.getId());
-System.out.println("orga.name" + organization.getName());
-System.out.println("organ.desc" + organization.getDescription());
 			organization.setPid(organizationService.getModel(parentid));
 			organizationService.update(organization);
 			return "operator_success";
 		} else {
-System.out.println("orga.id"+organization.getId());
-System.out.println("orga.name"+organization.getName());
-System.out.println("organ.desc"+organization.getDescription());
 			if(parentid==null)
 				organization.setPid(null);
 			else {
 				organization.setPid(organizationService.getModel(parentid));
-System.out.println("getPidddddddddddd is "+parentid);
 			}
 			organization.setSn(null);
-System.out.println("organ. "+organization.getPid());
-System.out.println("organ. "+organization.getSn());
-			
 			Serializable flag = organizationService.add(organization);
-System.out.println("falg is "+flag);
 			if(flag != null) {
 				returns="OrganizationAction!find";
 				return "operator_success";
@@ -71,11 +59,7 @@ System.out.println("falg is "+flag);
 	
 	/*获取某个Id值所对应的organization信息*/
 	public String update() {
-System.out.println("修改id is");		
 		organization = organizationService.select(Organization.class, updateOrgId);
-System.out.println("organization id is "+organization.getId());
-System.out.println("organization name si "+organization.getName());
-System.out.println("organization descript is "+organization.getDescription());
 		//organizationService.update(organization);
 		return "updateOrg";
 	}
@@ -90,12 +74,6 @@ System.out.println("organization descript is "+organization.getDescription());
 			organization = organizationService.select(Organization.class, Integer.valueOf(ids[i]));
 			organizationService.delete(organization);
 		}
-		/*organization = organizationService.select(Organization.class, deleteOrgId);
->>>>>>> 571789f32eaabd5828682339bf711198cc0f8054
-System.out.println("organization id is "+organization.getId());
-System.out.println("organization name is "+organization.getName());
-System.out.println("organization descript is "+organization.getDescription());
-		organizationService.delete(organization);*/
 		return "operator_success";
 	}
 	
@@ -109,7 +87,7 @@ System.out.println("organization descript is "+organization.getDescription());
 			
 			request.setAttribute("currentIndex", (index==0 ?  1 : index ));
 			request.setAttribute("totalSize",total);
-			request.setAttribute("listOrg", listOrgChild);
+			request.setAttribute("listObject", listOrgChild);
 			request.setAttribute("parentid",parentid);
 			request.setAttribute("url", "OrganizationAction!find?parentid="+parentid);
 			return "listOrg";
@@ -122,7 +100,7 @@ System.out.println("organization descript is "+organization.getDescription());
 			HttpServletRequest request=ServletActionContext.getRequest();
 			request.setAttribute("currentIndex", (index==0 ?  1 : index ));
 			request.setAttribute("totalSize",total);
-			request.setAttribute("listOrg", listOrg);
+			request.setAttribute("listObject", listOrg);
 			request.setAttribute("url", "OrganizationAction!find?");
 			return "listOrg";
 		}

@@ -46,21 +46,22 @@ public class DocumentDaoImp implements DocumentDao {
 		document.setUsers((Users) jbpmCore.getJbpmTemplate().getHibernateTemplate().load(Users.class, userId));
 		document.setStatus(Document.New);
 		document.setCreateTime(new Date());
-		
-		String key=Persistence.setVariable((Serializable) props);
-		document.setTypePersist(key+"|properties");
+
+		String key = Persistence.setVariable((Serializable) props);
+		if (props != null) {
+			document.setTypePersist(key + "|properties");
+		}
 		// 设置其它属性
 		// document.setPropertiesMap(props);
 
-		Serializable flag=jbpmCore.getJbpmTemplate().getHibernateTemplate().save(document);
-		
-		
+		Serializable flag = jbpmCore.getJbpmTemplate().getHibernateTemplate().save(document);
+
 		System.out.println("=------------========");
 		System.out.println(document.toString() + " documentDaoImp addDocument ");
 		if (props != null) {
 			for (DocumentProperty property : props) {
 				if (property != null) {
-					//防止删除不掉公文
+					// 防止删除不掉公文
 					property.setDocument(document);
 					superDao.add(property);
 				}
@@ -153,7 +154,7 @@ public class DocumentDaoImp implements DocumentDao {
 
 	public List<Document> searchPageDocument(Class clazz, int userId, int index, boolean finished) {
 		if (finished == false) {
-			String hql = "from Document d where d.users.id =" + userId +" and d.status!='结束' ";
+			String hql = "from Document d where d.users.id =" + userId + " and d.status!='结束' ";
 			return objectToDocuments(superDao.getpage(index, hql));
 		} else {
 			String hql = "from Document d where d.users.id =" + userId + " and d.status='结束'";
@@ -188,14 +189,13 @@ public class DocumentDaoImp implements DocumentDao {
 
 		Document document = (Document) superDao.select(Document.class, documentId);
 		long processInstanceId = document.getProcessInstanceId();
-		
 
 		String status = jbpmCore.nextStep(processInstanceId, username, transitionName);
-		if("结束".equals(status)){
-			String key=document.getTypePersist();
-			if(key!=null){
-				key=key.replaceAll("(.*)\\|.*", "$1");
-				Object object=Persistence.getVariable(key);
+		if ("结束".equals(status)) {
+			String key = document.getTypePersist();
+			if (key != null) {
+				key = key.replaceAll("(.*)\\|.*", "$1");
+				Object object = Persistence.getVariable(key);
 				superDao.saveOrUpdate(object);
 				Persistence.removeVariable(key);
 			}
